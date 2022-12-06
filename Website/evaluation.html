@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Evaluation</title>
+
+    <link rel="stylesheet" href="assets/css/Global.css">
+    <link rel="stylesheet" href="assets/css/Header.css">
+    <link rel="stylesheet" href="assets/css/Footer.css">
+
+    <link rel="stylesheet" href="assets/css/pages/index.css">
+
+</head>
+
+<body>
+    <header>
+        <!-- ***** Logo Start ***** -->
+        <a href="index.html" class="logo">
+            <img src="assets/images/go-logo-2020.png" alt="IFRC-GO">
+        </a>
+        <!-- ***** Logo End ***** -->
+        <!-- ***** Menu Start ***** -->
+        <ul class="menu" id="menu">
+            <li class="submenu">
+                <a class="mainlink" href="index.html">Home</a>
+            </li>
+            <li class="submenu">
+                <a class="mainlink" href="requirements.html">Requirements</a>
+            </li>
+
+            <li class="submenu" class="submenu">
+                <a class="mainlink" href="research.html">Research</a>
+            </li>
+            <li class="submenu" class="submenu">
+                <a class="mainlink" href="algorithms.html">Algorithms</a>
+            </li>
+            <li class="submenu" class="submenu">
+                <a class="mainlink" href="design.html">Design</a>
+            </li>
+            <li class="submenu" class="submenu">
+                <a class="mainlink" href="implementation.html">Implementation</a>
+            </li>
+            <li class="submenu" class="submenu">
+                <a class="mainlink" href="testing.html">Testing</a>
+            </li>
+            <li class="submenu" class="submenu">
+                <a class="mainlink" href="evaluation.html">Evaluation</a>
+            </li>
+            <li class="submenu" class="submenu">
+                <a class="mainlink" href="appendix.html">Appendix</a>
+            </li>
+        </ul>
+        <a class='menu-mobile'>
+            <span>Menu</span>
+        </a>
+        <!-- ***** Menu Start ***** -->
+    </header>
+
+    <!-- the first re-usable section with topic and contents -->
+    <section class="section" id="achievements">
+        <!-- topic -->
+        <h3>Achievement Table</h3>
+        <!-- contents -->
+        <img src="assets/images/evaluation/achievement_table_soft.png" alt="achievements software engineering">
+        <img src="assets/images/evaluation/achievement_table_mach.png" alt="achievements machine learning">
+    </section>
+
+    <section class="section" id="contributions">
+        <!-- topic -->
+        <h3>Individual Contributions</h3>
+        <!-- contents -->
+        <img src="assets/images/evaluation/individual_contributions.png" alt="individual contributions table">
+    </section>
+
+    <section class="section" id="critical-evaluation">
+        <!-- topic -->
+        <h3>Critical Evaluation</h3>
+        <!-- contents -->
+        <h4>User Interface</h4>
+        <p>The user interface has been designed similar to Google's search interface. The design is kept simple and clean, and we have received positive feedback from the clients. There could be additional functionality in the UI, such as more search filters
+            and advanced search features such as support for boolean logic. The application is usable on mobile devices, however, more work would be needed for a fully responsive UI.
+        </p>
+        <h4>Stability</h4>
+        <p>The application is deployed on the Azure Cloud using a free account. This limits the amount of cloud credit available, giving us little computing resources. We assume that this is one cause for the relatively slow performance of our deployed application.
+            However, we have not experienced any crashes. This indicates relatively high stability.
+        </p>
+        <h4>Efficiency</h4>
+        <p>
+            We are using Elasticsearch for the search engine. This is a highly optimised framework for search tasks, offering high performance for any search algorithm. After having optimised the API calls to the X5GON API service, which were an efficiency bottleneck
+            before, our application has delivered highly efficient search performance.
+        </p>
+        <h4>Compatibility</h4>
+        <p>
+            We have not been able to optimise our application for mobile devices, as mentioned above. Nonetheless, the application is deployed as a cloud-based web application on Azure. This offers performance and compatibility independent of the user's operating
+            system. It is thus compatible with Windows, Linux and Mac, as well as mobile operating systems for smartphones and tablets.
+        </p>
+        <h4>Maintainability</h4>
+        <p>
+            The code has been written with software engineering practices in mind. The architecture clearly separates the project into frontend and backend. There are only a few API calls that the frontend (view) uses to communicate with the backend (controller).
+            The controller then allocates tasks to the relevant models. This allows future developers to expand the system with additional views, such as a mobile application, as well as more search models.
+        </p>
+        <h4>Project management</h4>
+        <p>
+            We employed an agile approach to software engineering in our project. By defining 2-week sprints with clear objectives, we were able to respond to feedback from the clients. Our central team management platform was Notion. We collected meeting notes there
+            such that everyone was on the same page. It also acted as a central store for key documents, such as the requirements, technologies and designs. Weekly team syncs were used to discuss progress and blockers, as well as to set tasks for each
+            team member. This worked well for keeping everyone involved and making continuous progress with the project. Reflecting on the team effort throughout, there was a noticeable increase in effort towards the end of the project. This could have
+            been prevented by a more disciplined work ethic in the earlier stages of the project, where we made less progress than what we could have done.
+        </p>
+    </section>
+
+    <section class="section" id="future-work">
+        <!-- topic -->
+        <h3>Future Work</h3>
+        <!-- contents -->
+        <p>
+            The application is far from complete, there are many more features that could be implemented.
+            One issue with the current application is that it does not use HTTPS.
+            Since it is not deployed on a public domain, we could not apply for an SSL certificate.
+            Another issue is that in the X5GON database there are many documents that have the same title but different document IDs.
+            These are different parts of the same lecture series so it would make sense to group them together in one search result.
+            This would make the search results more concise, allowing the user to see more unique results at a glance.
+            Our clients also advised that they would like us to add pagination to the search results, however, we were unable to implement this due to a lack of time before the project submission.
+            <br>
+            <br>
+            One particularly relevant part of the unfinished requirements is the part about modelling knowledge.
+            Requirement 26 is "Show difficulty estimations of the documents to users (readability score)" and requirement 27 is "Estimate the current knowledge level of the user using their learning history".
+            Combining these two would allow the application to go beyond being a simple search engine, and more towards a recommendation system.
+            A learning platform that adapts materials to the user's knowledge could revolutionise the way we learn online.
+        </p>
+    </section>
+    <footer class="footer-content">
+        <div class="row">
+            <div class="right-content">
+                <h2>About Us</h2>
+                <p>
+                    We're an ambitious student team from UCL Computer Science.
+                </p>
+                <ul class="social">
+                    <li><a href="#"><i class="fa fa-github"></i></a></li>
+                </ul>
+            </div>
+            <div class="left-content">
+                <h2>Site Menu</h2>
+                <div class="container">
+                    <div class="nav-list">
+                        <div class="col-3"><a href="index.html">Home</a></div>
+                        <div class="col-3"><a href="requirements.html">Requirement</a></div>
+                        <div class="col-3"><a href="research.html">Research</a></div>
+                        <div class="col-3"><a href="algorithms.html">Algorithms</a></div>
+                        <div class="col-3"><a href="design.html">Design</a></div>
+                        <div class="col-3"><a href="implementation.html">Implementation</a></div>
+                        <div class="col-3"><a href="testing.html">Testing</a></div>
+                        <div class="col-3"><a href="evaluation.html">Evaluation</a></div>
+                        <div class="col-3"><a href="appendix.html">Appendix</a></div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="sub-footer">
+            <p>Copyright &copy; 2021 X5GON</p>
+        </div>
+    </footer>
+
+</body> 
