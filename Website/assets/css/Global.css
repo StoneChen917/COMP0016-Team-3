@@ -1,0 +1,129 @@
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans&display=swap');
+
+/* overwrite default value */
+
+html {
+    font-family: 'IBM Plex Sans', sans-serif;
+    margin: 0;
+    padding: 0;
+    width: 100vw;
+    color: #333;
+}
+
+body {
+    margin: 0;
+}
+
+h1 {
+    font-size: 36px;
+}
+
+h2 {
+    font-size: 32px;
+}
+
+h3 {
+    font-size: 30px;
+}
+
+h4 {
+    font-size: 26px;
+}
+
+h5 {
+    font-size: 24px;
+}
+
+h5 {
+    font-size: 22px;
+}
+
+p {
+    font-size: 20px;
+    line-height: 1.2;
+    color: #595959;
+}
+
+a {
+    font-size: 20px;
+    line-height: 1.2;
+    color: #595959;
+}
+
+em {
+    font-weight: 700;
+}
+
+ul li {
+    list-style-type: none;
+}
+
+img {
+    width: 100%;
+}
+
+.mid-size-image {
+    width: 50%;
+    margin-left: 25%;
+}
+
+.large-size-image {
+    width: 70%;
+    margin-left: 15%;
+}
+
+.small-size-image {
+    
+    width: 300px;
+    
+}
+/* the components that may be re-used  */
+
+section {
+    margin: 50px 150px;
+}
+
+.section h3 {
+    color: #0f89c2;
+}
+
+.section p,
+img {
+    padding-top: 15px;
+}
+
+.card {
+    display: flex;
+    justify-content: flex-start;
+    gap: 30px;
+    width: 100%;
+}
+
+.card img {
+    margin-left: 40%;
+    width: 20%;
+}
+
+.card-element {
+    padding: 30px;
+    background-color: #EFFBFF;
+}
+
+@media (max-width: 768px) {
+    section {
+        margin: 100px 50px;
+    }
+    section .card {
+        display: flex;
+        flex-wrap: wrap;
+    }
+    section .card .card-element {
+        flex: 1;
+    }
+}
+
+@media (max-width: 480px) {
+    section {
+        margin: 50px 50px;
+    }
+}

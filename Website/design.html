@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Header</title>
+
+    <link rel="stylesheet" href="assets/css/Global.css">
+    <link rel="stylesheet" href="assets/css/Header.css">
+    <link rel="stylesheet" href="assets/css/Footer.css">
+
+    <link rel="stylesheet" href="assets/css/pages/index.css">
+
+</head>
+
+<body>
+    <header>
+        <!-- ***** Logo Start ***** -->
+        <a href="index.html" class="logo">
+            <img src="assets/images/x5gon-icon.png" alt="X5GON">
+        </a>
+        <!-- ***** Logo End ***** -->
+        <!-- ***** Menu Start ***** -->
+        <ul class="menu" id="menu">
+            <li class="submenu">
+                <a class="mainlink" href="index.html">Home</a>
+            </li>
+            <li class="submenu">
+                <a class="mainlink" href="requirements.html">Requirements</a>
+            </li>
+
+            <li class="submenu" class="submenu">
+                <a class="mainlink" href="research.html">Research</a>
+            </li>
+            <li class="submenu" class="submenu">
+                <a class="mainlink" href="algorithms.html">Algorithms</a>
+            </li>
+            <li class="submenu" class="submenu">
+                <a class="mainlink" href="design.html">Design</a>
+            </li>
+            <li class="submenu" class="submenu">
+                <a class="mainlink" href="implementation.html">Implementation</a>
+            </li>
+            <li class="submenu" class="submenu">
+                <a class="mainlink" href="testing.html">Testing</a>
+            </li>
+            <li class="submenu" class="submenu">
+                <a class="mainlink" href="evaluation.html">Evaluation</a>
+            </li>
+            <li class="submenu" class="submenu">
+                <a class="mainlink" href="appendix.html">Appendix</a>
+            </li>
+        </ul>
+        <a class='menu-mobile'>
+            <span>Menu</span>
+        </a>
+        <!-- ***** Menu Start ***** -->
+    </header>
+
+    <!-- the first re-usable section with topic and contents -->
+    <section class="section">
+        <!-- topic -->
+        <h3>UI Design</h3>
+        <!-- contents -->
+
+        <h4>Influences</h4>
+        <p>In order to design the website, we used several influences throughout the conception in order to keep up with the way modern websites with search engines are conceived and how their overall user experience is.
+        </p>
+        <img src="assets/images/design/ui/idea1.png" alt="" class="large-size-image">
+        <p>Our first and most obvious influence was google as it is the most famous search platform in the world. We decided to use the same layout for the main page as users will be used to it and it will make it easier for them to know how our website
+            works. Its simplicity is also in accordance with modern design principles such as “KISS” (Keep It Simple and Stupid) .</p>
+        <img src="assets/images/design/ui/idea2.png" alt="" class="large-size-image">
+        <p>Youtube was also an influence in our design as the aim of the website shares some similarities with ours. The simplicity of their design also means users won’t have any difficulty interacting with it. We decided to use a similar layout for the
+            search results, with content being shown vertically with a thumbnail and information on the right, and with a menu bar on the left that can be shown by clicking a button. Our user/login button will also be on the top right as it is what most
+            users are used to.</p>
+
+        <h4>Prototype</h4>
+        <p>Please note that the UI design might be different, but the UX will be similar to that shown in the pictures below.</p>
+
+        <p>Search Results:</p>
+        <img src="assets/images/design/ui/proto1.png" alt="" class="large-size-image">
+
+        <p>Main page:</p>
+        <img src="assets/images/design/ui/proto2.png" alt="" class="large-size-image">
+        <h4>Interactive Prototype</h4>
+        <p>the Interactive Prototype can be access <a href="https://xd.adobe.com/view/7f53d56f-6142-4015-8775-954c393144de-2a00/" target="_blank">here</a></p>
+    </section>
+
+    <!-- the first re-usable section with topic and contents -->
+    <section class="section">
+        <!-- topic -->
+        <h3>System Architecture</h3>
+        <!-- contents -->
+        <p>Our application ecosystem consists of a frontend application, backend application, Elasticsearch server, and a PostgreSQL database.
+            The frontend and the backend part was deployed in the Azure Kubernetes service (AKS) while the database was deployed separately.
+            Once the user called the application the Kubernetes ingress will find the correct route of the frontend application.
+            Then the frontend application has to call the backend application through our API.
+            The ingress will direct the frontend application request.
+            The Elasticsearch server and PostgreSQL database are connected to the backend application.
+        </p>
+        <img src="assets/images/design/system-design.png" alt="" class="large-size-image">
+    </section>
+
+    <!-- the first re-usable section with topic and contents -->
+    <section class="section">
+        <!-- topic -->
+        <h3>ER Diagram</h3>
+        <!-- contents -->
+        <p>Our ER diagram are shown below
+        </p>
+        <img src="assets/images/design/ERdiagram.png" alt="" class="large-size-image">
+    </section>
+
+    <section class="section" id="class-diagram">
+        <!-- topic -->
+        <h3>Backend Class Diagram</h3>
+        <!-- contents -->
+        <img src="assets/images/design/api_class_diagram.png" alt="API class diagram">
+    </section>
+    <footer class="footer-content">
+        <div class="row">
+            <div class="right-content">
+                <h2>About Us</h2>
+                <p>
+                    We're an ambitious student team from UCL Computer Science.
+                </p>
+                <ul class="social">
+                    <li><a href="#"><i class="fa fa-github"></i></a></li>
+                </ul>
+            </div>
+            <div class="left-content">
+                <h2>Site Menu</h2>
+                <div class="container">
+                    <div class="nav-list">
+                        <div class="col-3"><a href="index.html">Home</a></div>
+                        <div class="col-3"><a href="requirements.html">Requirement</a></div>
+                        <div class="col-3"><a href="research.html">Research</a></div>
+                        <div class="col-3"><a href="algorithms.html">Algorithms</a></div>
+                        <div class="col-3"><a href="design.html">Design</a></div>
+                        <div class="col-3"><a href="implementation.html">Implementation</a></div>
+                        <div class="col-3"><a href="testing.html">Testing</a></div>
+                        <div class="col-3"><a href="evaluation.html">Evaluation</a></div>
+                        <div class="col-3"><a href="appendix.html">Appendix</a></div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="sub-footer">
+            <p>Copyright &copy; 2021 X5GON</p>
+        </div>
+    </footer>
+</body>

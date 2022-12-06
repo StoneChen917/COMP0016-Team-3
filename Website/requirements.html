@@ -5,13 +5,16 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Team 36</title>
+    <title>Header</title>
 
     <link rel="stylesheet" href="assets/css/Global.css">
     <link rel="stylesheet" href="assets/css/Header.css">
     <link rel="stylesheet" href="assets/css/Footer.css">
 
     <link rel="stylesheet" href="assets/css/pages/index.css">
+    <!-- for carosel -->
+    <link rel="stylesheet" href="https://unpkg.com/flickity@2/dist/flickity.min.css">
+
 </head>
 
 <body>
@@ -58,93 +61,78 @@
         <!-- ***** Menu Start ***** -->
     </header>
 
-    <section class="landing-pages">
-        <div class="landing-background">
-            <div class="landing-contents">
-                <h1>INFORMATION<br> RETRIEVAL<br> FROM <br><em>NOISY</em><br> DOCUMENTS</h1>
-                <button><a  href="index.html#project-video">Learn More</a></button>
-            </div>
-        </div>
+    <!-- the first re-usable section with topic and contents -->
+    <section class="section" id="abstracts">
+        <!-- topic -->
+        <h3>Project Background</h3>
+        <!-- contents -->
+        <p>The X5Learn platform hosts hundreds of thousands of learning resources in different formats. 
+            To find relevant resources, users rely on the platform’s search engine. 
+            The problem is that most resources are in video, audio or PDF formats which cannot be indexed directly due to their non-text nature.
+            Therefore, search engines have to rely on computer-generated transcripts. 
+            These transcripts always contain errors, making them inherently noisy.
+            The main goal of this project is thus to build a search engine that works effectively with this noisy data and gives users relevant results.
+            </p>
     </section>
 
     <!-- the first re-usable section with topic and contents -->
     <section class="section" id="abstracts">
         <!-- topic -->
-        <h3>Abstract</h3>
+        <h3>Client Requirements</h3>
+        <!-- contents -->
+        <p>
+            The project is divided into two parts: machine learning (the backend) and software engineering (the frontend).
+            In the machine learning part, one key requirement is to create multiple search models with Elasticsearch. These have to consider the noisy nature of the data.
+            The algorithms then have to be tested statistically. The aim of this is to find the most effective search model.
+            In the software engineering part, we had to develop an API architecture that allows us to plug in different search algorithms.
+            The results will be displayed in a Google-like web user interface independent of the search algorithm.
+            We also had to implement search filters that allow users to specify what kind of materials they are looking for.
+        </p>
+    </section>
+
+    <!-- the first re-usable section with topic and contents -->
+    <section class="section" id="abstracts">
+        <!-- topic -->
+        <h3>Project Goals</h3>
         <!-- contents -->
         <p>This project entails building an AI-powered Information Retrieval Engine that can carry out information retrieval using noisy documents where documents are generated via transcription that can introduce errors. The work entails initial research
             into existing methods of robust information retrieval and solutions proposed for similar problems, preparing a research report from the findings, identifying the requirements, and proposing a solution application that can carry out information
             retrieval with noisy data, and finally, development and deployment of the proposed system with necessary integrations.</p>
     </section>
 
-    <section class="section" id="features">
-        <h3>Main Features</h3>
-        <div class="card">
-            <div class="card-element first">
-                <img src="assets/images/icons/robot.svg" alt="">
-                <h4>Machine Learning</h4>
-                <p>We tested classic and Learn-To-Rank search algorithms for noisy documents and implemented them in Elasticsearch</p>
-            </div>
-            <div class="card-element">
-                <img src="assets/images/icons/web_development.svg" alt="">
-                <h4>Web-Application</h4>
-                <p>Users can easily create an account, log-in and search for learning material using our search engine (Language Model with Dirichlet Smoothing)
-                </p>
-            </div>
+
+    <!-- ***** Personas Start ***** -->
+    <section class="section" id="personas">
+        <h3>Personas</h3>
+        <div class="gallery js-flickity" data-flickity-options='{ "freeScroll": true, "wrapAround": true }'>
+            <div class="gallery-cell"><img src="assets/images/personas/Persona1.svg" alt="persona1" class="large-size-image"></div>
+            <div class="gallery-cell"><img src="assets/images/personas/Persona2.svg" alt="persona2" class="large-size-image"></div>
         </div>
     </section>
+    <!-- ***** Personas End ***** -->
 
-    <section class="section" id="project-video">
-        <h3>Project Video</h3>
-        <div class="video">
-            <iframe width="100%" height="500" src="https://www.youtube.com/embed/TukG-rxGb2U" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    <!-- ***** Use Cases Start ***** -->
+    <section class="section top-section" id="use-cases">
+        <h3>Use Cases</h3>
+        <p>From the user personas, we could sketch a use cases diagram as shown below</p>
+        <img src="assets/images/requirements/use-case-diagram.png" alt="use cases diagram" class="large-size-image">
+    </section>
+    <!-- ***** Use Cases End ***** -->
+
+
+    <!-- ***** MoSCoW List Start ***** -->
+    <section class="section top-section" id="project-goal">
+        <h3>MoSCoW List</h3>
+        <h4>Software Engineering</h4>
+        <div class="MOSCOW">
+            <img src="assets/images/requirements/moscow-se.png" alt="" class="large-size-image">
+        </div>
+        <h4>Machine Learning</h4>
+        <div class="MOSCOW">
+            <img src="assets/images/requirements/moscow-ml.png" alt="" class="large-size-image">
         </div>
     </section>
-
-    <!-- Team members -->
-    <section class="section" id="team-members">
-        <h3>Team Members</h3>
-        <div class="card">
-            <div class="card-element first">
-                <img src="assets/images/developers/nono.png" alt="" class="dev-image">
-                <h4>Thatchawin Leelewat</h4>
-                <p>Full Stack developer, Devops</p>
-                <div class="social-media">
-                    <a href="https://github.com/NONO0N0N"><img src="assets/images/icons/social/github.svg" alt=""></a>
-                    <a href="https://www.linkedin.com/in/thatchawin-leelawat-a51238198/"><img src="assets/images/icons/social/linkedin.svg" alt=""></a>
-                </div>
-            </div>
-            <div class="card-element">
-                <img src="assets/images/huamn.jpg" alt="" class="dev-image">
-                <h4>Vincent Lefeuve</h4>
-                <p>Back-end developer, Information retrieval</p>
-                <div class="social-media">
-                    <a href="https://github.com/V1ncenttt"><img src="assets/images/icons/social/github.svg" alt=""></a>
-                    <a href="https://www.linkedin.com/in/vincent-lefeuve/"><img src="assets/images/icons/social/linkedin.svg" alt=""></a>
-                </div>
-            </div>
-            <div class="card-element">
-                <img src="assets/images/developers/tim.png" alt="Tim" class="dev-image">
-                <h4>Tim Widmayer</h4>
-                <p>Team Manager, Report Editor, Developer</p>
-                <div class="social-media">
-                    <a href="mailto:tim.widmayer.20@ucl.ac.uk"><img src="assets/images/icons/social/mail.svg" alt="email"></a>
-                </div>
-
-            </div>
-        </div>
-    </section>
-    <!-- end team members -->
-
-    <!-- Gantt Chart -->
-    <section class="section" id="gantt-chart">
-        <!-- topic -->
-        <h3>Gantt Chart</h3>
-        <!-- contents -->
-        <img src="assets/images/gantt_chart/gantt-chart_1.png" alt="Gantt Chart Part 1">
-        <img src="assets/images/gantt_chart/gantt-chart_2.png" alt="Gantt Chart Part 2">
-        <img src="assets/images/gantt_chart/gantt-chart_3.png" alt="Gantt Chart Part 3">
-    </section>
+    <!-- ***** MoSCoW List End ***** -->
 
     <footer class="footer-content">
         <div class="row">
@@ -180,6 +168,11 @@
         </div>
     </footer>
 
+
+    <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
+
+    <script>
+    </script>
 </body>
 
 </html>
