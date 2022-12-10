@@ -65,26 +65,19 @@
         <h3>Research</h3>
         <!-- contents -->
         <p align="justify">
-            Our project aimed to build a search engine for the X5Learn project, an open educational ressources (OER) database that comprises content from different sites in one web application [2]. Some documents are in non-textual forms, like video lectures and
-            podcasts. This makes search more difficult as these documents will have to be transcribed before searching, thus containing transcription errors called noise. We considered different techniques and architectures while building this project.
-            We tried to make informed decision when choosing our architecture, frameworks, and algorithms. For instance, in order to choose our content retrieval method, we used different algorithms and compared their accuracy using statistical analysis.
+            Our project's goal is to extract admin 1 and admin 2, and historical data to place in a database in a table.
         </p>
 
-        <b>Retated projects</b>
-        <p align="justify">Related works include 100,000 Podcasts: A spoken English Document Corpus, which uses the same dataset [6]. The method they use is to implement standard retrieval models (BM25 and Query Likelihood (QL, a Language Model) with Dirichlet Smoothing),
-            with the RM3 relevance model using Pyserini [10]. This is built with the Lucene search Library [4], and stemming is added with the Porter Stemmer. They then compare the accuracy of the different algorithms using nDCG@10 and nDCG@5. Our project
-            tries to follow a similar methodology to the aforementionned paper, while using new technologies and building libraries to allow developpers to test search algorithms on their datasets. Our approach is pretty similar. However, we use newer
-            technologies like ElasticSearch in order to make the implementation easier. We also build on top of that and try Learn-to-rank (LTR) models for this task. LTR models are retrieval models which make use of machine learning.
+        <b>Text Summarization</b>
+        <p align="justify">Allows summarization of large paragraphs into shorter consumption without losing vital information. With text summarization, extracting essential information such as Country or the region’s     name (Admin 0, 1, 2) will be much easier.
+            <br>
+            There are Extractive Text Summarization and Abstractive Text Summarization. The Extractive method uses exact sentences from the source to summarize the text, while abstractive generate phrases to summarize the text. To ensure that the data filled in the form is correct, Extractive Text Summarization seems like a better approach.
 
         </p>
-        <b>Technology review</b>
-        <p align="justify">
-            To build the project, we used ReactJS for the front-end, Python Flask for the back-end, and ElasticSearch for the search-engine. Our choice was based on our experience, and on recommendation from our clients. We could have also implemented the front-end
-            with Python but thought using Java Script was better suited for our task and more practical, and that it meant having a better separation between the front-end and the back-end. We also considered using Lucene or building our search engine
-            from scratch, but Elasticsearch proved to be more user-friendly and modern. Furthermore, we thought its abundance of built-in features would gain us time. It is also the most maintainable and scalable solution.<br> As it is the
-            standard for such applications, we decided to use the Model-View-Controller [17] architecture. This structure makes the code more scalable, while increasing its read The search algorithms we considered were BM25, Query Likelihood with Dirichlet
-            Smoothing, and LambdaMart (a Machine-learning approach). After comparing these algorithhms on another dataset [7] which also includes noise, and after reviewing literature on the topic[5], we decided to use the Language Model with Dirichlet
-            Smoothing.
+        <b>Named Entity Recognition</b>
+        <p align="justify">It involves the identification of key information in the text and classification into a set of predefined categories. An entity is basically the thing that is consistently talked about or       refer to in the text.
+            <br>
+            Some of the categories that are the most important architecture in NER are person. Organization and location. Can be used to identify details regarding provinces affected/targeted, funding in CHF etc.
 
         </p>
         <b> More information</b>
