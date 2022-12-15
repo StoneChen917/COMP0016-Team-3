@@ -18,7 +18,7 @@ class Find_Admin:
             raise ValueError("wrong type of file, doc, docx, or txt only")
 
     def read_file(self, file):
-        document = docx.Document(str(os.getcwd()) + "\\" + file)
+        document = docx.Document(os.path.abspath(file))
         content = []
         for paragraphs in document.paragraphs:
             content.append(paragraphs.text)
