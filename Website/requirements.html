@@ -66,8 +66,9 @@
         <!-- topic -->
         <h3>Project Background</h3>
         <!-- contents -->
-        <p>IFRC helps National Societies apply for funds by filling out the DREF application. The existing GO platform helps with automating data entry for country specific information. However, it doesn’t help with city/locality specific information. The project's goal is to extract admin 0/1 into a table, so the employees can complete the form without unnecessary manual labour.
-            </p>
+        <p>IFRC helps National Societies apply for funds by filling out the DREF application. The existing GO platform helps with automating data entry for country specific information. However, 
+            it doesn’t help with city/locality specific information. The project's goal is to extract admin 1/admin 2 into a table, so the employees can complete the form without unnecessary manual labour.
+        </p>
     </section>
 
     <!-- the first re-usable section with topic and contents -->
@@ -76,12 +77,10 @@
         <h3>Client Requirements</h3>
         <!-- contents -->
         <p>
-            The project is divided into two parts: machine learning (the backend) and software engineering (the frontend).
-            In the machine learning part, one key requirement is to create multiple search models with Elasticsearch. These have to consider the noisy nature of the data.
-            The algorithms then have to be tested statistically. The aim of this is to find the most effective search model.
-            In the software engineering part, we had to develop an API architecture that allows us to plug in different search algorithms.
-            The results will be displayed in a Google-like web user interface independent of the search algorithm.
-            We also had to implement search filters that allow users to specify what kind of materials they are looking for.
+            The project has two parts: machine learning (the backend) and software engineering (the frontend).
+            One key requirement for machine learning part is to use NLP to accurately find the name of the region (Admin 1, 2)
+            The result shall be displayed to the user in a table in a database before the user decides whether to put the data
+            in the go form or not.
         </p>
     </section>
 
@@ -90,9 +89,9 @@
         <!-- topic -->
         <h3>Project Goals</h3>
         <!-- contents -->
-        <p>This project entails building an AI-powered Information Retrieval Engine that can carry out information retrieval using noisy documents where documents are generated via transcription that can introduce errors. The work entails initial research
-            into existing methods of robust information retrieval and solutions proposed for similar problems, preparing a research report from the findings, identifying the requirements, and proposing a solution application that can carry out information
-            retrieval with noisy data, and finally, development and deployment of the proposed system with necessary integrations.</p>
+        <p>This project requires us to build a program to carry out the application of retrieving region name from a word document which
+            is the documentation for a disaster. The work entails initial research into existing methods of robust name entity recognition and solutions proposed for similar problems, 
+            preparing a research report from the findings, identifying the requirements, and proposing a solution application that can carry out name retrieval, and finally, development and deployment of the proposed system with necessary integrations.</p>
     </section>
 
 
@@ -100,8 +99,8 @@
     <section class="section" id="personas">
         <h3>Personas</h3>
         <div class="gallery js-flickity" data-flickity-options='{ "freeScroll": true, "wrapAround": true }'>
-            <div class="gallery-cell"><img src="assets/images/personas/Persona1.svg" alt="persona1" class="large-size-image"></div>
-            <div class="gallery-cell"><img src="assets/images/personas/Persona2.svg" alt="persona2" class="large-size-image"></div>
+            <div class="gallery-cell"><img src="assets/images/requirements/Persona1.png" alt="persona1" class="large-size-image"></div>
+            <div class="gallery-cell"><img src="assets/images/requirements/Persona2.png" alt="persona2" class="large-size-image"></div>
         </div>
     </section>
     <!-- ***** Personas End ***** -->
