@@ -1,28 +1,28 @@
 import magic
-import docx
-import os
+import PyPDF2
 
 
 
 class Find_Admin:
 
     def exec(self, file):
+        print(magic.from_file(file))
         self.check_type(file)
         return self.read_file(file)
 
     def check_type(self, file):
         if (magic.from_file(file) == "ASCII text, with CRLF line terminators" or 
-            magic.from_file(file) == "ASCII text, with no line terminators"):
+            magic.from_file(file) == "ASCII text, with no line terminators" or
+            "PDF document" in magic.from_file(file)):
             return True
         else:
-            raise ValueError("wrong type of file, doc, docx, or txt only")
+            raise ValueError("wrong type of file, doc, docx, pdf, or txt only")
 
     def read_file(self, file):
-        document = docx.Document(os.path.abspath(file))
-        content = []
-        for paragraphs in document.paragraphs:
-            content.append(paragraphs.text)
-        return '\n'.join(content)
+        f = open(file, 'rb')
+        text = PyPDF2.PdfFileReader(f).getPage(0).extractText()
+        f.close()
+        return text
 
 x = Find_Admin()
-print(x.exec("word.docx"))
+print(x.exec("MDRKH001final.pdf"))
