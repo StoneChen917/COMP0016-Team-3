@@ -1,8 +1,6 @@
 import magic
 import PyPDF2
 
-
-
 class Find_Admin:
 
     def exec(self, file):
