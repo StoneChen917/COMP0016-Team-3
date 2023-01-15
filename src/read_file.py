@@ -1,10 +1,11 @@
 import magic
 import PyPDF2
 
-class Find_Admin:
+
+
+class Read_File:
 
     def exec(self, file):
-        print(magic.from_file(file))
         self.check_type(file)
         return self.read_file(file)
 
@@ -21,6 +22,3 @@ class Find_Admin:
         text = PyPDF2.PdfFileReader(f).getPage(0).extractText()
         f.close()
         return text
-
-x = Find_Admin()
-print(x.exec("MDRKH001final.pdf"))
