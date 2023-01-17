@@ -15,5 +15,5 @@ match_str = re.search(r'\d{4}-\d{2}-\d{2}', test_str)
 # feeding format
 res = datetime.strptime(match_str.group(), '%Y-%m-%d').date()
   
-# printing result
-print("Computed date : " + str(res))
+# printing result 
+print("Computed date : " + str(res)) 
