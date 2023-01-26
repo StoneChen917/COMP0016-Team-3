@@ -29,6 +29,5 @@ print(date().exec("sample1.pdf"))
 # feeding format
 #res = datetime.strptime(match_str.group(), '%Y-%m-%d').date()
   
-# printing result
-
-#print("Computed date : " + str(res)) 
+# printing result 
+print("Computed date : " + str(res)) 
