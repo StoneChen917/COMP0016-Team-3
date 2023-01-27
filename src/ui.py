@@ -1,7 +1,8 @@
 import os
 os.chdir(".")
 from tkinter import *
-from tkinter import messagebox, filedialog
+from tkinter import messagebox, filedialog, ttk
+from PIL import Image, ImageTk
 from Backend import readfile
 
 
@@ -20,13 +21,14 @@ class UI(Tk):
 
         self.frames = {}
 
-        for F in (MainPage, PageOne, PageTwo):
+        mainpage = MainPage(container, self)
+        self.frames[MainPage] = mainpage
+        mainpage.grid(row=0, column=0, sticky="nsew")
 
-            frame = F(container, self)
+        infopage = InfoPage(container, self, mainpage)
+        self.frames[InfoPage] = infopage
+        infopage.grid(row=0, column=0, sticky="nsew")
 
-            self.frames[F] = frame
-
-            frame.grid(row=0, column=0, sticky="nsew")
 
         self.show_frame(MainPage)
 
@@ -45,59 +47,69 @@ class MainPage(Frame):
     def __init__(self, parent, controller):
         Frame.__init__(self,parent)
 
-        self.label = Label(self, text = "Upload the file by clicking the button below", font = ('Arial', 18))
-        self.label.pack(pady = 60)
+        screen_width = self.winfo_screenwidth()
+        screen_height = self.winfo_screenheight()
 
-        self.select_button = Button(self, text = "Select", font = ('Arial', 18), command = self.click_select)
-        self.select_button.pack(pady = 40)
+        self.file_text = ""
 
-        self.upload_button = Button(self, text = "Upload", font = ('Arial', 18), command = self.click_upload)
-        self.upload_button.pack(pady = 20)
+        img = ImageTk.PhotoImage(Image.open("Assets/Images/Go-logo-2020.png").resize((296, 70)))
+        self.logo = Label(image=img)
+        self.logo.image = img
+        self.logo.place(x=0, y=0)
 
-        self.check_state = IntVar()
+        separator = ttk.Separator(self, orient='horizontal')
+        separator.place(relx=0, y=75, relwidth=1, relheight=1)
 
-        self.check = Checkbutton(self, text = "Show", font = ('Arial', 18), variable = self.check_state)
-        self.check.pack(pady = 20)
+        self.label = Label(self, text="Upload the file by clicking the button below", font=('Arial', 18))
+        self.label.pack(pady=((screen_height-280)/2,0))
+ 
+        self.select_button =Button(self, text="Select", fg="white", bg="#F5333F", font=('Arial', 18), command=self.click_select)
+        self.select_button.pack(pady=30)
+
+        self.select_label_text = "No file selected"
+
+        self.select_label = Label(self, text=self.select_label_text, font=('Arial', 18))
+        self.select_label.pack(pady=(0,30))
+
+        self.upload_button = Button(self, text="Upload", fg="white", bg="#F5333F", font=('Arial', 18), command=lambda: controller.show_frame(InfoPage))
 
     def click_select(self):
         f = filedialog.askopenfilename()
-        readfile.ReadFile().exec(f)
+        try:
+            self.file_text = readfile.ReadFile().exec(f)
+            self.select_label.config(text=f, fg='black')
+            self.upload_button.pack()
+        except ValueError as e:
+            self.select_label.config(text="File not supported, pdf only", fg='red')
+            self.upload_button.pack_forget()
 
-    def click_upload(self):
-        if self.check_state.get() == 1:
-            messagebox.showinfo(title = "Error", message = "No file has been uploaded")
+    def get_text(self):
+        return self.file_text
 
 
-class PageOne(Frame):
+class InfoPage(Frame):
 
-    def __init__(self, parent, controller):
+    def __init__(self, parent, controller, mainpage):
         Frame.__init__(self, parent)
-        label = Label(self, text="Page One!!!", font="Arial")
-        label.pack(pady=10)
 
-        button1 = Button(self, text="Back to Home",
-                            command=lambda: controller.show_frame(StartPage))
-        button1.pack()
+        self.mainpage = mainpage
 
-        button2 = Button(self, text="Page Two",
-                            command=lambda: controller.show_frame(PageTwo))
-        button2.pack()
+        separator = ttk.Separator(self, orient='horizontal')
+        separator.place(relx=0, y=75, relwidth=1, relheight=1)
 
+        self.label = Label(self, text="", font="Arial")
+        self.label.pack(pady=(120,0))
 
-class PageTwo(Frame):
+        self.update_button = Button(self, text="Update", fg="white", bg="#F5333F", font=('Arial', 18), command=self.update_text)
+        self.update_button.pack()
 
-    def __init__(self, parent, controller):
-        Frame.__init__(self, parent)
-        label = Label(self, text="Page Two!!!", font="Arial")
-        label.pack(pady=10)
+        self.back_arrow_photo = ImageTk.PhotoImage(Image.open("Assets/Images/Arrow.png").resize((51, 45)))
+        self.back_button = Button(self, image=self.back_arrow_photo, borderwidth=0, command=lambda: controller.show_frame(MainPage))
+        self.back_button.place(x=0, y=76)
 
-        button1 = Button(self, text="Back to Home",
-                            command=lambda: controller.show_frame(StartPage))
-        button1.pack()
-
-        button2 = Button(self, text="Page One",
-                            command=lambda: controller.show_frame(PageOne))
-        button2.pack()
+    def update_text(self):
+        print(self.mainpage.get_text())
+        self.label.config(text=self.mainpage.get_text(), fg='red')
         
 
 
