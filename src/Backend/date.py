@@ -28,6 +28,11 @@ print(date().exec("sample1.pdf"))
 # computed date
 # feeding format
 #res = datetime.strptime(match_str.group(), '%Y-%m-%d').date()
-  
-# printing result 
-print("Computed date : " + str(res)) 
+
+
+#def normaize_date(date: str) -> datetime:
+ #   try:
+  #      d = parser.parse(date)
+   #     return(d.strftime("%Y-%m-%d %H:%M:%S"))
+    #except:  # anti-pattern, add missing exception type
+     #   return date
