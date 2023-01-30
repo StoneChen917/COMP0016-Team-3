@@ -52,7 +52,7 @@ class MainPage(Frame):
 
         self.file_text = ""
 
-        img = ImageTk.PhotoImage(Image.open("src/Assets/Images/IFRC-logo.png").resize((110, 110)))
+        img = ImageTk.PhotoImage(Image.open("Assets/Images/IFRC-logo.png").resize((110, 110)))
         self.logo = Label(image=img) 
         self.logo.image = img 
         self.logo.place(x=0, y=0) 
@@ -103,7 +103,7 @@ class InfoPage(Frame):
         self.update_button = Button(self, text="Update", fg="white", bg="#F5333F", font=('Arial', 18), command=self.update_text)
         self.update_button.pack()
 
-        self.back_arrow_photo = ImageTk.PhotoImage(Image.open("src/Assets/Images/Arrow.png").resize((51, 45)))
+        self.back_arrow_photo = ImageTk.PhotoImage(Image.open("Assets/Images/Arrow.png").resize((51, 45)))
         self.back_button = Button(self, image=self.back_arrow_photo, borderwidth=0, command=lambda: controller.show_frame(MainPage))
         self.back_button.place(x=0, y=76)
 
