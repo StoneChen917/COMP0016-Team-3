@@ -17,6 +17,9 @@ class ReadFile:
 
     def read_file(self, file):
         f = open(file, 'rb')
-        text = PyPDF2.PdfFileReader(f).getPage(0).extractText()
+        pageone = PyPDF2.PdfFileReader(f).getPage(0).extractText()
+        text = ""
+        for i in range(1, PyPDF2.PdfFileReader(f).getNumPages()):
+            text += PyPDF2.PdfFileReader(f).getPage(i).extractText()
         f.close()
-        return text
+        return pageone, text
