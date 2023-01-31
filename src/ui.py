@@ -66,10 +66,10 @@ class MainPage(Frame):
         self.select_button =Button(self, text="Choose File", fg="black", bg="#F5333F", font=('Arial', 11), command=self.click_select)
         self.select_button.pack(pady=10)
 
-        #self.select_label_text = "No file selected"
+        self.select_label_text = "No file selected"
 
-       # self.select_label = Label(self, text=self.select_label_text, font=('Arial', 18))
-        #self.select_label.pack(pady=(0,30))
+        self.select_label = Label(self, text=self.select_label_text, font=('Arial', 18))
+        self.select_label.pack(pady=(0,30))
 
         self.upload_button = Button(self, text="Upload", fg="black", bg="#F5333F", font=('Arial', 18), command=lambda: controller.show_frame(InfoPage))
 
