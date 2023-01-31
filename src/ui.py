@@ -47,39 +47,31 @@ class MainPage(Frame):
     def __init__(self, parent, controller):
         Frame.__init__(self,parent)
 
-        screen_width = self.winfo_screenwidth()
-        screen_height = self.winfo_screenheight()
+        screen_width = self.winfo_screenwidth() 
+        screen_height = self.winfo_screenheight() 
 
         self.file_text = ""
 
-<<<<<<< HEAD
         img = ImageTk.PhotoImage(Image.open("Assets/Images/IFRC-logo.png").resize((110, 110)))
         self.logo = Label(image=img) 
         self.logo.image = img 
         self.logo.place(x=0, y=0) 
  
-=======
-        img = ImageTk.PhotoImage(Image.open("Assets/Images/Go-logo-2020.png").resize((296, 70)))
-        self.logo = Label(image=img)
-        self.logo.image = img
-        self.logo.place(x=0, y=0)
-
->>>>>>> parent of 0179cba (updating UI)
         separator = ttk.Separator(self, orient='horizontal')
         separator.place(relx=0, y=75, relwidth=1, relheight=1)
 
-        self.label = Label(self, text="Upload the file by clicking the button below", font=('Arial', 18))
+        self.label = Label(self, text="File:", font=('Arial', 13))
         self.label.pack(pady=((screen_height-280)/2,0))
  
-        self.select_button =Button(self, text="Select", fg="white", bg="#F5333F", font=('Arial', 18), command=self.click_select)
-        self.select_button.pack(pady=30)
+        self.select_button =Button(self, text="Choose File", fg="black", bg="#F5333F", font=('Arial', 11), command=self.click_select)
+        self.select_button.pack(pady=10)
 
-        self.select_label_text = "No file selected"
+        #self.select_label_text = "No file selected"
 
-        self.select_label = Label(self, text=self.select_label_text, font=('Arial', 18))
-        self.select_label.pack(pady=(0,30))
+       # self.select_label = Label(self, text=self.select_label_text, font=('Arial', 18))
+        #self.select_label.pack(pady=(0,30))
 
-        self.upload_button = Button(self, text="Upload", fg="white", bg="#F5333F", font=('Arial', 18), command=lambda: controller.show_frame(InfoPage))
+        self.upload_button = Button(self, text="Upload", fg="black", bg="#F5333F", font=('Arial', 18), command=lambda: controller.show_frame(InfoPage))
 
     def click_select(self):
         f = filedialog.askopenfilename()
