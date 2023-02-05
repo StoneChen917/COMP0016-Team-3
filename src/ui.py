@@ -7,6 +7,11 @@ from Backend import readfile
 
 
 
+pinkish_red = "#F5333F"
+darkish_blue = "#12284C"
+
+
+
 class UI(Tk):
 
     def __init__(self, *args, **kwargs):
@@ -63,7 +68,7 @@ class MainPage(Frame):
         self.label = Label(self, text="File:", font=('Arial', 13))
         self.label.pack(pady=((screen_height-280)/2,0))
  
-        self.select_button =Button(self, text="Choose File", fg="black", bg="#F5333F", font=('Arial', 11), command=self.click_select)
+        self.select_button =Button(self, text="Choose File", fg=darkish_blue, bg="white", font=('Arial', 11), command=self.click_select)
         self.select_button.pack(pady=10)
 
         self.select_label_text = "No file selected"
@@ -71,7 +76,7 @@ class MainPage(Frame):
         self.select_label = Label(self, text=self.select_label_text, font=('Arial', 18))
         self.select_label.pack(pady=(0,30))
 
-        self.upload_button = Button(self, text="Upload", fg="black", bg="#F5333F", font=('Arial', 18), command=lambda: controller.show_frame(InfoPage))
+        self.upload_button = Button(self, text="Upload", fg=darkish_blue, bg="white", font=('Arial', 18), command=lambda: controller.show_frame(InfoPage))
 
     def click_select(self):
         f = filedialog.askopenfilename()
@@ -108,7 +113,6 @@ class InfoPage(Frame):
         self.back_button.place(x=0, y=76)
 
     def update_text(self):
-        print(self.mainpage.get_text())
         self.label.config(text=self.mainpage.get_text(), fg='red')
         
 
