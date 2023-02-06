@@ -20,9 +20,12 @@ try:
 
     cur = conn.cursor()
 
-    create_script = ''' CREATE TABLE employee (
+    create_script = ''' CREATE TABLE IF NOT EXISTS employee (
                             id      int PRIMARY KEY,
                             name    varchar(40) NOT NULL)'''
+    cur.execute(create_script)
+
+    conn.commit()
 
 
 except Exception as error:
