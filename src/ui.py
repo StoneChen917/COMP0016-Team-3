@@ -59,7 +59,7 @@ class MainPage(Frame):
         self.topbanner = Label(self, width = screen_width, height = 4, bg = "white")
         self.topbanner.place(x=0, y=0)
 
-        img = ImageTk.PhotoImage(Image.open(Path("Assets/Images/logo.png")).resize((220, 66)))
+        img = ImageTk.PhotoImage(Image.open(Path("src/Assets/Images/logo.png")).resize((220, 66)))
         self.logo = Label(borderwidth=0, image=img) 
         self.logo.image = img 
         self.logo.place(x=100, y=0) 
@@ -120,13 +120,19 @@ class InfoPage(Frame):
 
         self.mainpage = mainpage
 
+        screen_width = self.winfo_screenwidth() 
+        screen_height = self.winfo_screenheight() 
+        
+        self.topbanner = Label(self, width = screen_width, height = 4, bg = "white")
+        self.topbanner.place(x=0, y=0)
+
         self.label = Label(self, text="", font="Arial")
         self.label.pack(pady=(120,0))
 
         self.update_button = Button(self, text="Update", fg="white", bg="#F5333F", font=('Arial', 18), command=self.update_text)
         self.update_button.pack()
 
-        self.back_arrow_photo = ImageTk.PhotoImage(Image.open(Path("Assets/Images/logo.png")).resize((51, 45)))
+        self.back_arrow_photo = ImageTk.PhotoImage(Image.open(Path("src/Assets/Images/Arrow.png")).resize((51, 45)))
         self.back_button = Button(self, image=self.back_arrow_photo, borderwidth=0, command=lambda: controller.show_frame(MainPage))
         self.back_button.place(x=0, y=76)
 

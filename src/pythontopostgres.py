@@ -20,9 +20,19 @@ try:
 
     cur = conn.cursor()
 
-    create_script_1 = ''' CREATE TABLE IF NOT EXISTS Admin2 (
-                            admin_2_code     varchar(40) PRIMARY KEY,
-                            name           varchar(40) NOT NULL);
+    create_script = '''   CREATE TABLE IF NOT EXISTS Admin0 (
+                            admin_0_code              varchar(40) PRIMARY KEY,
+                            name                      varchar(40) NOT NULL);
+
+                          CREATE TABLE IF NOT EXISTS Admin1 (
+                            admin_1_code              varchar(40) PRIMARY KEY,
+                            name                      varchar(40) NOT NULL,
+                            admin_0_code              varchar(40) REFERENCES Admin0);
+
+                          CREATE TABLE IF NOT EXISTS Admin2 (
+                            admin_2_code              varchar(40) PRIMARY KEY,
+                            name                      varchar(40) NOT NULL,
+                            admin_1_code              varchar(40) REFERENCES Admin1);
 
                           CREATE TABLE IF NOT EXISTS Disaster (
                             operation_number          varchar(40) PRIMARY KEY,
@@ -33,16 +43,8 @@ try:
                             operation_end_date        DATE,
                             number_of_people_affected INT,
                             number_of_people_assisted INT,
-                            CONSTRAINT fk_admin_2_code
-                                FOREIGN KEY(admin_2_code) 
-	                            REFERENCES Admin2(admin_2_code))'''
-    create_script_2 = ''' CREATE TABLE IF NOT EXISTS Admin0 (
-                            admin0code     varchar(40) PRIMARY KEY,
-                            name    varchar(40) NOT NULL)'''
-    create_script_3 = ''' CREATE TABLE IF NOT EXISTS Admin2 (
-                            admin2code     varchar(40) PRIMARY KEY,
-                            name    varchar(40) NOT NULL)'''                       
-    cur.execute(create_script_1)
+                            admin_2_code varchar(40)  REFERENCES Admin2)'''                    
+    cur.execute(create_script)
 
     conn.commit()
 
