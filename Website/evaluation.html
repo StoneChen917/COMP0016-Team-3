@@ -65,19 +65,19 @@
         <h3>Evaluations</h3>
         <!-- contents -->
         <h1>Evaluating QA Models</h1>
-        <b>Common Metrics to Evaluate QA Models</b>
+        <h5>Common Metrics to Evaluate QA Models</h5>
         <p align="justify">There are two dominant metrics used by many question answering datasets, including SQuAD: exact match (EM) and F1 score. These scores are computed on individual question+answer pairs. When multiple correct answers are possible for a given question, the maximum score over all possible correct answers is computed. Overall EM and F1 scores are computed for a model by averaging over the individual example scores.
         </p>
 
-        <b>Exact Match</b>
+        <h5>Exact Match</h5>
         <p align="justify">For each question+answer pair, if the characters of the model's prediction exactly match the characters of (one of) the True Answer(s), EM = 1, otherwise EM = 0. This is a strict all-or-nothing metric; being off by a single character results in a score of 0. When assessing against a negative example, if the model predicts any text at all, it automatically receives a 0 for that example.
         </p>
 
-        <b>F1</b>
+        <h5>F1</h5>
         <p align="justify">F1 score is a common metric for classification problems, and widely used in QA. It is appropriate when we care equally about precision and recall. In this case, it's computed over the individual words in the prediction against those in the True Answer. The number of shared words between the prediction and the truth is the basis of the F1 score: precision is the ratio of the number of shared words to the total number of words in the prediction, and recall is the ratio of the number of shared words to the total number of words in the ground truth. 
         </p>
 
-        <h1>Datasets Used</h1>
+        <h4>Datasets Used</h4>
         <p align="justify">The Stanford Question Answering Dataset (SQuAD) is a set of question and answer pairs that present a strong challenge for NLP models. Due to its size (100,000+ questions), its difficulty due to the model only has access to a single passage and the fact that its answers are more complex and thus require more-intensive reasoning, SQuAD is an excellent dataset to train NLP models on.
         <br>
         SQuAD 1.1, the previous version of the SQuAD dataset, contains 100,000+ question-answer pairs on 500+ articles. SQuAD2.0 combines the 100,000 questions in SQuAD1.1 with over 50,000 unanswerable questions written adversarially by crowdworkers to look similar to answerable ones. To do well on SQuAD2.0, systems must not only answer questions when possible, but also determine when no answer is supported by the paragraph and abstain from answering. 
@@ -85,7 +85,7 @@
         We have decided to choose a model that has been pre-trained on SQuAD2.0 for improved performance.
         </p>
 
-        <h1>Our Evaluations</h1>
+        <h4>Our Evaluations</h4>
         <p align="justify">We shortlisted 5 well performing pre-trained QA models from Hugging Face and analysed them using their f1 and EM values on the SQuAD2.0 dataset, which are as follows:</p>
         <br>
         <table>
@@ -122,7 +122,63 @@
         </table>
         <br>
         <p>We also ran all models on a sample document provided by our client, asked the models questions related to our requirements, tabulated the results and asked our peers to rate the sensibility of the answers from 0-5 for each of the answers. The results are as follows:</p>
+        <b></b>
+        <h1>Evaluating spaCy Models</h1>
+        <h4>Testing location detection</h4>
+        <p>SpaCy has 3 main NLP models: small, medium, and large, which you can choose from to perform a task. The team decided that the large model would be best for our task of extracting all Geopolitical Entities (GPE) from the document. </p>
+        <p>We carried out a test on all three models, using the same extract of text, taken from the first two paragraph of the Wikipedia page on the United States. The extracted GPEs were then put into a list as shown below:</p>
+        <p>Small model - ['The United States of America', 'U.S.A.', 'USA', 'the United States', 'U.S.', 'US', 'America', 'The United States', 'the Federated States', 'the Marshall Islands', 'the Republic of Palau', 'Canada', 'Mexico', 'Bahamas', 'Cuba', 'Russia', 'Washington', 'D.C.', 'New York City']</p>
+        <p>Medium model - ['The United States of America', 'USA', 'the United States', 'U.S.', 'US', 'America', 'The United States', 'the Marshall Islands', 'the Republic of Palau', 'Canada', 'Mexico', 'Bahamas', 'Cuba', 'Russia', 'Washington', 'D.C.', 'New York City']</p>
+        <p>Large model - ['The United States of America', 'U.S.A.', 'USA', 'the United States', 'U.S.', 'US', 'America', 'The United States', 'the Federated States of Micronesia', 'the Marshall Islands', 'the Republic of Palau', 'Canada', 'Mexico', 'Bahamas', 'Cuba', 'Russia', 'Washington', 'D.C.', 'New York City']</p>
+        <h5>Comments on results</h5>
+        <p>Although all three models do a great job of identifying the locations in the text, the large model in one instance was able to recognise “the Federal states of Micronesia” as a GPE, as opposed to the small model that recognised only part of the GPE “the Federal States”, and the medium model not identifying it at all. </p>
+        <p>This may not seem like much of an important factor, it would be very important to our clients. Their main requirement was for us to extract precise locations from the DREF documents, for them to correctly identify disasters and issue funds accordingly. As seen in the table above, the large model is significantly larger than the small and medium. However, for reasons stated previously, we prioritised accuracy over any other factor.</p>
+
+        <h4>Model statistics</h4>
+        <p>Other metrics we considered when choosing our model, include storage size, F-score, and word vector size. A table comparing the three models using these metrics is shown below: </p>
+
+<!--        TABLE STARTS HERE-->
+        <style>
+            table, th, td {
+                border:1px solid black;
+                text-align: center;
+                vertical-align: middle;
+            }
+        </style>
+        <table style="width:100%">
+            <tr>
+                <th> </th>
+                <th>Small model</th>
+                <th>Medium model</th>
+                <th>Large model</th>
+            </tr>
+            <tr>
+                <td>Size</td>
+                <td>12 MB</td>
+                <td>40 MB</td>
+                <td>560 MB</td>
+            </tr>
+            <tr>
+                <td>Word Vector Size</td>
+                <td>0 keys, 0 unique vectors (0 dimensions)</td>
+                <td>514k keys, 20k unique vectors (300 dimensions)</td>
+                <td>514k keys, 514k unique vectors
+                    (300 dimensions)
+                    /td>
+            </tr>
+            <tr>
+                <td>F-Score</td>
+                <td>0.85</td>
+                <td>0.85</td>
+                <td>0.85</td>
+            </tr>
+        </table>
+<!--        TABLE ENDS HERE HERE-->
+
+        <p>Although all three models have the same F-score, the large model has a much larger vector size compared to the small and large model, making it more accurate.</p>
+
     </section>
+
 
     <section class="section" id="contributions">
         <!-- topic -->
