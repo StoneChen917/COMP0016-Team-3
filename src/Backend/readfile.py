@@ -1,7 +1,6 @@
 import magic
 import PyPDF2
-from PyPDF2 import PdfFileReader
-
+from PyPDF2 import PdfReader
 
 class ReadFile:
 
@@ -17,9 +16,10 @@ class ReadFile:
 
     def read_file(self, file):
         f = open(file, 'rb')
-        pageone = PyPDF2.PdfFileReader(f).getPage(0).extractText()
+        pdfReader = PdfReader(f)
+        pageone = PyPDF2.PdfReader(f).pages[0].extract_text()
         text = ""
-        for i in range(1, PyPDF2.PdfFileReader(f).getNumPages()):
-            text += PyPDF2.PdfFileReader(f).getPage(i).extractText()
+        for i in range(1, len(pdfReader.pages)):
+            text += PyPDF2.PdfReader(f).pages[i].extract_text()
         f.close()
         return pageone, text 
