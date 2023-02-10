@@ -1,11 +1,11 @@
-from readfile import Read_File
+from readfile import ReadFile
 
 
 
 class Num_People:
 
     def exec(self, file):
-        file_text = Read_File().exec(file)
+        file_text = ReadFile().exec(file)
         return self.clean_up(self.get_num(file_text))
 
     def get_num(self, file_text):
