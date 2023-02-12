@@ -1,4 +1,5 @@
-from Backend import readfile, fuzzymatching
+from Backend import fuzzymatching
+from Backend.Integration import readfile
 
 
 

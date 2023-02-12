@@ -2,7 +2,7 @@ from pathlib import Path
 from tkinter import *
 from tkinter import messagebox, filedialog, ttk
 from PIL import Image, ImageTk
-from Backend import readfile
+from Backend.Integration import readfile
 
 
 
