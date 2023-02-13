@@ -22,7 +22,7 @@ class Locations():
 
         # Remove duplicate locations
 
-        clean = ["Vermont"]
+        clean = []
         for i in locations:
             # print (type(i))
             if i not in clean:

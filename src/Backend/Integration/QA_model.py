@@ -41,6 +41,6 @@ class qaModel():
 
 
 
-# test = qaModel("MDRKH001final.pdf")
+# test = qaModel("src/Backend/Integration/MDRRW014dfr.pdf")
 # test.extract_ans()
 # print(test.answers)

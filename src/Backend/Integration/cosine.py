@@ -9,13 +9,12 @@ class Cosine():
     def __init__(self, admin_0, loc_list):
         self.admin_0 = admin_0
         # list of dict of pcodes for admin 1 & locations
+        self.loc_list = loc_list
+        self.ISO_code = self.getISOCode()
         self.p_code_1 = []
         self.p_code_2 = []
-        self.ISO_code = self.getISOCode()
-        self.loc_list = loc_list
-
-
-    
+        
+        
     def find_cosine_score(self,word1, word2):
         model = SentenceTransformer('stsb-roberta-large', device='cpu')
         # encode sentences to get their embeddings
@@ -64,6 +63,7 @@ class Cosine():
         df1 = pd.read_excel('src/Backend/Integration/admin1_codes.xlsx')
         df2 = pd.read_excel('src/Backend/Integration/admin2_codes.xlsx')
 
+        # if exact match is found
         if loc in df1['attributes.gis_name'].values:
             row_num = df1[df1['attributes.gis_name'] == loc].index.to_numpy()
             int_row_num = int(row_num[0])
@@ -79,6 +79,8 @@ class Cosine():
         df1_filtered = df1[(df1.attributes_iso3 == self.ISO_code) & (df1['attributes.gis_name'].str[0] == loc[0])]
         df2_filtered = df2[(df2.attributes_iso3 == self.ISO_code) & (df2['attributes.gis_name'].str[0] == loc[0])]
 
+        code1 = None
+        code2 = None
         bestCosSimScore1 = 0
         for i in df1_filtered['attributes.gis_name'].values:
             score1 = self.find_cosine_score(loc, i)
@@ -96,10 +98,11 @@ class Cosine():
                 row_num = df2[df2['attributes.gis_name'] == i].index.to_numpy()
                 int_row_num = int(row_num[0])
                 code2 = df2.iat[int_row_num, 3]    
-
+        # print(bestCosSimScore1,bestCosSimScore2)
         if bestCosSimScore1 > bestCosSimScore2:
             return (1,code1)
-        return (2,code2)
+        else:
+            return (2,code2)
     
     def loop_p_codes(self):
         for loc in self.loc_list:
@@ -113,7 +116,8 @@ class Cosine():
 
     
                 
-# test = Cosine("United States of America", ["West Virginia", "Vermont"])
+# test = Cosine("Rwanda", ['Gatsibo', 'the Eastern Province', 'Gatsibo District', 'Eastern Province', 'the City of Kigali'])
 # test.loop_p_codes()
 # print(test.p_code_1)
+# # print
 # print(test.p_code_2)

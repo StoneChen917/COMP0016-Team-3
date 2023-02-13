@@ -17,12 +17,12 @@ class main():
         self.first_page = self.get_first_page()
         self.other_pages = self.get_other_pages()
         self.loc_list = self.remove_admin_0()
-        self.admin_1_codes = None
-        self.admin_2_codes = None
-        self.get_pcodes()
+        self.admin_1_codes = self.get_pcodes()[0]
+        self.admin_2_codes = self.get_pcodes()[1]
+        # self.get_pcodes()
         self.ISO = self.get_ISO_code()
 
-        # answers to quest
+
 
     
 
@@ -61,16 +61,21 @@ class main():
         
     def get_pcodes(self):
         cosine = Cosine(self.admin_0, self.loc_list)
+        cosine.loop_p_codes()
         self.admin_1_codes = cosine.p_code_1
         self.admin_2_codes = cosine.p_code_2
-        # return(list(admin_1,admin_2))
+        # print(type(cosine.p_code_1),cosine.p_code_1)
+        # print(type(cosine.p_code_2),cosine.p_code_2)
+        return([cosine.p_code_1,cosine.p_code_2])
 
 
 # test = main("src/Backend/Integration/testfile.pdf")
-test = main("src/Backend/Integration/MDRKH001final.pdf")
+path = "src/Backend/Integration/MDRRW014dfr.pdf"
+test = main(path)
 
-print(test.loc_list)
-print("admin 0:"+test.admin_0)
-print("ISO CODE:"+test.ISO)
-print(test.admin_1_codes)
-print(test.admin_2_codes)
+# print(test.loc_list)
+print("admin 0: " + test.admin_0)
+print(f"ISO code: {test.ISO}" )
+# test.get_pcodes()
+print(f"admin1 codes: {test.admin_1_codes}")
+print(f"admin2 codes: {test.admin_2_codes}")
