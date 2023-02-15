@@ -3,8 +3,7 @@ from tkinter import *
 from tkinter import messagebox, filedialog, ttk
 from PIL import Image, ImageTk
 from Backend.Integration import readfile
-
-
+from tkinterdnd2 import TkinterDnD, DND_FILES
 
 pinkish_red = "#F5333F"
 darkish_blue = "#12284C"
@@ -45,9 +44,10 @@ class UI(Tk):
         if messagebox.askyesno(title = "Quit?", message = "Do you really want to quit?"):
             self.destroy()
 
-        
+
 class MainPage(Frame):
 
+    
     def __init__(self, parent, controller):
         Frame.__init__(self,parent)
 
@@ -79,7 +79,20 @@ class MainPage(Frame):
 
         self.label = Label(self, text="", font=('Arial', 13))
         self.label.pack(pady=((screen_height-280)/2,0))
- 
+
+
+        #textarea = Text(self, height=18, width=40)
+        #extarea.pack(side=LEFT)
+        #textarea.drop_target_register(DND_FILES)
+        #textarea.dnd_bind('<<Drop>>')
+        self.select_button_border = Frame(self, highlightbackground = darkish_blue, 
+                        highlightthickness = 2, bd=0)
+        self.select_button =TkinterDnD.Tk.get_dropfile_tempdir(self.select_button_border, text="Choose File", fg=darkish_blue, 
+                        bg="#EBEBEB", font=('Verdaba', 15), borderwidth=0, command=self.click_select)
+        self.select_button.pack(padx=20, pady=4)
+        self.select_button_border.pack()
+
+
         self.select_button_border = Frame(self, highlightbackground = darkish_blue, 
                         highlightthickness = 2, bd=0)
         self.select_button =Button(self.select_button_border, text="Choose File", fg=darkish_blue, 

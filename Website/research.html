@@ -65,28 +65,80 @@
         <h3>Research</h3>
         <!-- contents -->
         <p align="justify">
-            Our project's goal is to extract admin 0, 1 and 2, and historical data to place in a database in a table.
+            In our research, we considered many concepts including what they are, their different types and why they are the best suited for our project.
+            <br>
         </p>
 
-        <b>Text Summarization</b>
-        <p align="justify">Allows summarization of large paragraphs into shorter consumption without losing vital information. With text summarization, extracting essential information such as Country or the region’s name (Admin 0, 1, 2) will be much easier.
+        <b><br>Named Entity Recognition</b>
+        <p align="justify">What is Named Entity Recognition?
+            <br>Named Entity Recognition is mainly the process of detecting entities from text and classifying them into different categories that we can use.
             <br>
-            There are Extractive Text Summarization and Abstractive Text Summarization. The Extractive method uses exact sentences from the source to summarize the text, while abstractive generate phrases to summarize the text. To ensure that the data filled in the form is correct, Extractive Text Summarization seems like a better approach. 
-            <br>We researched several tools that we can use including AssemblyAI, plnia, Microsoft Azure, Meaning Cloud, gensim and sumy.
+            <br>Different types of NER:
+            <br>1. Dictionary-based has a dictionary containing vocabulary which is used. Basic string-matching algorithms check whether the entity is present in the given text against the items in the vocabulary. This method is generally not employed because the dictionary that is used is required to be updated and maintained consistently.
+            <br>2. Rule-based has a predefined set of rules for information extraction is used which are pattern-based and context-based. Pattern-based rule uses the morphological pattern of the words while context-based uses the context of the word given in the text document.
+            <br>3. Machine learning based solves a lot of limitations of the above two methods. It is a statistical-based model that tries to make a feature-based representation of the observed data. It can recognise an existing entity name even with small spelling variations. The machine learning-based approach involves two phases for doing NER. The first phase trains the ML model on annotated documents. In the next phase, the trained model is used to annotate the raw documents. The process is similar to a normal ML model pipeline.
+            <br>4. Deep learning NER is more accurate than the ML-based method because it is capable of assembling words, enabling it to understand the semantic and syntactic relationship between various words better. It is also capable of analysing topic-specific and high-level words automatically.
+            <br>
+            <br>Why we implemented NER:
+            <br>Our client has asked us to prioritise the extraction of information related to Admin 1 and 2 as well as geographical information such as ISO codes so that they can update an already existing database with additional extracted information, therefore we believe the most appropriate approach to go with is NER.
 
         </p>
-        <b>Named Entity Recognition</b>
-        <p align="justify">It involves the identification of key information in the text and classification into a set of predefined categories. An entity is basically the thing that is consistently talked about or refer to in the text.
+
+        <b><br>Q&A Model</b>
+        <p align="justify">What is QA model?
+            <br>Question-Answering models are machine learning tools that can provide answers to given questions once provided some information/ context. It is a form of Natural Language Processing where the computer attempts to “understand” natural language and interpret them.
             <br>
-            Some of the categories that are the most important architecture in NER are person, organization and location. Can be used to identify details regarding provinces affected/targeted, funding in CHF etc.
+            <br>Different types of QA Model:
+            <br>1.Reading Comprehension aims to provide answers to questions through understanding of words and concepts. This is best suited for literary (eg. paper and articles).
+            <br>2.Closed book questioning involves a computer learning a set of facts and answering questions based on those facts.
+            <br>3.Closed-domain uses questions under a specific domain which limits the questions that can be asked to those in a specific category. 
+            <br>4.Open-domain uses a much larger dataset to answer questions, and therefore has a larger scope of questions that can be asked.
             <br>
-            <img src="assets/images/research/NER.png" alt="NER research list" class="large-size-image">
+            <br>Hugging Face:
+            <br>Hugging Face is a platform that allows users to shared pre-trained models that can be used for Natural Language Processing. It is popular for its utilisation of the transformer library in Python and its use of models such as BERT and RoBERTa.
+            <br> 
+            <br>Why we implemented QA model:
+            <br>We implemented a QA model because it accurately was able to use keyword matching and information retrieval to answer many of the questions we needed for for our requirements (eg. operation start date, operation end date, glide number, operation budget).
+            
+            
         </p>
 
-        <b>Spacy</b>
-        <p>
-            <img src="assets/images/research/Spacy.png" alt="Spacy reasons" class="large-size-image">
+        <b><br>Table Extraction</b>
+        <p align="justify">What is Table Extraction?
+            <br>Table extraction is a concept that, when implemented, can extract specific data from a table. Certain libraries allow you to convert unstructured data in PDF files to clean, structured data.
+            <br>
+            <br>What is PyPDF2:
+            <br>PyPDF2 is a free and open-source pure-python PDF library capable of splitting, merging, cropping, and transforming the pages of PDF files.
         </p>
+
+        <b><br>String Matching</b>
+        <p align="justify">What is String Matching?
+            <br>String matching refers to finding occurrence(s) of a pattern string within another string or body of text.
+            <br>
+            <br>Types of String Matching:
+            <br>1.Exact String Matching is to find one, several, or all occurrences of a defined string (pattern) in a large string (text or sequences) such that each matching is perfect.
+            <br>2.Approximate String Matching Algorithms (also known as Fuzzy String Searching) searches for substrings of the input string.
+            <br>
+            <br>Fuzzy matching:
+            <br>Fuzzy matching is a method that provides an improved ability to process word-based matching queries to find matching phrases or sentences from a database. When an exact match is not found for a sentence or phrase, fuzzy matching can be applied. This improves accuracy as it can identify false-positives and remove redundancies. 
+            <br>
+            <br>Cosine Matching:
+            <br>Cosine Matching addresses the similarity between two things and assigns it a numeric value of similarity (1 being the most similar and 0 being the least). It can be used when fuzzy matching becomes too probabilistic. In our project this can help when finding the admin codes as cosine similarity can be used on admin 0 codes to reduce the lengthy size of the ISO codes list to make it easier to find admin 1 and 2.
+
+        </p>
+
+
+        <b><br>Resources</b>
+        <p>[1] Spacy EntityRecognizer [Online]: https://spacy.io/api/entityrecognizer
+            <br>[2] Hugging Face [Online]: https://huggingface.co/
+            <br>[3] Reading Comprehension [Online]:https://www.k12reader.com/what-is-reading-comprehension/
+            <br>[4] Hugging Face Documentation [Online]:https://huggingface.co/docs/hub/index
+            <br>[5] Hugging Face wants to become your artificial BFF [Online]:https://social.techcrunch.com/2017/03/09/hugging-face-wants-to-become-your-artificial-bff/
+            <br>[6] PyPDF2 Documentation [Online]:https://pypi.org/project/PyPDF2/
+            <br>[7] Applications of String Matching [Online]:https://www.geeksforgeeks.org/applications-of-string-matching-algorithms/
+            <br>[8] What is fuzzy matching? [Online]:https://www.techopedia.com/definition/24183/fuzzy-matching#:~:text=Fuzzy%20matching%20is%20a%20method,fuzzy%20matching%20can%20be%20applied.
+            <br>[9] Fuzzy matching with cosine similarity [Online]:https://engineering.continuity.net/cosine-similarity/#:~:text=Cosine%20matching%20is%20a%20way,grid%20%2D%20i.e.%2C%20as%20a%20vector
+            </p>
     </section>
     <footer class="footer-content">
         <div class="row">
