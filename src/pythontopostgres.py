@@ -43,7 +43,7 @@ try:
                             operation_end_date        DATE,
                             number_of_people_affected INT,
                             number_of_people_assisted INT,
-                            admin_2_code varchar(40)  REFERENCES Admin2)'''                    
+                            admin_2_code              varchar(40)  REFERENCES Admin2)'''                    
     cur.execute(create_script)
 
     conn.commit()
