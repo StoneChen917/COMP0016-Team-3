@@ -3,13 +3,9 @@ from tkinter import *
 from tkinter import messagebox, filedialog, ttk
 from PIL import Image, ImageTk
 from Backend.Integration import readfile
-<<<<<<< Updated upstream
-from tkinterdnd2 import TkinterDnD, DND_FILES
-=======
 from tkinterdnd2 import *
 
 
->>>>>>> Stashed changes
 
 pinkish_red = "#F5333F"
 darkish_blue = "#12284C"
@@ -88,31 +84,7 @@ class MainPage(Frame):
         self.upload_box.dnd_bind('<<Drop>>', self.drop_file)
 
         self.label = Label(self, text="", font=('Arial', 13))
-<<<<<<< Updated upstream
-        self.label.pack(pady=((screen_height-280)/2,0))
-
-
-        #textarea = Text(self, height=18, width=40)
-        #extarea.pack(side=LEFT)
-        #textarea.drop_target_register(DND_FILES)
-        #textarea.dnd_bind('<<Drop>>')
-        self.select_button_border = Frame(self, highlightbackground = darkish_blue, 
-                        highlightthickness = 2, bd=0)
-        self.select_button =TkinterDnD.Tk.get_dropfile_tempdir(self.select_button_border, text="Choose File", fg=darkish_blue, 
-                        bg="#EBEBEB", font=('Verdaba', 15), borderwidth=0, command=self.click_select)
-        self.select_button.pack(padx=20, pady=4)
-        self.select_button_border.pack()
-
-
-        self.select_button_border = Frame(self, highlightbackground = darkish_blue, 
-                        highlightthickness = 2, bd=0)
-        self.select_button =Button(self.select_button_border, text="Choose File", fg=darkish_blue, 
-                        bg="#EBEBEB", font=('Verdaba', 15), borderwidth=0, command=self.click_select)
-        self.select_button.pack(padx=20, pady=4)
-        self.select_button_border.pack()
-=======
         self.label.pack(pady=((self.screen_height-280)/2,0))
->>>>>>> Stashed changes
 
         self.select_label_text = ""
 
@@ -194,18 +166,13 @@ class InfoPage(Frame):
         self.topbanner = Label(self, width = self.screen_width, height = 4, bg = "white")
         self.topbanner.place(x=0, y=0)
 
-        self.scrollbar = Scrollbar(self)
-        self.scrollbar.pack(side = BOTTOM, fill = Y)
-
-        self.label = Entry(self, text="", font="Arial")
+        self.label = Label(self, text="", font="Arial")
         self.label.pack(pady=(120,0))
-
-        self.scrollbar.config(command=self.label.xview)
 
         self.update_button = Button(self, text="Update", fg="white", bg="#F5333F", font=('Arial', 18), command=self.update_text)
         self.update_button.pack()
 
-        self.back_arrow_photo = ImageTk.PhotoImage(Image.open(Path("src/Assets/Images/Arrow.png")).resize((51, 45)))
+        self.back_arrow_photo = ImageTk.PhotoImage(Image.open(Path("src/Assets/Images/Arrow.png")).resize((50, 50)))
         self.back_button = Button(self, image=self.back_arrow_photo, borderwidth=0, command=lambda: controller.show_frame(MainPage))
         self.back_button.place(x=0, y=76)
 
@@ -215,6 +182,6 @@ class InfoPage(Frame):
 
 
 app = UI()
-app.geometry(str(app.winfo_screenwidth())+"x"+str(app.winfo_screenheight()))
+app.state('zoomed')
 app.protocol("WM_DELETE_WINDOW", app.on_closing)
 app.mainloop()
