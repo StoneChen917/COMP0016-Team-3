@@ -176,7 +176,59 @@
 <!--        TABLE ENDS HERE HERE-->
 
         <p>Although all three models have the same F-score, the large model has a much larger vector size compared to the small and large model, making it more accurate.</p>
-
+        <br>
+        <h1>Evaluating Different String Matching Methods</h1>
+        <p align = "justify">To decide which method of string matching was best, we decided to compare the Fuzzywuzzy module, Edit distance and Cosine Matching by using 40 random Admin 1 and Admin 2 locations extracted from 15 random documents. We decided to test 2 different cases:</p>
+        <br>
+        <p align = "justify">1.	We filter the dataframe obtained from reading the Admin 1 Code and Admin 2 Code spreadsheets using the Country Code.</p>
+        <p align = "justify">2.	We filter the dataframe obtained from reading the Admin 1 Code and Admin 2 Code spreadsheets using the Country Code as well as matching the first letter of the Admin 1/Admin 2 locations with the first letter of the location whose code we are trying to obtain (this was done to see whether time of execution could be reduced).</p>
+        <br>
+        <p align = "justify">We decided to compare the 3 types of string matching on the basis of time taken to execute the program, the number of ‘Not Found’ values returned as well as the accuracy which was calculated by (number of correct answers / total number of answers) * 100. The results obtained are as follows:</p>
+        <br>
+        <table>
+            <tr>
+              <th>Type of String Matching</th>
+              <th>Time Taken to Execute Program</th>
+              <th>No. of 'Not Found' Values Returned</th>
+              <th>Accuracy</th>
+            </tr>
+            <tr>
+             <td>Fuzzy Matching without first letter filter</td>
+             <td>11.3 minutes</td>
+             <td>0</td>
+             <td>95%</td>
+            </tr>
+            <tr>
+                <td>Fuzzy Matching with first letter filter</td>
+                <td>17 minutes</td>
+                <td>1</td>
+                <td>90%</td>
+            </tr>
+            <tr>
+                <td>Cosine Matching without first letter filter</td>
+                <td>49.6 minutes</td>
+                <td>0</td>
+                <td>85%</td>
+            </tr>
+            <tr>
+                <td>Cosine Matching with first letter filter</td>
+                <td>16.29 minutes</td>
+                <td>1</td>
+                <td>85%</td>
+            </tr>
+            <tr>
+                <td>Edit Distance without first letter filter</td>
+                <td>10.3 minutes</td>
+                <td>0</td>
+                <td>90%</td>
+            </tr>
+            <tr>
+                <td>Edit Distance with first letter filter</td>
+                <td>10.42 minutes</td>
+                <td>1</td>
+                <td>87.5%</td>
+            </tr>
+        </table>
     </section>
 
 
