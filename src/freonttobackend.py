@@ -2,6 +2,6 @@ from ui import *
 
 class Main():
 
-    def getText():
+    def getText(doctext):
         doctext = " "
         doctext = MainPage.get_text()
