@@ -24,8 +24,6 @@ class main():
 
 
 
-    
-
     def get_first_page(self):
         # reader = ReadFile()
         
