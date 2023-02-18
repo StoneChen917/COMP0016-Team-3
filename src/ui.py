@@ -110,6 +110,7 @@ class MainPage(Frame):
 
     def click_select(self):
         f = filedialog.askopenfilename()
+        
         try:
             self.file_text = readfile.ReadFile().exec(f)
             file_name = f[f.rfind("/")+1:]
@@ -161,8 +162,6 @@ class MainPage(Frame):
     def get_text(self):
         return self.file_text
 
-
-
 class InfoPage(Frame):
 
     def __init__(self, parent, controller):
@@ -184,8 +183,95 @@ class InfoPage(Frame):
         self.back_button = Button(self, image=self.back_arrow_photo, borderwidth=0, command=lambda: controller.show_frame(MainPage))
         self.back_button.place(x=0, y=76)
         
+        admin0 = Frontoback.get_admin0()
+        output = "Admin 0: " + admin0
+        self.label = Label(self, text= output, font="Arial")
+        self.label.pack(pady= 7, padx= 5, side= TOP)
+        
+        admin1 = Frontoback.get_admin1()
+        output = "Admin 1: " + admin1
+        self.label = Label(self, text= output, font="Arial")
+        self.label.pack(pady= 7, padx= 5, side= TOP)
+        
+        admin2 = Frontoback.get_admin2()
+        output = "Admin 2: " + admin2
+        self.label = Label(self, text= output, font="Arial")
+        self.label.pack(pady= 7, padx= 5, side= TOP)
+        
+        start = Frontoback.get_start()
+        output = "Start Date: " + start
+        self.label = Label(self, text= output, font="Arial")
+        self.label.pack(pady= 7, padx= 5, side= TOP)
+        
+        end = Frontoback.get_end()
+        output = "End Date: " + end
+        self.label = Label(self, text= output, font="Arial")
+        self.label.pack(pady= 7, padx= 5, side= TOP)
+        
+        glide = Frontoback.get_glide()
+        output = "Glide Number: " + glide
+        self.label = Label(self, text= output, font="Arial")
+        self.label.pack(pady= 7, padx= 5, side= TOP)
+        
+        operationbudget = Frontoback.get_operationbudget()
+        output = "Operation Budget: " + operationbudget
+        self.label = Label(self, text= output, font="Arial")
+        self.label.pack(pady= 7, padx= 5, side= TOP)
+        
+        host = Frontoback.get_host()
+        output = "Host National Society: " + host
+        self.label = Label(self, text= output, font="Arial")
+        self.label.pack(pady= 7, padx= 5, side= TOP)
+              
+   
+class Frontoback(Frame):
+    global answers
+    answers = []
+            
+    def Answers(admin0, admin1, admin2, start, end, glide, operationBudget, host):
+        answers.append(admin0)
+        answers.append(admin1)
+        answers.append(admin2)
+        answers.append(start)
+        answers.append(end)
+        answers.append(glide)
+        answers.append(operationBudget)
+        answers.append(host)
+        
+    def get_admin0():
+        x = answers[0]
+        return x
+    
+    def get_admin1():
+        x = answers[1]
+        return x
+    
+    def get_admin2():
+        x = answers[2]
+        return x
+    
+    def get_start():
+        x = answers[3]
+        return x
+    
+    def get_end():
+        x = answers[4]
+        return x
+    
+    def get_glide():
+        x = answers[5]
+        return x
+    
+    def get_operationbudget():
+        x = answers[6]
+        return x
+    
+    def get_host():
+        x = answers[7]
+        return x
+    
 
-
+    
 app = UI()
 app.state('zoomed')
 app.protocol("WM_DELETE_WINDOW", app.on_closing)
