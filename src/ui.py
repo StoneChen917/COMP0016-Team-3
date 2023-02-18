@@ -26,14 +26,13 @@ class UI(Tk):
 
         self.frames = {}
 
-        mainpage = MainPage(container, self)
-        self.frames[MainPage] = mainpage
-        mainpage.grid(row=0, column=0, sticky="nsew")
-
-        infopage = InfoPage(container, self, mainpage)
+        infopage = InfoPage(container, self)
         self.frames[InfoPage] = infopage
         infopage.grid(row=0, column=0, sticky="nsew")
 
+        mainpage = MainPage(container, self, infopage)
+        self.frames[MainPage] = mainpage
+        mainpage.grid(row=0, column=0, sticky="nsew")
 
         self.show_frame(MainPage)
 
@@ -50,8 +49,10 @@ class UI(Tk):
 class MainPage(Frame):
 
     
-    def __init__(self, parent, controller):
+    def __init__(self, parent, controller, infopage):
         Frame.__init__(self,parent)
+
+        self.infopage = infopage
 
         self.screen_width = self.winfo_screenwidth() 
         self.screen_height = self.winfo_screenheight() 
@@ -65,6 +66,11 @@ class MainPage(Frame):
         self.logo = Label(borderwidth=0, image=logo_image) 
         self.logo.image = logo_image
         self.logo.place(x=100, y=0) 
+
+        self.info_image = ImageTk.PhotoImage(Image.open(Path("src/Assets/Images/info.png")).resize((60, 60)))
+        self.info_button = Button(self, image=self.info_image, borderwidth=0, bg = "white", command=self.click_info)
+        self.info_button.image = self.info_image
+        self.info_button.place(x=self.screen_width-63, y=3)
 
         self.midbannerone = Label(self, width = self.screen_width, height = 10, bg = "#12284C")
         self.midbannerone.place(x=0, y=66)
@@ -97,6 +103,10 @@ class MainPage(Frame):
         self.upload_image = ImageTk.PhotoImage(Image.open(Path("src/Assets/Images/upload_button.png")).resize((190, 60)))
         self.upload_button = Button(self, image=self.upload_image, borderwidth=0, command=lambda: controller.show_frame(InfoPage))
         self.upload_button.image = self.upload_image
+
+    def click_info(self):
+        messagebox.showinfo(title="Info", 
+            message="1.Upload your file by drag and drop, or select from folders. (pdf only)\n2.Check if the informations are correct and push it to the database.")
 
     def click_select(self):
         f = filedialog.askopenfilename()
@@ -155,10 +165,8 @@ class MainPage(Frame):
 
 class InfoPage(Frame):
 
-    def __init__(self, parent, controller, mainpage):
+    def __init__(self, parent, controller):
         Frame.__init__(self, parent)
-
-        self.mainpage = mainpage
 
         self.screen_width = self.winfo_screenwidth() 
         self.screen_height = self.winfo_screenheight() 
@@ -169,15 +177,12 @@ class InfoPage(Frame):
         self.label = Label(self, text="", font="Arial")
         self.label.pack(pady=(120,0))
 
-        self.update_button = Button(self, text="Update", fg="white", bg="#F5333F", font=('Arial', 18), command=self.update_text)
+        self.update_button = Button(self, text="Update", fg="white", bg="#F5333F", font=('Arial', 18), command=None)
         self.update_button.pack()
 
         self.back_arrow_photo = ImageTk.PhotoImage(Image.open(Path("src/Assets/Images/Arrow.png")).resize((50, 50)))
         self.back_button = Button(self, image=self.back_arrow_photo, borderwidth=0, command=lambda: controller.show_frame(MainPage))
         self.back_button.place(x=0, y=76)
-
-    def update_text(self):
-        self.label.config(text=self.mainpage.get_text(), fg='red')
         
 
 
