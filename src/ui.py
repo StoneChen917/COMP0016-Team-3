@@ -48,6 +48,7 @@ class UI(Tk):
             self.destroy()
 
 
+
 class MainPage(Frame):
 
     doctext = " "
@@ -160,6 +161,8 @@ class MainPage(Frame):
     
     def return_doctext():
         return doctext
+
+
 
 class InfoPage(Frame):
     
