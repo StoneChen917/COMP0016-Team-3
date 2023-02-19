@@ -24,8 +24,6 @@ class main():
 
 
 
-    
-
     def get_first_page(self):
         # reader = ReadFile()
         
@@ -37,10 +35,13 @@ class main():
     
     def get_answers(self):
        answers=qaModel(self.file).answers
+       print(answers)
        return answers
+       
     
     def get_admin_0(self):
         country = self.get_answers()["What is the Country of Disaster?"]
+        print(country)
         return country
 
     def get_ISO_code(self):
