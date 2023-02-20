@@ -84,6 +84,15 @@
 
         </p>
 
+        <b><br>SpaCy</b>
+        <p align="justify"> What is SpaCy?
+            <br>SpaCy is an open-sourced Natural Language Processing library for Python. spaCy is designed to make it easy to build systems for information extraction or general-purpose natural language processing. SpaCy utilises tokens which breaks a text down into its basic units which are then represented in spaCy as Token objects. Tokenization is a process of splitting up text into smaller parts(tokens).
+            Tokenisation can be either words, characters or subwords:
+            <br>Word tokenization splits text into individual words based on the space.
+            <br>Character tokenization splits text into sets of characters. These characters will represent words.
+            <br>Subword tokenization splits text into subwords. These subwords can be combined to create whole words.
+        </p>
+
         <b><br>Q&A Model</b>
         <p align="justify">What is QA model?
             <br>Question-Answering models are machine learning tools that can provide answers to given questions once provided some information/ context. It is a form of Natural Language Processing where the computer attempts to “understand” natural language and interpret them.
@@ -107,6 +116,13 @@
         <p align="justify">What is Table Extraction?
             <br>Table extraction is a concept that, when implemented, can extract specific data from a table. Certain libraries allow you to convert unstructured data in PDF files to clean, structured data.
             <br>
+            <br>What is Camelot?
+            <br>Camelot is a Python library that allows you to extract tables from PDFs.
+            <br>Why Camelot?
+            <br>Configurability: Camelot gives you control over the table extraction process with tweakable settings.
+            <br>Metrics: You can discard bad tables based on metrics like accuracy and whitespace, without having to manually look at each table.
+            <br>Output: Each table is extracted into a pandas DataFrame, which seamlessly integrates into ETL and data analysis workflows. You can also export tables to multiple formats, which include CSV, JSON, Excel, HTML, Markdown, and Sqlite.
+            <br>
             <br>What is PyPDF2:
             <br>PyPDF2 is a free and open-source pure-python PDF library capable of splitting, merging, cropping, and transforming the pages of PDF files.
         </p>
@@ -124,7 +140,11 @@
             <br>
             <br>Cosine Matching:
             <br>Cosine Matching addresses the similarity between two things and assigns it a numeric value of similarity (1 being the most similar and 0 being the least). It can be used when fuzzy matching becomes too probabilistic. In our project this can help when finding the admin codes as cosine similarity can be used on admin 0 codes to reduce the lengthy size of the ISO codes list to make it easier to find admin 1 and 2.
-
+            <br>
+            <br>String Matching Comparisons:
+            <br>We decided to compare the 3 types of string matching on the basis of time taken to execute the program, the number of ‘Not Found’ values returned as well as the accuracy which was calculated by (number of correct answers / total number of answers) * 100.   
+            <br>It was observed that adding the first letter filter did not reduce time of execution significantly except in the case of Cosine Matching. However, the additional filter reduced accuracy in all cases except with Cosine Matching as well as increased the number of ‘Not Found’ values returned from 0 to 1 in all cases. This is because locations have been entered with different names in the spreadsheets and these entries were filtered out and therefore not considered when string matching was performed(For e.g.: Johannesburg has been entered as City of Johannesburg).  
+            
         </p>
 
 
@@ -138,7 +158,9 @@
             <br>[7] Applications of String Matching [Online]:https://www.geeksforgeeks.org/applications-of-string-matching-algorithms/
             <br>[8] What is fuzzy matching? [Online]:https://www.techopedia.com/definition/24183/fuzzy-matching#:~:text=Fuzzy%20matching%20is%20a%20method,fuzzy%20matching%20can%20be%20applied.
             <br>[9] Fuzzy matching with cosine similarity [Online]:https://engineering.continuity.net/cosine-similarity/#:~:text=Cosine%20matching%20is%20a%20way,grid%20%2D%20i.e.%2C%20as%20a%20vector
-            </p>
+            <br>[10] Natural Language Processing with SpaCy in Python [Online]:https://realpython.com/natural-language-processing-spacy-python/#:~:text=spaCy%20is%20a%20free%2C%20open,general%2Dpurpose%20natural%20language%20processing.
+            <br>[11] Camelot Python Documentation [Online]: https://pypi.org/project/camelot-py/
+        </p>
     </section>
     <footer class="footer-content">
         <div class="row">
