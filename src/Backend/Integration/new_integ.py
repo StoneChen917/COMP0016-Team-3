@@ -5,7 +5,7 @@
 import PyPDF2
 from readfile import ReadFile
 from QA_model import qaModel
-from cosine import Cosine
+from code_matching import codeMatch
 from locations import Locations
 
 class main():
@@ -37,24 +37,21 @@ class main():
     
     def get_answers(self):
        answers=qaModel(self.file).answers
-       print(answers)
        return answers
        
     
     def get_admin_0(self):
         country = self.get_answers()["What is the Country of Disaster?"]
-        print(country)
         return country
 
     def get_ISO_code(self):
-        cosine = Cosine(self.admin_0, self.loc_list)
-        iso_code = cosine.getISOCode()
+        fuzz = codeMatch(self.admin_0, self.loc_list)
+        iso_code = fuzz.getISOCode()
         return iso_code
 
     def remove_admin_0(self):
         locations = Locations(self.file)
         lst = locations.exctract_loc()
-        # print(lst)
 
         # remove admin 0
         if self.admin_0 in lst:
@@ -63,13 +60,11 @@ class main():
         return lst
         
     def get_pcodes(self):
-        cosine = Cosine(self.admin_0, self.loc_list)
-        cosine.loop_p_codes()
-        self.admin_1_codes = cosine.p_code_1
-        self.admin_2_codes = cosine.p_code_2
-        # print(type(cosine.p_code_1),cosine.p_code_1)
-        # print(type(cosine.p_code_2),cosine.p_code_2)
-        return([cosine.p_code_1,cosine.p_code_2])
+        fuzz = codeMatch(self.admin_0, self.loc_list)
+        fuzz.loop_p_codes()
+        self.admin_1_codes = fuzz.p_code_1
+        self.admin_2_codes = fuzz.p_code_2
+        return([fuzz.p_code_1, fuzz.p_code_2])
     
     def extract(self):
         final = {}

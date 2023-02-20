@@ -4,6 +4,7 @@ from tkinter import messagebox, filedialog, ttk
 from PIL import Image, ImageTk
 from Backend.Integration import readfile
 from tkinterdnd2 import *
+from Backend.Integration import new_integ
 
 
 
@@ -151,6 +152,7 @@ class MainPage(Frame):
         self.cancel_button.place_forget()
         self.upload_button.place_forget()
 
+# why all three functions
     def get_text(self):
         return self.file_text
     

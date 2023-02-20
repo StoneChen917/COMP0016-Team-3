@@ -216,6 +216,7 @@ def checkFuzzyRatio(word1, word2):
   return fuzz.ratio(word1, word2)
 
 for i in range(10):
+  # still takes in location and admin 0 code
   def mapToISOCodesUsingFuzzyMatching(loc, admin0Code):
     row_num = 0
     int_row_num = 0
@@ -223,21 +224,25 @@ for i in range(10):
     df1 = pd.read_excel(r"D:\admin1_codes.xlsx")
     df2 = pd.read_excel(r"D:\admin2_codes.xlsx")
 
+    # find exact match in admin 1
     if loc in df1['attributes.gis_name'].values:
       row_num = df1[df1['attributes.gis_name'] == loc].index.to_numpy()
       int_row_num = int(row_num[0])
       code = df1.iat[int_row_num, 3]
       return code
 
+    # find exact match in admin 2
     elif loc in df2['attributes.gis_name'].values:
       row_num = df2[df2['attributes.gis_name'] == loc].index.to_numpy()
       int_row_num = int(row_num[0])
       code = df2.iat[int_row_num, 3]
       return code
 
+    # find best match in 1 & 2
     else:
       df1_filtered = df1[(df1.attributes_iso3 == admin0Code)]
       df2_filtered = df2[(df2.attributes_iso3 == admin0Code)]
+
 
       bestFuzzyRatio1 = 0
       for i in df1_filtered['attributes.gis_name'].values:

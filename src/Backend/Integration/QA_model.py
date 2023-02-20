@@ -33,10 +33,8 @@ class qaModel():
         for n in self.questions:
             tokenizer.encode(n, truncation = True, padding = True)
             tokenizer.encode('[CLS]')
-
             nlp = pipeline('question-answering', model = model, tokenizer = tokenizer)
             answer = nlp({'question': n, 'context': context})['answer']
-            
             self.answers[n] = str(answer)
 
 
