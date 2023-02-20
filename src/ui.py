@@ -58,6 +58,8 @@ class MainPage(Frame):
     def __init__(self, parent, controller, fronttoback, infopage):
         Frame.__init__(self,parent)
 
+        self.controller = controller
+
         self.fronttoback = fronttoback
         self.infopage = infopage
 
@@ -107,8 +109,12 @@ class MainPage(Frame):
         self.cancel_button.image = self.cancel_image
 
         self.upload_image = ImageTk.PhotoImage(Image.open(Path("src/Assets/Images/upload_button.png")).resize((190, 60)))
-        self.upload_button = Button(self, image=self.upload_image, borderwidth=0, command=lambda: controller.show_frame(InfoPage))
+        self.upload_button = Button(self, image=self.upload_image, borderwidth=0, command=self.click_upload)
         self.upload_button.image = self.upload_image
+
+    def click_upload(self):
+        self.update_info_page()
+        lambda: self.controller.show_frame(InfoPage)
 
     def click_info(self):
         messagebox.showinfo(title = "Info", 
@@ -121,7 +127,6 @@ class MainPage(Frame):
     def upload_success(self, f):
         file_name = f[f.rfind("/")+1:]
         self.fronttoback.set_file_name(file_name)
-        self.update_info_page()
         self.upload_box.configure(image = self.upload_box_uploaded_image)
         self.upload_box.image = self.upload_box_uploaded_image
         self.select_label.config(text = file_name, fg = 'black')
@@ -243,14 +248,19 @@ class InfoPage(Frame):
         self.push_button.place(x = (self.screen_width-self.push_button.winfo_reqwidth())/2, y = 430)
 
     def update(self):
+        self.glide_number_text.delete('1.0', END)
         self.glide_number_text.insert(INSERT, self.fronttoback.get_glide())
+        self.operation_start_date_text.delete('1.0', END)
         self.operation_start_date_text.insert(INSERT, self.fronttoback.get_start())
+        self.operation_end_date_text.delete('1.0', END)
         self.operation_end_date_text.insert(INSERT, self.fronttoback.get_end())
+        self.operation_budget_text.delete('1.0', END)
         self.operation_budget_text.insert(INSERT, self.fronttoback.get_operationbudget())
+        self.host_national_society_text.delete('1.0', END)
         self.host_national_society_text.insert(INSERT, self.fronttoback.get_host())
 
     def click_push(self):
-        None
+        lambda: controller.show_frame(MainPage)
         
                       
    
