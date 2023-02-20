@@ -28,14 +28,15 @@ class UI(Tk):
 
         self.frames = {}
 
-        mainpage = MainPage(container, self)
+        fronttoback = Frontoback()
+
+        mainpage = MainPage(container, self, fronttoback)
         self.frames[MainPage] = mainpage
         mainpage.grid(row=0, column=0, sticky="nsew")
 
-        infopage = InfoPage(container, self, mainpage)
+        infopage = InfoPage(container, self)
         self.frames[InfoPage] = infopage
         infopage.grid(row=0, column=0, sticky="nsew")
-
 
         self.show_frame(MainPage)
 
@@ -54,13 +55,13 @@ class MainPage(Frame):
 
     doctext = " "
     
-    def __init__(self, parent, controller):
+    def __init__(self, parent, controller, fronttoback):
         Frame.__init__(self,parent)
 
-        self.screen_width = self.winfo_screenwidth() 
-        self.screen_height = self.winfo_screenheight() 
+        self.fronttoback = fronttoback
 
-        self.file_text = ""
+        self.screen_width = self.winfo_screenwidth() 
+        self.screen_height = self.winfo_screenheight()
 
         self.topbanner = Label(self, width = self.screen_width, height = 4, bg = "white")
         self.topbanner.place(x=0, y=0)
@@ -102,47 +103,40 @@ class MainPage(Frame):
         self.upload_button = Button(self, image=self.upload_image, borderwidth=0, command=lambda: controller.show_frame(InfoPage))
         self.upload_button.image = self.upload_image
 
+    def upload_success(self, f):
+        readfile.ReadFile().exec(f)
+        file_name = f[f.rfind("/")+1:]
+        self.fronttoback.set_file_name(file_name)
+        self.upload_box.configure(image = self.upload_box_uploaded_image)
+        self.upload_box.image = self.upload_box_uploaded_image
+        self.select_label.config(text = file_name, fg = 'black')
+
+        self.select_label.place(x = (self.screen_width-self.select_label.winfo_reqwidth())/2, y = 330)
+        self.cancel_button.place(x = (self.screen_width-self.cancel_button.winfo_reqwidth())/2, y = 400)
+        self.upload_button.place(x = (self.screen_width-self.upload_button.winfo_reqwidth())/2, y = 490)
+
+    def upload_failure(self):
+        messagebox.showerror(title = "Upload failed", message = "File not supported, pdf only")
+        self.upload_box.configure(image = self.upload_box_image)
+        self.upload_box.image = self.upload_box_image
+
+        self.select_label.place_forget()
+        self.cancel_button.place_forget()
+        self.upload_button.place_forget()
+
     def click_select(self):
         f = filedialog.askopenfilename()
         try:
-            self.file_text = readfile.ReadFile().exec(f)
-            file_name = f[f.rfind("/")+1:]
-            self.upload_box.configure(image=self.upload_box_uploaded_image)
-            self.upload_box.image = self.upload_box_uploaded_image
-            self.select_label.config(text=file_name, fg='black')
-
-            self.select_label.place(x=(self.screen_width-self.select_label.winfo_reqwidth())/2, y=330)
-            self.cancel_button.place(x=(self.screen_width-self.cancel_button.winfo_reqwidth())/2, y=400)
-            self.upload_button.place(x=(self.screen_width-self.upload_button.winfo_reqwidth())/2, y=490)
+            self.upload_success(f)
         except ValueError as e:
-            messagebox.showerror(title="Upload failed", message="File not supported, pdf only")
-            self.upload_box.configure(image=self.upload_box_image)
-            self.upload_box.image = self.upload_box_image
-
-            self.select_label.place_forget()
-            self.cancel_button.place_forget()
-            self.upload_button.place_forget()
+            self.upload_failure(f)
 
     def drop_file(self, event):
         f = event.data
         if event.data.endswith(".pdf"):
-            self.file_text = readfile.ReadFile().exec(f)
-            file_name = f[f.rfind("/")+1:]
-            self.upload_box.configure(image=self.upload_box_uploaded_image)
-            self.upload_box.image = self.upload_box_uploaded_image
-            self.select_label.config(text=file_name, fg='black')
-
-            self.select_label.place(x=(self.screen_width-self.select_label.winfo_reqwidth())/2, y=330)
-            self.cancel_button.place(x=(self.screen_width-self.cancel_button.winfo_reqwidth())/2, y=400)
-            self.upload_button.place(x=(self.screen_width-self.upload_button.winfo_reqwidth())/2, y=490)
+            self.upload_success(f)
         else:
-            messagebox.showerror(title="Upload failed", message="File not supported, pdf only")
-            self.upload_box.configure(image=self.upload_box_image)
-            self.upload_box.image = self.upload_box_image
-
-            self.select_label.place_forget()
-            self.cancel_button.place_forget()
-            self.upload_button.place_forget()
+            self.upload_failure(f)
 
     def click_cancel(self):
         self.upload_box.configure(image=self.upload_box_image)
@@ -152,26 +146,12 @@ class MainPage(Frame):
         self.cancel_button.place_forget()
         self.upload_button.place_forget()
 
-# why all three functions
-    def get_text(self):
-        return self.file_text
-    
-    def get_text(self):
-        global doctext
-        doctext = self.file_text
-        return self.file_text
-    
-    def return_doctext():
-        return doctext
-
 
 
 class InfoPage(Frame):
     
-    def __init__(self, parent, controller, mainpage):
+    def __init__(self, parent, controller):
         Frame.__init__(self, parent)
-
-        self.mainpage = mainpage
 
         self.screen_width = self.winfo_screenwidth() 
         self.screen_height = self.winfo_screenheight() 
@@ -181,9 +161,6 @@ class InfoPage(Frame):
 
         self.label = Label(self, text="", font="Arial")
         self.label.pack(pady=(120,0))
-
-        self.update_button = Button(self, text="Update", fg="white", bg="#F5333F", font=('Arial', 18), command=self.update_text)
-        self.update_button.pack()
 
         self.back_arrow_photo = ImageTk.PhotoImage(Image.open(Path("src/Assets/Images/Arrow.png")).resize((50, 50)))
         self.back_button = Button(self, image=self.back_arrow_photo, borderwidth=0, command=lambda: controller.show_frame(MainPage))
@@ -228,61 +205,58 @@ class InfoPage(Frame):
         output = "Host National Society: " + host
         self.label = Label(self, text= output, font="Arial")
         self.label.pack(pady= 7, padx= 5, side= TOP)
-
-
-    def update_text(self):
-        self.label.config(text=self.mainpage.get_text(), fg='red')
         
                       
    
-class Frontoback(Frame):
-    global answers
-    answers = []
+class Frontoback():
     
-    #def getText():
-     #   doctext = MainPage.return_doctext()
-      #  print(doctext)
+    def __init__(self):
+        self.file_name = ""
+        self.answers = []
+    
+    def set_file_name(self, name):
+        self.file_name = name
             
-    def Answers(admin0, admin1, admin2, start, end, glide, operationBudget, host):
-        answers.append(admin0)
-        answers.append(admin1)
-        answers.append(admin2)
-        answers.append(start)
-        answers.append(end)
-        answers.append(glide)
-        answers.append(operationBudget)
-        answers.append(host)
+    def append_answers(self, admin0, admin1, admin2, start, end, glide, operationBudget, host):
+        self.answers.append(admin0)
+        self.answers.append(admin1)
+        self.answers.append(admin2)
+        self.answers.append(start)
+        self.answers.append(end)
+        self.answers.append(glide)
+        self.answers.append(operationBudget)
+        self.answers.append(host)
         
-    def get_admin0():
-        x = answers[0]
+    def get_admin0(self):
+        x = self.answers[0]
         return x
     
-    def get_admin1():
-        x = answers[1]
+    def get_admin1(self):
+        x = self.answers[1]
         return x
     
-    def get_admin2():
-        x = answers[2]
+    def get_admin2(self):
+        x = self.answers[2]
         return x
     
-    def get_start():
-        x = answers[3]
+    def get_start(self):
+        x = self.answers[3]
         return x
     
-    def get_end():
-        x = answers[4]
+    def get_end(self):
+        x = self.answers[4]
         return x
     
-    def get_glide():
-        x = answers[5]
+    def get_glide(self):
+        x = self.answers[5]
         return x
     
-    def get_operationbudget():
-        x = answers[6]
+    def get_operationbudget(self):
+        x = self.answers[6]
         return x
     
-    def get_host():
-        x = answers[7]
+    def get_host(self):
+        x = self.answers[7]
         return x
     
 
