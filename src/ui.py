@@ -271,9 +271,7 @@ class Frontoback():
         self.answers = []
 
     def extract_answers(self):
-        pass
-        # extract the answers
-        # self.answers = eg. extract(self.file_name) or sth like that
+        
     
     def set_file_name(self, name):
         self.file_name = name
