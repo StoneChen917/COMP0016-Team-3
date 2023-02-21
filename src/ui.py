@@ -260,7 +260,7 @@ class InfoPage(Frame):
         self.host_national_society_text.insert(INSERT, self.fronttoback.get_host())
 
     def click_push(self):
-        lambda: controller.show_frame(MainPage)
+        None
         
                       
    
