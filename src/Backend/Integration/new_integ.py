@@ -94,18 +94,3 @@ class main():
         final["Host"]=self.get_answers()["What is the Host National Society?"]
 
         return final
-
-
-
-
-# test = main("src/Backend/Integration/testfile.pdf")
-path = "src/Backend/Integration/MDRRW014dfr.pdf"
-test = main(path)
-print(test.final_extract)
-
-# # print(test.loc_list)
-# print("admin 0: " + test.admin_0)
-# print(f"ISO code: {test.ISO}" )
-# # test.get_pcodes()
-# print(f"admin1 codes: {test.admin_1_codes}")
-# print(f"admin2 codes: {test.admin_2_codes}")

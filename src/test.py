@@ -1,33 +1,15 @@
-from tkinter import *
-from tkinterdnd2 import *
+from pdfminer.high_level import extract_pages
+from pdfminer.layout import LTTextContainer, LTChar,LTLine,LAParams
+import os
+path=r'MDRKH001final.pdf'
 
-def DisplayText(event):
-    # delete entire existing content
-    textbox.delete("1.0","end")
-    # check the file holds txt extension
-    if event.data.endswith(".txt"):
-        with open(event.data, "r") as f:
-            # getting content in a variable
-            for text_line in f:
-                text_line=text_line.strip()
-                textbox.insert("end",f"{text_line}\n")
-win = TkinterDnD.Tk()
-win.title('Delftstack')
-win.geometry('500x400')
-win.config(bg='gold')
+Extract_Data=[]
 
-frame = Frame(win)
-frame.pack()
-
-textbox = Text(frame, height=22, width=50)
-textbox.pack(side=LEFT)
-textbox.drop_target_register(DND_FILES)
-textbox.dnd_bind('<<Drop>>', DisplayText)
-
-scrolbar = Scrollbar(frame, orient=VERTICAL)
-scrolbar.pack(side=RIGHT, fill=Y)
-
-textbox.configure(yscrollcommand=scrolbar.set)
-scrolbar.config(command=textbox.yview)
-
-win.mainloop()
+for page_layout in extract_pages(path):
+    for element in page_layout:
+        if isinstance(element, LTTextContainer):
+            for text_line in element:
+                for character in text_line:
+                    if isinstance(character, LTChar):
+                        Font_size=character.size
+            Extract_Data.append([Font_size,(element.get_text())])

@@ -6,7 +6,6 @@ from PIL import Image, ImageTk
 from tkinterdnd2 import *
 from readfile import ReadFile
 from new_integ import main
-#from Backend.Integration import new_integ
 
 
 
@@ -116,7 +115,7 @@ class MainPage(Frame):
 
     def click_upload(self):
         self.update_info_page()
-        lambda: self.controller.show_frame(InfoPage)
+        self.controller.show_frame(InfoPage)
 
     def click_info(self):
         messagebox.showinfo(title = "Info", 
@@ -128,7 +127,7 @@ class MainPage(Frame):
 
     def upload_success(self, f):
         file_name = f[f.rfind("/")+1:]
-        self.fronttoback.set_file_name(file_name)
+        self.fronttoback.set_file_name(f)
         self.upload_box.configure(image = self.upload_box_uploaded_image)
         self.upload_box.image = self.upload_box_uploaded_image
         self.select_label.config(text = file_name, fg = 'black')
@@ -205,7 +204,7 @@ class InfoPage(Frame):
         self.ISO_label = Label(self, text = "ISO Code", font = ('Verdana', 15), borderwidth = 2, fg = darkish_blue,
                                                 relief = "solid", anchor = "w")
         self.ISO_label.place(x = grid_x, y = grid_y+label_height, width = label_width, height = label_height)
-        self.ISO_text = Text(self, font = ('Verdana', 15), borderwidth = 2, fg = darkish_blue, bg = light_greyish)
+        self.ISO_text = Text(self, font = ('Verdana', 15), borderwidth = 2, fg = darkish_blue, bg = "white")
         self.ISO_text.place(x = grid_x+label_width, y = grid_y+label_height, width = text_width, height = label_height)
 
         self.admin1_label = Label(self, text = "Admin 1", font = ('Verdana', 15), borderwidth = 2, fg = darkish_blue,
@@ -217,7 +216,7 @@ class InfoPage(Frame):
         self.admin2_label = Label(self, text = "Admin 2", font = ('Verdana', 15), borderwidth = 2, fg = darkish_blue,
                                                 relief = "solid", anchor = "w")
         self.admin2_label.place(x = grid_x, y = grid_y+label_height*3, width = label_width, height = label_height)
-        self.admin2_text = Text(self, font = ('Verdana', 15), borderwidth = 2, fg = darkish_blue, bg = light_greyish)
+        self.admin2_text = Text(self, font = ('Verdana', 15), borderwidth = 2, fg = darkish_blue, bg = "white")
         self.admin2_text.place(x = grid_x+label_width, y = grid_y+label_height*3, width = text_width, height = label_height)
 
         self.operation_number_label = Label(self, text = "Operation number", font = ('Verdana', 15), borderwidth = 2, fg = darkish_blue,
@@ -229,7 +228,7 @@ class InfoPage(Frame):
         self.operation_start_date_label = Label(self, text = "Operation start date", font = ('Verdana', 15), borderwidth = 2, fg = darkish_blue,
                                                 relief = "solid", anchor = "w")
         self.operation_start_date_label.place(x = grid_x, y = grid_y+label_height*5, width = label_width, height = label_height)
-        self.operation_start_date_text = Text(self, font = ('Verdana', 15), borderwidth = 2, fg = darkish_blue, bg = light_greyish)
+        self.operation_start_date_text = Text(self, font = ('Verdana', 15), borderwidth = 2, fg = darkish_blue, bg = "white")
         self.operation_start_date_text.place(x = grid_x+label_width, y = grid_y+label_height*5, width = text_width, height = label_height)
 
         self.operation_end_date_label = Label(self, text = "Operation End Date", font = ('Verdana', 15), borderwidth = 2, fg = darkish_blue,
@@ -241,7 +240,7 @@ class InfoPage(Frame):
         self.glide_number_label = Label(self, text = "Glide Number", font = ('Verdana', 15), borderwidth = 2, fg = darkish_blue,
                                                 relief = "solid", anchor = "w")
         self.glide_number_label.place(x = grid_x, y = grid_y+label_height*7, width = label_width, height = label_height)
-        self.glide_numberd_text = Text(self, font = ('Verdana', 15), borderwidth = 2, fg = darkish_blue, bg = light_greyish)
+        self.glide_number_text = Text(self, font = ('Verdana', 15), borderwidth = 2, fg = darkish_blue, bg = "white")
         self.glide_number_text.place(x = grid_x+label_width, y = grid_y+label_height*7, width = text_width, height = label_height)
        
         self.affected_label = Label(self, text = "Number pf people affected", font = ('Verdana', 15), borderwidth = 2, fg = darkish_blue,
@@ -253,7 +252,7 @@ class InfoPage(Frame):
         self.assisted_label = Label(self, text = "Number of people assisted", font = ('Verdana', 15), borderwidth = 2, fg = darkish_blue,
                                                 relief = "solid", anchor = "w")
         self.assisted_label.place(x = grid_x, y = grid_y+label_height*9, width = label_width, height = label_height)
-        self.assisted_text = Text(self, font = ('Verdana', 15), borderwidth = 2, fg = darkish_blue, bg = light_greyish)
+        self.assisted_text = Text(self, font = ('Verdana', 15), borderwidth = 2, fg = darkish_blue, bg = "white")
         self.assisted_text.place(x = grid_x+label_width, y = grid_y+label_height*9, width = text_width, height = label_height)
        
         self.operation_budget_label = Label(self, text = "Operation Budget", font = ('Verdana', 15), borderwidth = 2, fg = darkish_blue,
@@ -265,13 +264,13 @@ class InfoPage(Frame):
         self.host_national_society_label = Label(self, text = "Host National Society", font = ('Verdana', 15), borderwidth = 2, fg = darkish_blue,
                                                 relief = "solid", anchor = "w")
         self.host_national_society_label.place(x = grid_x, y = grid_y+label_height*11, width = label_width, height = label_height)
-        self.host_national_society_text = Text(self, font = ('Verdana', 15), borderwidth = 2, fg = darkish_blue, bg = light_greyish)
+        self.host_national_society_text = Text(self, font = ('Verdana', 15), borderwidth = 2, fg = darkish_blue, bg = "white")
         self.host_national_society_text.place(x = grid_x+label_width, y = grid_y+label_height*11, width = text_width, height = label_height)
        
         self.push_image = ImageTk.PhotoImage(Image.open(Path("src/Assets/Images/push_button.png")).resize((190, 60)))
         self.push_button = Button(self, image = self.push_image, borderwidth = 0, command = self.click_push)
         self.push_button.image = self.push_image
-        self.push_button.place(x = (self.screen_width-self.push_button.winfo_reqwidth())/2, y = 430)
+        self.push_button.place(x = (self.screen_width-self.push_button.winfo_reqwidth())/2, y = 600)
 
     def update(self):
         # admin 0
@@ -322,7 +321,6 @@ class Frontoback():
     def __init__(self):
         self.file_name = ""
         self.answers = {}
-        self.extract_answers()
 
     def extract_answers(self):
         integ = main(self.file_name)
