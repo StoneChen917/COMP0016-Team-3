@@ -233,9 +233,9 @@ class codeMatch():
             else:
                 self.p_code_2.append(dict)
                 
-# test = Cosine(, ['Gatsibo', 'the Eastern Province', 'Gatsibo District', 'Eastern Province', 'the City of Kigali'])
+# test = codeMatch('Rwanda', ['Gatsibo', 'the Eastern Province', 'Gatsibo District', 'Eastern Province', 'the City of Kigali'])
 # test.loop_p_codes()
-# print(test.p_code_1)
-# # print
+# print(test.ISO_code)
+# print
 # print(test.p_code_2)
 

@@ -99,9 +99,9 @@ class main():
 
 
 # test = main("src/Backend/Integration/testfile.pdf")
-path = "src/Backend/Integration/MDRRW014dfr.pdf"
-test = main(path)
-print(test.final_extract)
+# path = "src/Backend/Integration/MDRRW014dfr.pdf"
+# test = main(path)
+# print(test.final_extract)
 
 # # print(test.loc_list)
 # print("admin 0: " + test.admin_0)
