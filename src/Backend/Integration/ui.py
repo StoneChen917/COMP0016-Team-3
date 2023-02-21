@@ -240,7 +240,7 @@ class InfoPage(Frame):
         self.glide_number_label = Label(self, text = "Glide Number", font = ('Verdana', 15), borderwidth = 2, fg = darkish_blue,
                                                 relief = "solid", anchor = "w")
         self.glide_number_label.place(x = grid_x, y = grid_y+label_height*7, width = label_width, height = label_height)
-        self.glide_number_text = Text(self, font = ('Verdana', 15), borderwidth = 2, fg = darkish_blue, bg = "white")
+        self.glide_number_text = Text(self, font = ('Verdana', 15), borderwidth = 2, fg = darkish_blue, bg = light_greyish)
         self.glide_number_text.place(x = grid_x+label_width, y = grid_y+label_height*7, width = text_width, height = label_height)
        
         self.affected_label = Label(self, text = "Number pf people affected", font = ('Verdana', 15), borderwidth = 2, fg = darkish_blue,
