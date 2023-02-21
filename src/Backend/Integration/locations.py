@@ -31,6 +31,6 @@ class Locations():
 
         return clean
 
-# test = Locations("MDRKH001final.pdf")
-# print(test.locations)
+test = Locations("MDRKH001final.pdf")
+print(test.locations)
 

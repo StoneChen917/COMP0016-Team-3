@@ -4,7 +4,8 @@ from tkinter import *
 from tkinter import messagebox, filedialog, ttk
 from PIL import Image, ImageTk
 from tkinterdnd2 import *
-from Backend.Integration.new_integ import main
+from readfile import ReadFile
+from new_integ import main
 #from Backend.Integration import new_integ
 
 
