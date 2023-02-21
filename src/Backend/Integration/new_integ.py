@@ -75,7 +75,7 @@ class main():
         # admin 1(list of dictionary)
         final["Admin1"]=self.admin_1_codes
         # admin 2(list of dictionary)
-        final["Admin1"]=self.admin_2_codes
+        final["Admin2"]=self.admin_2_codes
         # start date
         final["Start"]=self.get_answers()["What is the Operation Start Date?"]
         # end date

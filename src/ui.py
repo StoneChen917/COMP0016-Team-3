@@ -4,6 +4,7 @@ from tkinter import *
 from tkinter import messagebox, filedialog, ttk
 from PIL import Image, ImageTk
 from tkinterdnd2 import *
+from Backend.Integration.new_integ import main
 #from Backend.Integration import new_integ
 
 
@@ -193,71 +194,122 @@ class InfoPage(Frame):
         label_width = 310
         label_height = 31
         text_width = 600
-
-        self.operation_number_label = Label(self, text = "Operation number", font = ('Verdana', 15), borderwidth = 2, fg = darkish_blue, 
-                                                relief = "solid", anchor = "w")
-        self.operation_number_label.place(x = grid_x, y = grid_y, width = label_width, height = label_height)
-        self.operation_number_text = Text(self, font = ('Verdana', 15), borderwidth = 2, fg = darkish_blue, bg = "white")
-        self.operation_number_text.place(x = grid_x+label_width, y = grid_y, width = text_width, height = label_height)
-
-        self.glide_number_label = Label(self, text = "Glide number", font = ('Verdana', 15), borderwidth = 2, fg = darkish_blue, 
-                                                relief = "solid", anchor = "w")
-        self.glide_number_label.place(x = grid_x, y = grid_y+label_height, width = label_width, height = label_height)
-        self.glide_number_text = Text(self, font = ('Verdana', 15), borderwidth = 2, fg = darkish_blue, bg = light_greyish)
-        self.glide_number_text.place(x = grid_x+label_width, y = grid_y+label_height, width = text_width, height = label_height)
-
-        self.host_national_society_label = Label(self, text = "Host national society", font = ('Verdana', 15), borderwidth = 2, fg = darkish_blue, 
-                                                relief = "solid", anchor = "w")
-        self.host_national_society_label.place(x = grid_x, y = grid_y+label_height*2, width = label_width, height = label_height)
-        self.host_national_society_text = Text(self, font = ('Verdana', 15), borderwidth = 2, fg = darkish_blue, bg = "white")
-        self.host_national_society_text.place(x = grid_x+label_width, y = grid_y+label_height*2, width = text_width, height = label_height)
-
-        self.operation_budget_label = Label(self, text = "Operation budget", font = ('Verdana', 15), borderwidth = 2, fg = darkish_blue, 
-                                                relief = "solid", anchor = "w")
-        self.operation_budget_label.place(x = grid_x, y = grid_y+label_height*3, width = label_width, height = label_height)
-        self.operation_budget_text = Text(self, font = ('Verdana', 15), borderwidth = 2, fg = darkish_blue, bg = light_greyish)
-        self.operation_budget_text.place(x = grid_x+label_width, y = grid_y+label_height*3, width = text_width, height = label_height)
-
-        self.operation_start_date_label = Label(self, text = "Operation start date", font = ('Verdana', 15), borderwidth = 2, fg = darkish_blue, 
-                                                relief = "solid", anchor = "w")
-        self.operation_start_date_label.place(x = grid_x, y = grid_y+label_height*4, width = label_width, height = label_height)
-        self.operation_start_date_text = Text(self, font = ('Verdana', 15), borderwidth = 2, fg = darkish_blue, bg = "white")
-        self.operation_start_date_text.place(x = grid_x+label_width, y = grid_y+label_height*4, width = text_width, height = label_height)
-
-        self.operation_end_date_label = Label(self, text = "Operation end date", font = ('Verdana', 15), borderwidth = 2, fg = darkish_blue, 
-                                                relief = "solid", anchor = "w")
-        self.operation_end_date_label.place(x = grid_x, y = grid_y+label_height*5, width = label_width, height = label_height)
-        self.operation_end_date_text = Text(self, font = ('Verdana', 15), borderwidth = 2, fg = darkish_blue, bg = light_greyish)
-        self.operation_end_date_text.place(x = grid_x+label_width, y = grid_y+label_height*5, width = text_width, height = label_height)
-
-        self.number_of_people_affected_label = Label(self, text = "Number of people affected", font = ('Verdana', 15), borderwidth = 2, fg = darkish_blue, 
-                                                relief = "solid", anchor = "w")
-        self.number_of_people_affected_label.place(x = grid_x, y = grid_y+label_height*6, width = label_width, height = label_height)
-        self.number_of_people_affected_text = Text(self, font = ('Verdana', 15), borderwidth = 2, fg = darkish_blue, bg = "white")
-        self.number_of_people_affected_text.place(x = grid_x+label_width, y = grid_y+label_height*6, width = text_width, height = label_height)
         
-        self.number_of_people_assisted_label = Label(self, text = "Number of people assisted", font = ('Verdana', 15), borderwidth = 2, fg = darkish_blue, 
+        self.admin0_label = Label(self, text = "Admin 0", font = ('Verdana', 15), borderwidth = 2, fg = darkish_blue,
                                                 relief = "solid", anchor = "w")
-        self.number_of_people_assisted_label.place(x = grid_x, y = grid_y+label_height*7, width = label_width, height = label_height)
-        self.number_of_people_assisted_text = Text(self, font = ('Verdana', 15), borderwidth = 2, fg = darkish_blue, bg = light_greyish)
-        self.number_of_people_assisted_text.place(x = grid_x+label_width, y = grid_y+label_height*7, width = text_width, height = label_height)
-                
+        self.admin0_label.place(x = grid_x, y = grid_y, width = label_width, height = label_height)
+        self.admin0_text = Text(self, font = ('Verdana', 15), borderwidth = 2, fg = darkish_blue, bg = "white")
+        self.admin0_text.place(x = grid_x+label_width, y = grid_y, width = text_width, height = label_height)
+
+        self.ISO_label = Label(self, text = "ISO Code", font = ('Verdana', 15), borderwidth = 2, fg = darkish_blue,
+                                                relief = "solid", anchor = "w")
+        self.ISO_label.place(x = grid_x, y = grid_y+label_height, width = label_width, height = label_height)
+        self.ISO_text = Text(self, font = ('Verdana', 15), borderwidth = 2, fg = darkish_blue, bg = light_greyish)
+        self.ISO_text.place(x = grid_x+label_width, y = grid_y+label_height, width = text_width, height = label_height)
+
+        self.admin1_label = Label(self, text = "Admin 1", font = ('Verdana', 15), borderwidth = 2, fg = darkish_blue,
+                                                relief = "solid", anchor = "w")
+        self.admin1_label.place(x = grid_x, y = grid_y+label_height*2, width = label_width, height = label_height)
+        self.admin1_text = Text(self, font = ('Verdana', 15), borderwidth = 2, fg = darkish_blue, bg = "white")
+        self.admin1_text.place(x = grid_x+label_width, y = grid_y+label_height*2, width = text_width, height = label_height)
+
+        self.admin2_label = Label(self, text = "Admin 2", font = ('Verdana', 15), borderwidth = 2, fg = darkish_blue,
+                                                relief = "solid", anchor = "w")
+        self.admin2_label.place(x = grid_x, y = grid_y+label_height*3, width = label_width, height = label_height)
+        self.admin2_text = Text(self, font = ('Verdana', 15), borderwidth = 2, fg = darkish_blue, bg = light_greyish)
+        self.admin2_text.place(x = grid_x+label_width, y = grid_y+label_height*3, width = text_width, height = label_height)
+
+        self.operation_number_label = Label(self, text = "Operation number", font = ('Verdana', 15), borderwidth = 2, fg = darkish_blue,
+                                                relief = "solid", anchor = "w")
+        self.operation_number_label.place(x = grid_x, y = grid_y+label_height*4, width = label_width, height = label_height)
+        self.operation_number_text = Text(self, font = ('Verdana', 15), borderwidth = 2, fg = darkish_blue, bg = "white")
+        self.operation_number_text.place(x = grid_x+label_width, y = grid_y+label_height*4, width = text_width, height = label_height)
+
+        self.operation_start_date_label = Label(self, text = "Operation start date", font = ('Verdana', 15), borderwidth = 2, fg = darkish_blue,
+                                                relief = "solid", anchor = "w")
+        self.operation_start_date_label.place(x = grid_x, y = grid_y+label_height*5, width = label_width, height = label_height)
+        self.operation_start_date_text = Text(self, font = ('Verdana', 15), borderwidth = 2, fg = darkish_blue, bg = light_greyish)
+        self.operation_start_date_text.place(x = grid_x+label_width, y = grid_y+label_height*5, width = text_width, height = label_height)
+
+        self.operation_end_date_label = Label(self, text = "Operation End Date", font = ('Verdana', 15), borderwidth = 2, fg = darkish_blue,
+                                                relief = "solid", anchor = "w")
+        self.operation_end_date_label.place(x = grid_x, y = grid_y+label_height*6, width = label_width, height = label_height)
+        self.operation_end_date_text = Text(self, font = ('Verdana', 15), borderwidth = 2, fg = darkish_blue, bg = "white")
+        self.operation_end_date_text.place(x = grid_x+label_width, y = grid_y+label_height*6, width = text_width, height = label_height)
+       
+        self.glide_number_label = Label(self, text = "Glide Number", font = ('Verdana', 15), borderwidth = 2, fg = darkish_blue,
+                                                relief = "solid", anchor = "w")
+        self.glide_number_label.place(x = grid_x, y = grid_y+label_height*7, width = label_width, height = label_height)
+        self.glide_numberd_text = Text(self, font = ('Verdana', 15), borderwidth = 2, fg = darkish_blue, bg = light_greyish)
+        self.glide_number_text.place(x = grid_x+label_width, y = grid_y+label_height*7, width = text_width, height = label_height)
+       
+        self.affected_label = Label(self, text = "Number pf people affected", font = ('Verdana', 15), borderwidth = 2, fg = darkish_blue,
+                                                relief = "solid", anchor = "w")
+        self.affected_label.place(x = grid_x, y = grid_y+label_height*8, width = label_width, height = label_height)
+        self.affected_text = Text(self, font = ('Verdana', 15), borderwidth = 2, fg = darkish_blue, bg = "white")
+        self.affected_text.place(x = grid_x+label_width, y = grid_y+label_height*8, width = text_width, height = label_height)
+       
+        self.assisted_label = Label(self, text = "Number of people assisted", font = ('Verdana', 15), borderwidth = 2, fg = darkish_blue,
+                                                relief = "solid", anchor = "w")
+        self.assisted_label.place(x = grid_x, y = grid_y+label_height*9, width = label_width, height = label_height)
+        self.assisted_text = Text(self, font = ('Verdana', 15), borderwidth = 2, fg = darkish_blue, bg = light_greyish)
+        self.assisted_text.place(x = grid_x+label_width, y = grid_y+label_height*9, width = text_width, height = label_height)
+       
+        self.operation_budget_label = Label(self, text = "Operation Budget", font = ('Verdana', 15), borderwidth = 2, fg = darkish_blue,
+                                                relief = "solid", anchor = "w")
+        self.operation_budget_label.place(x = grid_x, y = grid_y+label_height*10, width = label_width, height = label_height)
+        self.operation_budget_text = Text(self, font = ('Verdana', 15), borderwidth = 2, fg = darkish_blue, bg = "white")
+        self.operation_budget_text.place(x = grid_x+label_width, y = grid_y+label_height*10, width = text_width, height = label_height)
+       
+        self.host_national_society_label = Label(self, text = "Host National Society", font = ('Verdana', 15), borderwidth = 2, fg = darkish_blue,
+                                                relief = "solid", anchor = "w")
+        self.host_national_society_label.place(x = grid_x, y = grid_y+label_height*11, width = label_width, height = label_height)
+        self.host_national_society_text = Text(self, font = ('Verdana', 15), borderwidth = 2, fg = darkish_blue, bg = light_greyish)
+        self.host_national_society_text.place(x = grid_x+label_width, y = grid_y+label_height*11, width = text_width, height = label_height)
+       
         self.push_image = ImageTk.PhotoImage(Image.open(Path("src/Assets/Images/push_button.png")).resize((190, 60)))
         self.push_button = Button(self, image = self.push_image, borderwidth = 0, command = self.click_push)
         self.push_button.image = self.push_image
         self.push_button.place(x = (self.screen_width-self.push_button.winfo_reqwidth())/2, y = 430)
 
     def update(self):
-        self.glide_number_text.delete('1.0', END)
-        self.glide_number_text.insert(INSERT, self.fronttoback.get_glide())
+        # admin 0
+        self.admin0_text.delete('1.0', END)
+        self.admin0_text.insert(INSERT, self.fronttoback.get_glide())
+        # ISO
+        self.ISO_text.delete('1.0', END)
+        self.ISO_text.insert(INSERT, self.fronttoback.get_ISO())
+        # Admin 1
+        self.admin1_text.delete('1.0', END)
+        self.admin1_text.insert(INSERT, self.fronttoback.get_admin1())
+        # Admin 2
+        self.admin2_text.delete('1.0', END)
+        self.admin2_text.insert(INSERT, self.fronttoback.get_admin2())
+        # number
+        self.operation_number_text.delete('1.0', END)
+        self.operation_number_text.insert(INSERT, self.fronttoback.get_operation_number())
+        # start
         self.operation_start_date_text.delete('1.0', END)
         self.operation_start_date_text.insert(INSERT, self.fronttoback.get_start())
+        # end
         self.operation_end_date_text.delete('1.0', END)
         self.operation_end_date_text.insert(INSERT, self.fronttoback.get_end())
+        # glide
+        self.glide_number_text.delete('1.0', END)
+        self.glide_number_text.insert(INSERT, self.fronttoback.get_glide())
+        # affected
+        self.affected_text.delete('1.0', END)
+        self.affected_text.insert(INSERT, self.fronttoback.get_affected())
+        # assisted
+        self.assisted_text.delete('1.0', END)
+        self.assisted_text.insert(INSERT, self.fronttoback.get_assisted())
+        # budget
         self.operation_budget_text.delete('1.0', END)
-        self.operation_budget_text.insert(INSERT, self.fronttoback.get_operationbudget())
+        self.operation_budget_text.insert(INSERT, self.fronttoback.get_operation_budget())
+        # host
         self.host_national_society_text.delete('1.0', END)
         self.host_national_society_text.insert(INSERT, self.fronttoback.get_host())
+
 
     def click_push(self):
         None
@@ -268,57 +320,74 @@ class Frontoback():
     
     def __init__(self):
         self.file_name = ""
-        self.answers = []
+        self.answers = {}
+        self.extract_answers()
 
     def extract_answers(self):
-        
+        integ = main(self.file_name)
+        answers = integ.final_extract
+        self.answers = answers
     
     def set_file_name(self, name):
         self.file_name = name
             
-    def append_answers(self, admin0, admin1, admin2, start, end, glide, operationBudget, host):
-        self.answers.append(admin0)
-        self.answers.append(admin1)
-        self.answers.append(admin2)
-        self.answers.append(start)
-        self.answers.append(end)
-        self.answers.append(glide)
-        self.answers.append(operationBudget)
-        self.answers.append(host)
+    # def append_answers(self, admin0, admin1, admin2, start, end, glide, operationBudget, host):
+    #     self.answers.append(admin0)
+    #     self.answers.append(admin1)
+    #     self.answers.append(admin2)
+    #     self.answers.append(start)
+    #     self.answers.append(end)
+    #     self.answers.append(glide)
+    #     self.answers.append(operationBudget)
+    #     self.answers.append(host)
         
     def get_admin0(self):
-        x = self.answers[0]
+        x = self.answers["Country"]
+        return x
+
+    def get_ISO(self):
+        x = self.answers["ISO"]
         return x
     
     def get_admin1(self):
-        x = self.answers[1]
+        x = self.answers[["Admin1"]]
         return x
     
     def get_admin2(self):
-        x = self.answers[2]
+        x = self.answers["Admin2"]
         return x
     
     def get_start(self):
-        x = self.answers[3]
+        x = self.answers["Start"]
         return x
     
     def get_end(self):
-        x = self.answers[4]
+        x = self.answers["End"]
         return x
     
     def get_glide(self):
-        x = self.answers[5]
+        x = self.answers["Glide"]
         return x
     
-    def get_operationbudget(self):
-        x = self.answers[6]
+    def get_operation_number(self):
+        x = self.answers["OpBud"]
+        return x
+
+    def get_operation_budget(self):
+        x = self.answers["OpBud"]
         return x
     
     def get_host(self):
-        x = self.answers[7]
+        x = self.answers["Host"]
         return x
     
+    def get_affected(self):
+        x = self.answers["Affected"]
+        return x
 
+    def get_assisted(self):
+        x = self.answers["Assisted"]
+        return x  
     
 app = UI()
 app.state('zoomed')
