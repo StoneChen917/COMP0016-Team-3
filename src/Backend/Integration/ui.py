@@ -19,7 +19,7 @@ class UI(Tk):
     
     def __init__(self, *args, **kwargs):
         
-        TkinterDnD.Tk.__init__(self, *args, **kwargs)
+        Tk.__init__(self, *args, **kwargs)
         container = Frame(self)
 
         container.pack(side="top", fill="both", expand = True)
@@ -329,16 +329,6 @@ class Frontoback():
     
     def set_file_name(self, name):
         self.file_name = name
-            
-    # def append_answers(self, admin0, admin1, admin2, start, end, glide, operationBudget, host):
-    #     self.answers.append(admin0)
-    #     self.answers.append(admin1)
-    #     self.answers.append(admin2)
-    #     self.answers.append(start)
-    #     self.answers.append(end)
-    #     self.answers.append(glide)
-    #     self.answers.append(operationBudget)
-    #     self.answers.append(host)
         
     def get_admin0(self):
         x = self.answers["Country"]
