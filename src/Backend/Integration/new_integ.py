@@ -42,8 +42,8 @@ class main():
         self.other_pages = self.reader.exec(self.file)[1]
     
     def get_answers(self):
-       answers=qaModel(self.file).answers
-       return answers
+        answers=qaModel(self.file).answers
+        return answers
        
     
     def get_admin_0(self):
