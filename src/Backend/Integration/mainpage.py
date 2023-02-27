@@ -20,6 +20,8 @@ class MainPage(Frame):
     def __init__(self, parent, controller, fronttoback, viewpage):
         Frame.__init__(self,parent)
 
+        self.files = []
+
         self.controller = controller
         self.fronttoback = fronttoback
         self.viewpage = viewpage
@@ -50,75 +52,73 @@ class MainPage(Frame):
         self.midbannertwo = Label(self, width = self.screen_width, height = 60, bg = "#EBEBEB")
         self.midbannertwo.place(x = 0, y = 66+self.midbannerone.winfo_reqheight())
 
-        self.upload_box_image = ImageTk.PhotoImage(Image.open(Path("src/Assets/Images/upload_box.png")).resize((458, 324)))
-        self.upload_box_uploaded_image = ImageTk.PhotoImage(Image.open(Path("src/Assets/Images/upload_box_uploaded.png")).resize((458, 324)))
-        self.upload_box = Button(self, image = self.upload_box_image, borderwidth = 0, command = self.click_select)
-        self.upload_box.image = self.upload_box_image
-        self.upload_box.place(x = (self.screen_width-458)/2, y = 280)
-        self.upload_box.drop_target_register(DND_FILES)
-        self.upload_box.dnd_bind('<<Drop>>', self.drop_file)
+        self.box_y = 250
 
-        self.label = Label(self, text = "", font = ('Arial', 13))
-        self.label.pack(pady = ((self.screen_height-280)/2,0))
+        self.listbox = Listbox(self, selectmode = MULTIPLE)
+        self.listbox_scroll = Scrollbar(self, orient=VERTICAL)
+        self.listbox.drop_target_register(DND_FILES)
+        self.listbox.dnd_bind('<<Drop>>', self.drop_file)
+        self.listbox.configure(yscrollcommand=self.listbox_scroll.set)
+        self.listbox_scroll.config(command=self.listbox.yview)
+        self.listbox.place(x = (self.screen_width-800)/2, y = self.box_y, width = 500, height = 500)
+        self.listbox_scroll.place(x = (self.screen_width-800)/2+500-10, y = self.box_y, width = 10, height = 500)
 
-        self.select_label_text = ""
+        self.button_box = Frame(self, highlightbackground = darkish_blue, highlightthickness=2, width = 300, height = 500)
+        self.button_box.place(x = (self.screen_width-800)/2+500, y = self.box_y)
 
-        self.select_label = Label(self, text = self.select_label_text, font = ('Arial', 18))
+        self.upload_image = ImageTk.PhotoImage(Image.open(Path("src/Assets/Images/upload_button.png")).resize((266, 86)))
+        self.upload_button = Button(self, image = self.upload_image, borderwidth = 0, command = self.click_upload)
+        self.upload_button.image = self.upload_image
+        self.upload_button.place(x = (self.screen_width-800)/2+517, y = self.box_y+31)
 
-        self.remove_image = ImageTk.PhotoImage(Image.open(Path("src/Assets/Images/remove_button.png")).resize((262, 82)))
-        self.remove_button = Button(self, image = self.remove_image, borderwidth = 0, command = self.click_cancel)
-        self.remove_button.image = self.remove_image
+        self.remove_s_image = ImageTk.PhotoImage(Image.open(Path("src/Assets/Images/remove_s_button.png")).resize((266, 86)))
+        self.remove_s_button = Button(self, image = self.remove_s_image, borderwidth = 0, command = self.click_remove_selected)
+        self.remove_s_button.image = self.remove_s_image
+        self.remove_s_button.place(x = (self.screen_width-800)/2+517, y = self.box_y+148)
 
-        self.preview_image = ImageTk.PhotoImage(Image.open(Path("src/Assets/Images/preview_button.png")).resize((262, 82)))
-        self.preview_button = Button(self, image = self.preview_image, borderwidth = 0, command = self.click_preview)
-        self.preview_button.image = self.preview_image
+        self.remove_a_image = ImageTk.PhotoImage(Image.open(Path("src/Assets/Images/remove_a_button.png")).resize((266, 86)))
+        self.remove_a_button = Button(self, image = self.remove_a_image, borderwidth = 0, command = self.click_remove_all)
+        self.remove_a_button.image = self.remove_a_image
+        self.remove_a_button.place(x = (self.screen_width-800)/2+517, y = self.box_y+265)
+
+        self.extract_image = ImageTk.PhotoImage(Image.open(Path("src/Assets/Images/extract_button.png")).resize((266, 86)))
+        self.extract_button = Button(self, image = self.extract_image, borderwidth = 0, command = self.click_extract)
+        self.extract_button.image = self.extract_image
+        self.extract_button.place(x = (self.screen_width-800)/2+517, y = self.box_y+382)
 
     def click_info(self):
         messagebox.showinfo(title = "Info", 
                                 message = """1.Upload your file by drag and drop, or select from folders. (pdf only)\n2.Check if the informations are correct and push it to the database.""")
 
-    def click_preview(self):
-        self.controller.show_frame("ViewPage")
+    def click_upload(self):
+        f = filedialog.askopenfilename()
+        if "PDF document" in magic.from_file(f):
+            self.listbox.insert(END, f)
+        else:
+            self.upload_failure(f)
 
-    def upload_success(self, f):
-        file_name = f[f.rfind("/")+1:]
-        self.fronttoback.set_file_name(f)
-        self.viewpage.update_pdf(f)
-        self.upload_box.configure(image = self.upload_box_uploaded_image)
-        self.upload_box.image = self.upload_box_uploaded_image
-        self.select_label.config(text = file_name, fg = 'black')
+    def click_remove_selected(self):
+        selected_checkboxs = self.listbox.curselection()
+  
+        for selected_checkbox in selected_checkboxs[::-1]:
+            self.listbox.delete(selected_checkbox)
 
-        self.select_label.place(x = (self.screen_width-self.select_label.winfo_reqwidth())/2, y = 330)
-        self.remove_button.place(x = (self.screen_width-self.remove_button.winfo_reqwidth())/2, y = 390)
-        self.preview_button.place(x = (self.screen_width-self.preview_button.winfo_reqwidth())/2, y = 490)
+    def click_remove_all(self):
+        self.listbox.delete(0, END)
+
+    def click_extract(self):
+        self.fronttoback.set_files(self.listbox.get(0 , END))
 
     def upload_failure(self):
         messagebox.showerror(title = "Upload failed", message = "File not supported, pdf only")
-        self.upload_box.configure(image = self.upload_box_image)
-        self.upload_box.image = self.upload_box_image
-
-        self.select_label.place_forget()
-        self.remove_button.place_forget()
-        self.preview_button.place_forget()
-
-    def click_select(self):
-        f = filedialog.askopenfilename()
-        if "PDF document" in magic.from_file(f):
-            self.upload_success(f)
-        else:
-            self.upload_failure(f)
 
     def drop_file(self, event):
-        f = event.data
-        if "PDF document" in magic.from_file(f):
-            self.upload_success(f)
-        else:
-            self.upload_failure(f)
-
-    def click_cancel(self):
-        self.upload_box.configure(image = self.upload_box_image)
-        self.upload_box.image = self.upload_box_image
-
-        self.select_label.place_forget()
-        self.remove_button.place_forget()
-        self.preview_button.place_forget()
+        files = event.data.split(" ")
+        failed = False
+        for f in files:
+            if not "PDF document" in magic.from_file(f):
+                self.upload_failure(f)
+                failed = True
+        if not failed:
+            for f in files:
+                self.listbox.insert(END, f)

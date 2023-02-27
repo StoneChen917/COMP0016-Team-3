@@ -9,6 +9,7 @@ from infopage import InfoPage
 from viewpage import ViewPage
 from loadpage import LoadPage
 from fronttoback import Frontoback
+import pythontopostgres
 #from new_integ import main
 
 
@@ -49,6 +50,8 @@ class UI(Tk):
         mainpage = MainPage(container, self, fronttoback, viewpage)
         self.frames[MainPage] = mainpage
         mainpage.grid(row = 0, column = 0, sticky = "nsew")
+
+        pythontopostgres.create_script()
 
         self.show_frame("MainPage")
 

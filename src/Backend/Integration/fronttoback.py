@@ -5,16 +5,17 @@
 class Frontoback():
     
     def __init__(self):
-        self.file_name = ""
+        self.files = []
         self.answers = {}
 
     def extract_answers(self):
-        integ = main(self.file_name)
+        integ = main(self.files)
         answers = integ.final_extract
         self.answers = answers
     
-    def set_file_name(self, name):
-        self.file_name = name
+    def set_files(self, files):
+        for file in files:
+            self.files.append(file)
         
     def get_admin0(self):
         x = self.answers["Country"]

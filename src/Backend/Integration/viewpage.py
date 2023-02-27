@@ -40,10 +40,10 @@ class ViewPage(Frame):
         self.back_button = Button(self, image = self.back_arrow_photo, borderwidth = 0, command = self.back_main)
         self.back_button.place(x = 0, y = 76)
 
-        self.pdf_text = Text(self, width = 49, height=5, bg="white", highlightthickness=1, foreground="black",
+        self.pdf_text = Text(self, bg="white", highlightthickness=1, foreground="black",
                     insertbackground="black", wrap="word")
         self.text_scroll = Scrollbar(self, orient=VERTICAL)
-        self.text_scroll.config(command=self.pdf_text.yview, )
+        self.text_scroll.config(command=self.pdf_text.yview)
         self.pdf_text["yscrollcommand"] = self.text_scroll.set
         self.pdf_text.place(x = (self.screen_width-800)/2, y = 66, width = 800, height = 500)
         self.text_scroll.place(x = (self.screen_width-800)/2+800-10, y = 66, width = 10, height = 500)
