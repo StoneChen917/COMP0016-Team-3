@@ -21,7 +21,7 @@ def save_to_table(op_num, ad0, ad1, ad2, iso, glide, hns, ob, osd, oed, npaf, np
     cur = conn.cursor()
 
     disaster_insert_script = ''' INSERT INTO Disaster (operation_number, admin0, admin1, admin2, iso_info, glide_number, host_national_society, operation_budget, 
-                          operation_start_date, operation_end_date, number_of_people_affected, number_of_people_assisted,) 
+                          operation_start_date, operation_end_date, number_of_people_affected, number_of_people_assisted) 
                           VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)'''
 
     disaster_insert_value = (op_num, ad0, ad1, ad2, iso, glide, hns, ob, osd, oed, npaf, npas)

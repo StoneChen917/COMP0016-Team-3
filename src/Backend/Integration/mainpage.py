@@ -113,13 +113,14 @@ class MainPage(Frame):
             self.upload_failure(f)
 
     def click_remove_selected(self):
-        selected_checkboxs = self.listbox.curselection()
-  
-        for selected_checkbox in selected_checkboxs[::-1]:
-            self.listbox.delete(selected_checkbox)
+        if messagebox.askyesno(title = "Remove selected files?", message = "Do you really want to remove the selected files?"):
+            selected_checkboxs = self.listbox.curselection()
+            for selected_checkbox in selected_checkboxs[::-1]:
+                self.listbox.delete(selected_checkbox)
 
     def click_remove_all(self):
-        self.listbox.delete(0, END)
+        if messagebox.askyesno(title = "Remove all files?", message = "Do you really want to remove all the files?"):
+            self.listbox.delete(0, END)
 
     def click_extract(self):
         self.fronttoback.set_files(self.listbox.get(0 , END))
