@@ -4,6 +4,7 @@ from tkinter import *
 from tkinter import messagebox, filedialog
 from PIL import Image, ImageTk
 from tkinterdnd2 import *
+import os
 
 
 
@@ -66,31 +67,45 @@ class MainPage(Frame):
         self.button_box = Frame(self, highlightbackground = darkish_blue, highlightthickness=2, width = 300, height = 500)
         self.button_box.place(x = (self.screen_width-800)/2+500, y = self.box_y)
 
-        self.upload_image = ImageTk.PhotoImage(Image.open(Path("src/Assets/Images/upload_button.png")).resize((266, 86)))
-        self.upload_button = Button(self, image = self.upload_image, borderwidth = 0, command = self.click_upload)
-        self.upload_button.image = self.upload_image
-        self.upload_button.place(x = (self.screen_width-800)/2+517, y = self.box_y+31)
+        self.upload_file_image = ImageTk.PhotoImage(Image.open(Path("src/Assets/Images/upload_file_button.png")).resize((266, 86)))
+        self.upload_file_button = Button(self, image = self.upload_file_image, borderwidth = 0, command = self.click_upload_file)
+        self.upload_file_button.image = self.upload_file_image
+        self.upload_file_button.place(x = (self.screen_width-800)/2+517, y = self.box_y+11)
+
+        self.upload_folder_image = ImageTk.PhotoImage(Image.open(Path("src/Assets/Images/upload_folder_button.png")).resize((266, 86)))
+        self.upload_folder_button = Button(self, image = self.upload_folder_image, borderwidth = 0, command = self.click_upload_folder)
+        self.upload_folder_button.image = self.upload_folder_image
+        self.upload_folder_button.place(x = (self.screen_width-800)/2+517, y = self.box_y+109)
 
         self.remove_s_image = ImageTk.PhotoImage(Image.open(Path("src/Assets/Images/remove_s_button.png")).resize((266, 86)))
         self.remove_s_button = Button(self, image = self.remove_s_image, borderwidth = 0, command = self.click_remove_selected)
         self.remove_s_button.image = self.remove_s_image
-        self.remove_s_button.place(x = (self.screen_width-800)/2+517, y = self.box_y+148)
+        self.remove_s_button.place(x = (self.screen_width-800)/2+517, y = self.box_y+207)
 
         self.remove_a_image = ImageTk.PhotoImage(Image.open(Path("src/Assets/Images/remove_a_button.png")).resize((266, 86)))
         self.remove_a_button = Button(self, image = self.remove_a_image, borderwidth = 0, command = self.click_remove_all)
         self.remove_a_button.image = self.remove_a_image
-        self.remove_a_button.place(x = (self.screen_width-800)/2+517, y = self.box_y+265)
+        self.remove_a_button.place(x = (self.screen_width-800)/2+517, y = self.box_y+305)
 
         self.extract_image = ImageTk.PhotoImage(Image.open(Path("src/Assets/Images/extract_button.png")).resize((266, 86)))
         self.extract_button = Button(self, image = self.extract_image, borderwidth = 0, command = self.click_extract)
         self.extract_button.image = self.extract_image
-        self.extract_button.place(x = (self.screen_width-800)/2+517, y = self.box_y+382)
+        self.extract_button.place(x = (self.screen_width-800)/2+517, y = self.box_y+403)
 
     def click_info(self):
         messagebox.showinfo(title = "Info", 
                                 message = """1.Upload your file by drag and drop, or select from folders. (pdf only)\n2.Check if the informations are correct and push it to the database.""")
 
-    def click_upload(self):
+    def click_upload_folder(self):
+        mypath = filedialog.askdirectory()
+        files = [mypath+"/"+f for f in os.listdir(mypath) if os.path.isfile(os.path.join(mypath, f))]
+        for f in files:
+            if "PDF document" in magic.from_file(f):
+                self.listbox.insert(END, f)
+            else:
+                self.upload_failure(f)
+
+    def click_upload_file(self):
         f = filedialog.askopenfilename()
         if "PDF document" in magic.from_file(f):
             self.listbox.insert(END, f)
@@ -112,8 +127,52 @@ class MainPage(Frame):
     def upload_failure(self):
         messagebox.showerror(title = "Upload failed", message = "File not supported, pdf only")
 
+    def split_file_names(self, string):
+        files = []
+        while string:
+            i = 0
+            file_end = 0
+            last_reached = False
+            keepgoing = True
+            if string[0] != "{":
+                while keepgoing:
+                    if i == len(string)-1:
+                        file_end = i
+                        last_reached = True
+                        keepgoing = False
+                    elif string[i] == " ":
+                        file_end = i
+                        keepgoing = False
+                    else:
+                        i += 1
+                if last_reached:
+                    files.append(string[0:])
+                    string = ""
+                else:
+                    files.append(string[:file_end])
+                    string = string[file_end+1:]
+            else:
+                while keepgoing:
+                    if string[i] == "}" and i == len(string)-1:
+                        file_end = i
+                        last_reached = True
+                        keepgoing = False
+                    elif string[i] == "}" and string[i+1] == " ":
+                        file_end = i+1
+                        keepgoing = False
+                    else:
+                        i += 1
+                if last_reached:
+                    files.append(string[1:-1])
+                    string = ""
+                else:
+                    files.append(string[1:file_end])
+                    string = string[file_end+2:]
+
+        return files
+
     def drop_file(self, event):
-        files = event.data.split(" ")
+        files = self.split_file_names(event.data)
         failed = False
         for f in files:
             if not "PDF document" in magic.from_file(f):
