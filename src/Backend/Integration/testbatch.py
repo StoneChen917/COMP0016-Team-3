@@ -29,36 +29,10 @@ def dict_parser(final,path):
         
         df = pd.read_excel('src/Backend/Integration/batchresults.xlsx')
         list_row = [path, Country, ISO, Admin1, Admin2,Start,End,Affected,Assisted,Glide,OpNum,OpBud,Host]
-        df = df.append(list_row, ignore_index=True )
-        #df = df.append(pd.Series(list_row, index=df.columns[:len(list_row)]), ignore_index=True)
+        #df = df.append(list_row, ignore_index=True )
+        df = df.append(pd.Series(list_row, index=df.columns[:len(list_row)]), ignore_index=True)
         df.to_excel('src/Backend/Integration/batchresults.xlsx', index=False)
-'''         workbook = xlsxwriter.Workbook('src/Backend/Integration/Results_batch.xlsx')
-        worksheet = workbook.add_worksheet("Sheet 1")
 
-        ans = (
-            [path, Country, ISO, Admin1, Admin2,Start,End,Affected,Assisted,Glide,OpNum,OpBud,Host]
-        )
-        row = 0 + file_num
-        col = 0
-
-        for path, Country, ISO, Admin1, Admin2,Start,End,Affected,Assisted,Glide,OpNum,OpBud,Host in (ans):
-            worksheet.write(row, col, path)
-            worksheet.write(row, col + 1, Country)
-            worksheet.write(row, col + 2, ISO)
-            worksheet.write(row, col + 3, Admin1)
-            worksheet.write(row, col + 4, Admin2)
-            worksheet.write(row, col + 5, Start)
-            worksheet.write(row, col + 6, End)
-            worksheet.write(row, col + 7, Affected)
-            worksheet.write(row, col + 8, Assisted)
-            worksheet.write(row, col + 9, Glide)
-            worksheet.write(row, col + 10, OpNum)
-            worksheet.write(row, col + 11, OpBud)
-            worksheet.write(row, col + 12, Host)
-
-        workbook.close() '''
-
-    
 
 # test = main("src/Backend/Integration/testfile.pdf")
 path = "src/Backend/Integration/MDRRW014dfr.pdf" #edit
