@@ -66,12 +66,7 @@
         <!-- topic -->
         <h3>Project Background</h3>
         <!-- contents -->
-        <p>IFRC helps National Societies apply for funds by filling out the DREF application. The existing GO platform helps with automating data entry for country specific information. However, 
-            it doesn’t help with city/locality specific information. The project's goal is to extract admin 1/admin 2 into a table, so the employees can complete the form without unnecessary manual labour.
-            <br>
-            Our task is to develop an import functionality which would allow national societies to upload PDF Documents, corresponding to disasters that have occurred, using an upload button. This is then pushed into fields within a database, structured by unique ISO codes.
-            This will help keep better track of the disasters, establish historical trends, and allow National Societies to obtain grants for the implementation of Emergency responses at different admin levels within their territories.
-
+        <p>The International Federation of Red Cross (IFRC) helps Host National Soceities apply for funding to deal with disaster events by filling out the Disaster Relief Emergency Fund (DREF) application. The existing features on the IFRC's GO platform helps with automating data entry and collection for country specific information from the DREF forms filled out by Host Societies. However, there is no existing mechanism to extract relevant information from DREF Appeals already made in the past, specifically for Admin 1 and Admin 2 related information. It would take a significant amount of time and manual labour to extract and tabulate relevant information from sucha  a large collection of documents. As such, it is diffcult to form meaningful historic trends about disaster events that would help paint a better picture for the IFRC and allow them to allocate funding in a faster and more efficient manner.
         </p>
     </section>
 
@@ -81,15 +76,58 @@
         <!-- topic -->
         <h3>Project Goals</h3>
         <!-- contents -->
-        <p>This project requires us to build a program to carry out the application of retrieving region name from a PDF document which
-            is the documentation for a disaster. The work entails initial research into existing methods of robust name entity recognition and solutions proposed for similar problems, 
-            preparing a research report from the findings, identifying the requirements, and proposing a solution application that can carry out name retrieval, and finally, development and deployment of the proposed system with necessary integrations.</p>
+        <p>Our project goal is to develop a easy-to-learn, efficient and user-friendly tool that allows the IFRC to extract required information from documents to help form meaningful historic trends and make funding decisions.
+        <br>
+        It must be a stand-alone tool that is simple to navigate with minimal effort and must provide usable results.
+        <br>
+        The tool allows users to upload a file and extract certain details from it and stores the extracted information in a PostgreSQL database that the IFRC can view and manage.
+        <br>
+        The extracted information can be visualized at various stages of use, the first instance being a page that displays extracted information after the necessary data enrichments are done and the second instance being the database itself, which is updated after every use of the tool.
+        </p>
+    </section>
+
+    <!-- the first re-usable section with topic and contents -->
+    <section class="section" id="abstracts">
+        <!-- topic -->
+        <h3>Gathering of Requirements</h3>
+        <!-- contents -->
+        <p>Gathering requirements was part of the Human Computer Interaction (HCI) component of this module and formed the first phase of our project.
+        <br>
+        The 6 usability goals as deined by HCI are effectiveness, efficiency, safety, utility, learnability and memorability. Centering the development of our project around these 6 goals has helped us develop a tool that is focused on the end-user's experience.
+        <br>
+        In order to gather the requirements of this project, we needed to interview different categories of end-users. Due to the fact that our clients are centered in Geneva, we decided to conduct interviews on Microsoft Teams that followed a semi-structured approach as well as collect responses from questionnaires using Microsoft Forms.
+        <br>
+        Due to the fact that some categories of end-users had busy schedules and the fact that we were time-bound, we decided to develop quick, easy-to-answer questionnaires in addition to the semi-structured interviews in order to paint a more accurate picture. 
+        </p>
+
+        <h4>Interviews and Questionnaires</h4>
+        <p>
+            In order to collect authentic, unbiased information from the users, we concluded that it would be vital to ask open-ended, general questions that would encourage them to give us honest answers about what their needs and expectations of the tool were. As we wanted to maximize the chances of users submitting the questionnaire, we made sure to include clear instructions on how to fill out the questionnaire and asked simple-to-answer questions while respecting their anonymity.
+            <br>
+            We chose to ask questions about what they thought the current problem was, what they liked and disliked about the current GO platform and what they believe the final product must contain. Extracts from the transcripts of the interviews as well as visualizations of the questionnaire results are as follows:
+        </p>
+
+        <h4>Analysis of Data Collected</h4>
+        <p>
+            Upon analysing the data collected through surverys, we arrived at the following conclusions:
+            <ul>
+                <li>Users were concerned about the time taken to train non-organization staff (eg: volunteers) and thus wanted an easy-to-use system that was self-explanatory.</li>
+                <li>Users wanted to be able to upload multiple files at once as uploading each document individually would be cumbersome.</li>
+                <li>Users wanted to be able to see extracted data and be given the ability to edit results in case of errors.</li>
+            </ul>
+        </p>
+
     </section>
 
 
     <!-- ***** Personas Start ***** -->
     <section class="section" id="personas">
         <h3>Personas</h3>
+        <p>
+            After getting a clearer understanding of our end-users and their needs and expectations, we created personas of our main user groups: .
+            <br>
+            We decided to center our personas around details and personality traits that would have the most impact on our final product. The personas created are as follows:
+        </p>
         <div class="gallery js-flickity" data-flickity-options='{ "freeScroll": true, "wrapAround": true }'>
             <div class="gallery-cell"><img src="assets/images/requirements/Persona1.png" alt="persona1" class="large-size-image"></div>
             <div class="gallery-cell"><img src="assets/images/requirements/Persona2.png" alt="persona2" class="large-size-image"></div>
@@ -99,8 +137,63 @@
 
     <!-- ***** MoSCoW List Start ***** -->
     <section class="section top-section" id="project-goal">
-        <h3>MoSCoW List</h3>
-        <style>
+        <h3>MoSCoW Requirements</h3>
+        <p>
+            After analysing inetrview and questionnaire results as well as conducting adequate user research and communicating with our client, we finalized a list of functional and non-functional MoSCoW requirements:
+
+            <h4>Functional Requirements</h4>
+            <h5>Must Have</h5>
+            <ul>
+                <li>The tool must be usable without the need for any login system. This is because the tool may be used by non-IFRC emplyees (for e.g.: National Society employees) or external volunteers, who may not possess the same kind of/any kind of standard IFRC employee details.</li>
+                <li>Users must be able to see visible output of extracted information in a tabular form.</li>
+                <li>Users must be given the option to upload either single files or a folder of files.</li>
+                <li>The tool must extract the following details from documents:</li>
+                <ul type = "square">
+                    <li>Operation Number.</li>
+                    <li>Glide Number.</li>
+                    <li>Admin 0, Admin 1 and Admin 2 location names.</li>
+                    <li>The respective International Organization for Standardization (ISO) code of Admin 0, Admin 1 and Admin 2 locations.</li>
+                    <li>Operation start date.</li>
+                    <li>Operation end date.</li>
+                    <li>Number of people affected.</li>
+                    <li>Number of people assisted.</li>
+                    <li>Name of the Host National Society.</li>
+                    <li>Operation Budget.</li>
+                </ul>
+                <li>Extracted information must be present in a database so that the required analyses can be performed to establish historic trends.</li>
+                <li>When matching extracted locations with their corresponsing codes, the tool must take into account typos as well as different variations of city names (for e.g.: Bangalore vs Bengaluru, Sanaa vs Sana'a, Al-Khisa vs Al-Kheesa).</li>
+                <br>
+            </ul>
+
+            <h5>Should Have</h5>
+            <ul>
+            <li>The tool should check if the document uploaded is in PDF format.</li>
+            <li>Users should have the freedom of editing results of the data extraction in case of errors, before pushing extracted data into the database.</li>
+            <li>The database should be structured in a sensible manner so that the required queries can be performed.</li>
+            </ul>            
+
+            <h5>Could Have</h5>
+            <ul>
+                <li>A preview page showing the contents of the PDF uploaded so that users can ensure the right PDF was uploaded.</li>
+                <li>A progress bar that shows the prgress of the data enrichments so the users have a visual aid to help them gauge how long the process will take.</li>
+            </ul>
+
+            <h5>Won't Have</h5>
+            <ul>
+                <li>Mechanism to work with non-PDF documents.</li>
+                <li>The tool will not be able to handle documents that are not in English.</li>
+            </ul>
+            <br>
+            <h4>Non-functional Requirements</h4>
+            <h5>Must Have</h5>
+            <ul>
+                <li>The tool must be easy to maintain and update for future use.</li>
+                <li>The user interface must be intuitive and easy-to-follow. </li>
+                <li>The tool must be portable and supported by all Operating Systems.</li>
+                <li>Users must be able to easily comprehend what a feature is and what it can do. (for e.g.: button descriptions must be concise and accurate, a button with an 'i' on it will provide additional information etc).</li>
+            </ul>
+        </p>
+        <!-- <style>
             table, th, td {
               border:5px solid red;
               border-collapse: collapse;
@@ -137,7 +230,7 @@
                 <td></td>
                 <td>6. Host National Society</td>
             </tr>
-          </table>
+          </table> -->
     </section>
     <!-- ***** MoSCoW List End ***** -->
 
