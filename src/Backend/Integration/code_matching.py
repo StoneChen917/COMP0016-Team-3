@@ -156,7 +156,7 @@ class codeMatch():
         else:
             best_fuzz_ratio = 0
             for i in df0_filtered['attributes.gis_name'].values:
-                score = self.find_cosine_score(loc, i)
+                score = self.find_fuzz_ratio(loc, i)
                 if score > best_fuzz_ratio:
                     best_fuzz_ratio = score
                     row_num = df0[df0['attributes.gis_name'] == i].index.to_numpy()
