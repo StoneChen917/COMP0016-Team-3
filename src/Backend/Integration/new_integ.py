@@ -31,25 +31,36 @@ class main():
 
 
 
-
+# get first oage content
     def get_first_page(self):
         # reader = ReadFile()
-        
         self.first_page = self.reader.exec(self.file)[0]
-    
+
+# get other pages content
     def get_other_pages(self):
         # reader = ReadFile()
         self.other_pages = self.reader.exec(self.file)[1]
-    
+
+# answers from qa model:
+# ["What is the Country of Disaster?",
+        # "What is the Operation Start Date?", 
+        # "What is the Operation End Date?",
+        # "What is the number of people affected?", 
+        # "What is the number of people assisted?", 
+        # "What is the Glide Number?", 
+        # "What is the Operation n°?", 
+        # "What is the Operation Budget?", 
+        # "What is the Host National Society?"]
     def get_answers(self):
         answers=qaModel(self.file).answers
         return answers
        
-    
+# Use qa model to get country
     def get_admin_0(self):
         country = self.get_answers()["What is the Country of Disaster?"]
         return country
-
+    
+# codematch to get ISO
     def get_ISO_code(self):
         fuzz = codeMatch(self.admin_0, self.loc_list)
         iso_code = fuzz.getISOCode()
@@ -140,14 +151,15 @@ def dict_parser(final,path):
 
 # test = main("src/Backend/Integration/testfile.pdf")
 path = "src/Backend/Integration/MDRKH001final.pdf"
-##test = main(path)
+test = main(path)
 #file_num = 1 #edit
 #print(test.final_extract)
 ##dict_parser(test.final_extract,path)
-test_dict = {'Country': 'Rwanda', 'ISO': 'RWA', 'Admin1': [{'Location': 'Eastern Province', 'P-Code': '20RWA005'}, {'Location': 'the City of Kigali', 'P-Code': '20RWA001'}], 'Admin2': [{'Location': 'Flanders', 'P-Code': '20RWA004042'}, {'Location': 'Gatsibo district', 'P-Code': '20RWA005053'}, {'Location': 'Gatsibo District', 'P-Code': '20RWA005053'}, {'Location': 'Gatsibo d istrict \n©IFRC', 'P-Code': '20R053WA005053'}], 'Start': '11 July 2017', 'End': '01 September 2017', 'Affected': '675', 'Assisted': '811 households', 'Glide': 'ST-2017 -000035 -RWA', 'OpNum': 'MDRRW014', 'OpBud': 'CHF 49,122', 'Host': 'Rwanda Red Cross Society'}
-dict_parser(test_dict,path)
-
-# # print(test.loc_list)
+# test_dict = {'Country': 'Rwanda', 'ISO': 'RWA', 'Admin1': [{'Location': 'Eastern Province', 'P-Code': '20RWA005'}, {'Location': 'the City of Kigali', 'P-Code': '20RWA001'}], 'Admin2': [{'Location': 'Flanders', 'P-Code': '20RWA004042'}, {'Location': 'Gatsibo district', 'P-Code': '20RWA005053'}, {'Location': 'Gatsibo District', 'P-Code': '20RWA005053'}, {'Location': 'Gatsibo d istrict \n©IFRC', 'P-Code': '20R053WA005053'}], 'Start': '11 July 2017', 'End': '01 September 2017', 'Affected': '675', 'Assisted': '811 households', 'Glide': 'ST-2017 -000035 -RWA', 'OpNum': 'MDRRW014', 'OpBud': 'CHF 49,122', 'Host': 'Rwanda Red Cross Society'}
+# dict_parser(test_dict,path)
+# print(test.loc_list)
+# print(test.get_admin_0)
+# print(test.final_extract)
 # print("admin 0: " + test.admin_0)
 # print(f"ISO code: {test.ISO}" )
 # # test.get_pcodes()

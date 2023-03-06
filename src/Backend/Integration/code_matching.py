@@ -188,9 +188,9 @@ class codeMatch():
             return (2,code)
 
         # find best match in 1 & 2
-        else:
-            df1_filtered = df1[(df1.attributes_iso3 == self.ISO_code)]
-            df2_filtered = df2[(df2.attributes_iso3 == self.ISO_code)]
+        
+        df1_filtered = df1[(df1.attributes_iso3 == self.ISO_code)]
+        df2_filtered = df2[(df2.attributes_iso3 == self.ISO_code)]
 
         code1 = None
         code2 = None
@@ -212,13 +212,14 @@ class codeMatch():
                 int_row_num = int(row_num[0])
                 code2 = df2.iat[int_row_num, 3]   
 
-        if best_fuzz_ratio1 == 0 and best_fuzz_ratio2 == 0:
-            return None
-        elif best_fuzz_ratio1 == best_fuzz_ratio2:
+        # if best_fuzz_ratio1 == 0 and best_fuzz_ratio2 == 0:
+        #     return None
+        if best_fuzz_ratio1 == best_fuzz_ratio2:
             return (1,code1)
         elif best_fuzz_ratio2 > best_fuzz_ratio1:
             return (2,code2)
-        elif best_fuzz_ratio1 > best_fuzz_ratio2:
+        # elif best_fuzz_ratio1 > best_fuzz_ratio2:
+        else:
             return (1,code1)
 
 
