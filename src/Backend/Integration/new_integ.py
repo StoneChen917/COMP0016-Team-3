@@ -103,8 +103,7 @@ class main():
 
 
 def dict_parser(final,path):
-       # for item in final.items():
-
+    
         print(final)
         Country = final['Country']
         ISO = final['ISO']
@@ -143,7 +142,6 @@ def dict_parser(final,path):
 
 
 dir_path = r'C:\\Users\\zaynb\\Documents\\COMP0016-Team-3\\sampledocs'
-
 docs = []
 
 for path in os.listdir(dir_path):
@@ -157,8 +155,8 @@ for x in docs:
 
     
 # test = main("src/Backend/Integration/testfile.pdf")
-path = "src/Backend/Integration/MDRKH001final.pdf"
-test = main(path)
+#path = "src/Backend/Integration/MDRKH001final.pdf"
+#test = main(path)
 #file_num = 1 #edit
 #print(test.final_extract)
 ##dict_parser(test.final_extract,path)
