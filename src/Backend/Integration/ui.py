@@ -33,27 +33,27 @@ class UI(Tk):
         self.frames = {}
         self.timer = False
 
-        fronttoback = Frontoback()
+        self.fronttoback = Frontoback()
 
-        infopage = InfoPage(container, self, fronttoback)
+        infopage = InfoPage(container, self, self.fronttoback)
         self.frames[InfoPage] = infopage
         infopage.grid(row = 0, column = 0, sticky = "nsew")
 
-        loadpage = LoadPage(container, self, fronttoback)
+        loadpage = LoadPage(container, self, self.fronttoback)
         self.frames[LoadPage] = loadpage
         loadpage.grid(row = 0, column = 0, sticky = "nsew")
 
-        viewpage = ViewPage(container, self, fronttoback, infopage)
+        viewpage = ViewPage(container, self, self.fronttoback, infopage)
         self.frames[ViewPage] = viewpage
         viewpage.grid(row = 0, column = 0, sticky = "nsew")
 
-        mainpage = MainPage(container, self, fronttoback, viewpage)
+        mainpage = MainPage(container, self, self.fronttoback, viewpage)
         self.frames[MainPage] = mainpage
         mainpage.grid(row = 0, column = 0, sticky = "nsew")
 
         pythontopostgres.create_script()
 
-        self.show_frame("MainPage")
+        self.show_frame("InfoPage")
 
     def show_frame(self, cont):
 

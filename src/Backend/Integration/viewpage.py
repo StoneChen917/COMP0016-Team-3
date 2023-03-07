@@ -69,7 +69,7 @@ class ViewPage(Frame):
         self.extract_image = ImageTk.PhotoImage(Image.open(Path("src/Assets/Images/extract_button.png")).resize((262, 82)))
         self.extract_button = Button(self, image = self.extract_image, borderwidth = 0, command = self.click_extract)
         self.extract_button.image = self.extract_image
-        self.extract_button.place(x = (self.screen_width-self.extract_button.winfo_reqwidth())/2, y = 644)
+        self.extract_button.place(x = (self.screen_width-self.extract_button.winfo_reqwidth())/2, y = 600)
 
     def back_main(self):
         self.file_num = 0

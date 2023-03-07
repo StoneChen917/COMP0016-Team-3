@@ -7,6 +7,8 @@ class Frontoback():
     def __init__(self):
         self.files = []
         self.answers = {}
+        self.extracting_data = False
+        self.finished_extracting = False
 
     def extract_answers(self):
         integ = main(self.files)
