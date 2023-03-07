@@ -5,7 +5,7 @@
 import PyPDF2
 import pandas as pd
 import openpyxl
-import xlsxwriter
+# import xlsxwriter
 
 
 from QA_model import qaModel
@@ -150,7 +150,7 @@ def dict_parser(final,path):
     
 
 # test = main("src/Backend/Integration/testfile.pdf")
-path = "src/Backend/Integration/MDRKH001final.pdf"
+path = "src/Backend/Integration/MDRRW014dfr.pdf"
 test = main(path)
 #file_num = 1 #edit
 #print(test.final_extract)
@@ -159,7 +159,7 @@ test = main(path)
 # dict_parser(test_dict,path)
 # print(test.loc_list)
 # print(test.get_admin_0)
-# print(test.final_extract)
+print(test.final_extract)
 # print("admin 0: " + test.admin_0)
 # print(f"ISO code: {test.ISO}" )
 # # test.get_pcodes()
