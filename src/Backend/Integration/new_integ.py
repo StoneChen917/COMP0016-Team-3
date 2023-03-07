@@ -12,7 +12,7 @@ from QA_model import qaModel
 from code_matching import codeMatch
 from locations import Locations
 from readfile import ReadFile
-
+import os
 
 class main():
     def __init__(self, file):
@@ -31,36 +31,25 @@ class main():
 
 
 
-# get first oage content
+
     def get_first_page(self):
         # reader = ReadFile()
+        
         self.first_page = self.reader.exec(self.file)[0]
-
-# get other pages content
+    
     def get_other_pages(self):
         # reader = ReadFile()
         self.other_pages = self.reader.exec(self.file)[1]
-
-# answers from qa model:
-# ["What is the Country of Disaster?",
-        # "What is the Operation Start Date?", 
-        # "What is the Operation End Date?",
-        # "What is the number of people affected?", 
-        # "What is the number of people assisted?", 
-        # "What is the Glide Number?", 
-        # "What is the Operation n°?", 
-        # "What is the Operation Budget?", 
-        # "What is the Host National Society?"]
+    
     def get_answers(self):
         answers=qaModel(self.file).answers
         return answers
        
-# Use qa model to get country
+    
     def get_admin_0(self):
         country = self.get_answers()["What is the Country of Disaster?"]
         return country
-    
-# codematch to get ISO
+
     def get_ISO_code(self):
         fuzz = codeMatch(self.admin_0, self.loc_list)
         iso_code = fuzz.getISOCode()
@@ -114,8 +103,8 @@ class main():
 
 
 def dict_parser(final,path):
-       # for item in final.items():
-
+    
+        #print(final)
         Country = final['Country']
         ISO = final['ISO']
         
@@ -123,14 +112,16 @@ def dict_parser(final,path):
         ad1len = len(final['Admin1'])
         for x in range(ad1len):
             result = final['Admin1'][x].get('P-Code')
-            Admin1 = result + " "
-        
+            if result != "None":
+                Admin1 = Admin1 + result + " "
+
         Admin2 = " "
         ad2len = len(final['Admin2'])
         for x in range(ad2len):
             result = final['Admin2'][x].get('P-Code')
-            Admin2 = result + " "
-        
+            if result != "None":
+                Admin2 = Admin2 + result + " "
+
         Start = final['Start']
         End = final['End']
         Affected = final['Affected']
@@ -142,16 +133,28 @@ def dict_parser(final,path):
         
         df = pd.read_excel('src/Backend/Integration/batchresults.xlsx')
         list_row = [path, Country, ISO, Admin1, Admin2,Start,End,Affected,Assisted,Glide,OpNum,OpBud,Host]
-        df = df.append(list_row, ignore_index=True )
-        #df = df.append(pd.Series(list_row, index=df.columns[:len(list_row)]), ignore_index=True)
-        df.to_excel('src/Backend/Integration/batchresults.xlsx', index=False)  
-            
+        #df = df.append(list_row, ignore_index=True )
+        df = df.append(pd.Series(list_row, index=df.columns[:len(list_row)]), ignore_index=True)
+        df.to_excel('src/Backend/Integration/batchresults.xlsx', index=False)
+
+
+dir_path = r'C:\\Users\\zaynb\\Documents\\COMP0016-Team-3\\sampledocs'
+docs = []
+for path in os.listdir(dir_path):
+    if os.path.isfile(os.path.join(dir_path, path)):
+        docs.append("sampledocs/" + path)
+        
+for x in docs:
+    path = x
+    test = main(path)
+    dict_parser(test.final_extract,path)
 
     
-
+    
+    
 # test = main("src/Backend/Integration/testfile.pdf")
-path = "src/Backend/Integration/MDRRW014dfr.pdf"
-test = main(path)
+#path = "src/Backend/Integration/MDRKH001final.pdf"
+#test = main(path)
 #file_num = 1 #edit
 #print(test.final_extract)
 ##dict_parser(test.final_extract,path)
@@ -159,7 +162,7 @@ test = main(path)
 # dict_parser(test_dict,path)
 # print(test.loc_list)
 # print(test.get_admin_0)
-print(test.final_extract)
+# print(test.final_extract)
 # print("admin 0: " + test.admin_0)
 # print(f"ISO code: {test.ISO}" )
 # # test.get_pcodes()

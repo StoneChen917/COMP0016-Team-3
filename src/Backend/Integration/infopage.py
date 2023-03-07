@@ -3,6 +3,7 @@ from tkinter import *
 from tkinter import messagebox
 from PIL import Image, ImageTk
 from tkinterdnd2 import *
+import pythontopostgres
 
 
 
@@ -21,7 +22,12 @@ class InfoPage(Frame):
         self.fronttoback = fronttoback
 
         self.screen_width = self.winfo_screenwidth() 
-        self.screen_height = self.winfo_screenheight() 
+        self.screen_height = self.winfo_screenheight()
+
+        self.file_name_text = ""
+        self.file_num = 0
+        self.file_max = 0
+        self.answers = []
         
         self.topbanner = Label(self, width = self.screen_width, height = 4, bg = "white")
         self.topbanner.place(x = 0, y = 0)
@@ -39,10 +45,13 @@ class InfoPage(Frame):
         self.home_button.place(x = 9, y = 8)
 
         grid_x = (self.screen_width-910)/2
-        grid_y = 150
+        grid_y = 100
         label_width = 310
         label_height = 31
         text_width = 600
+
+        self.file_name_text = Label(self, text = "", fg = darkish_blue, bg = light_greyish, font = ('Verdana', 15, "bold"))
+        self.file_name_text.place(x = (self.screen_width-self.file_name_text.winfo_reqwidth())/2, y = 66)
 
         self.info_image = ImageTk.PhotoImage(Image.open(Path("src/Assets/Images/info.png")).resize((23, 23)))
         
@@ -153,6 +162,14 @@ class InfoPage(Frame):
         self.host_info = Button(self, image = self.info_image, borderwidth = 0, bg = light_greyish, command = self.click_host_info)
         self.host_info.image = self.info_image
         self.host_info.place(x = grid_x+label_width-27, y = grid_y+label_height*11+4)
+
+        self.back_arrow_photo = ImageTk.PhotoImage(Image.open(Path("src/Assets/Images/back_arrow.png")).resize((50, 70)))
+        self.back_arrow_button = Button(self, image = self.back_arrow_photo, bg = light_greyish, borderwidth = 0, command = self.click_back_arrow)
+        self.back_arrow_button.place(x = grid_x-52, y = grid_y+(label_height*12-50)/2+3)
+
+        self.forward_arrow_photo = ImageTk.PhotoImage(Image.open(Path("src/Assets/Images/forward_arrow.png")).resize((50, 70)))
+        self.forward_arrow_button = Button(self, image = self.forward_arrow_photo, bg = light_greyish, borderwidth = 0, command = self.click_forward_arrow)
+        self.forward_arrow_button.place(x = grid_x+912, y = grid_y+(label_height*12-50)/2+3)
        
         self.save_image = ImageTk.PhotoImage(Image.open(Path("src/Assets/Images/save_button.png")).resize((262, 82)))
         self.save_button = Button(self, image = self.save_image, borderwidth = 0, command = self.click_push)
@@ -237,6 +254,19 @@ class InfoPage(Frame):
         self.host_national_society_text.delete('1.0', END)
         self.host_national_society_text.insert(INSERT, self.fronttoback.get_host())
 
+    def click_back_arrow(self):
+        if self.file_num > 0:
+            self.file_num -= 1
+            self.update_text(self.file_num)
+        else:
+            messagebox.showinfo(title = "First file reached", message = "This is the first of all the files you uploaded")
+
+    def click_forward_arrow(self):
+        if self.file_num < self.file_max:
+            self.file_num += 1
+            self.update_text(self.file_num)
+        else:
+            messagebox.showinfo(title = "Last file reached", message = "This is the last of all the files you uploaded")
 
     def click_push(self):
-        None
+        pythontopostgres.save_to_table()
