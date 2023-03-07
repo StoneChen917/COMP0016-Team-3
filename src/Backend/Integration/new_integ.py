@@ -104,7 +104,7 @@ class main():
 
 def dict_parser(final,path):
     
-        print(final)
+        #print(final)
         Country = final['Country']
         ISO = final['ISO']
         
