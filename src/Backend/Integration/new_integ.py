@@ -5,7 +5,7 @@
 import PyPDF2
 import pandas as pd
 import openpyxl
-import xlsxwriter
+# import xlsxwriter
 
 
 from QA_model import qaModel
@@ -157,16 +157,16 @@ for x in docs:
 
     
 # test = main("src/Backend/Integration/testfile.pdf")
-#path = "sampledocs\MDRUG040efr.pdf"
-#test = main(path)
-#dict_parser(test.final_extract,path)
-
-#test_dict = {'Country': 'Rwanda', 'ISO': 'RWA', 'Admin1': [{'Location': 'Eastern Province', 'P-Code': '20RWA005'}, {'Location': 'the City of Kigali', 'P-Code': '20RWA001'}], 'Admin2': [{'Location': 'Flanders', 'P-Code': '20RWA004042'}, {'Location': 'Gatsibo district', 'P-Code': '20RWA005053'}, {'Location': 'Gatsibo District', 'P-Code': '20RWA005053'}, {'Location': 'Gatsibo d istrict \n©IFRC', 'P-Code': '20R053WA005053'}], 'Start': '11 July 2017', 'End': '01 September 2017', 'Affected': '675', 'Assisted': '811 households', 'Glide': 'ST-2017 -000035 -RWA', 'OpNum': 'MDRRW014', 'OpBud': 'CHF 49,122', 'Host': 'Rwanda Red Cross Society'}
-#test_dict = {'Country': 'Haiti', 'ISO': 'HAI', 'Admin1': [{'Location': 'Jamaica', 'P-Code': None}, {'Location': 'Kingston', 'P-Code': '20JAM003'}, {'Location': 'Saint Andrew', 'P-Code': '20BRB002'}, {'Location': 'Saint Lucia', 'P-Code': None}], 'Admin2': [], 'Start': '1 October 2016', 'End': '\nDREF Operation Final Report', 'Affected': '100,000 to  \n150,000 persons', 'Assisted': '524 families', 'Glide': 'Category 5', 'OpNum': 'MDRJM004', 'OpBud': '130,149 Swiss francs', 'Host': 'The Jamaica Red Cross'}
-
-#dict_parser(test_dict,path)
-
-# # print(test.loc_list)
+path = "src/Backend/Integration/MDRKH001final.pdf"
+test = main(path)
+#file_num = 1 #edit
+#print(test.final_extract)
+##dict_parser(test.final_extract,path)
+# test_dict = {'Country': 'Rwanda', 'ISO': 'RWA', 'Admin1': [{'Location': 'Eastern Province', 'P-Code': '20RWA005'}, {'Location': 'the City of Kigali', 'P-Code': '20RWA001'}], 'Admin2': [{'Location': 'Flanders', 'P-Code': '20RWA004042'}, {'Location': 'Gatsibo district', 'P-Code': '20RWA005053'}, {'Location': 'Gatsibo District', 'P-Code': '20RWA005053'}, {'Location': 'Gatsibo d istrict \n©IFRC', 'P-Code': '20R053WA005053'}], 'Start': '11 July 2017', 'End': '01 September 2017', 'Affected': '675', 'Assisted': '811 households', 'Glide': 'ST-2017 -000035 -RWA', 'OpNum': 'MDRRW014', 'OpBud': 'CHF 49,122', 'Host': 'Rwanda Red Cross Society'}
+# dict_parser(test_dict,path)
+# print(test.loc_list)
+# print(test.get_admin_0)
+# print(test.final_extract)
 # print("admin 0: " + test.admin_0)
 # print(f"ISO code: {test.ISO}" )
 # # test.get_pcodes()

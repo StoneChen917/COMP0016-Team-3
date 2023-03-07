@@ -192,8 +192,8 @@ class codeMatch():
         df1_filtered = df1[(df1.attributes_iso3 == self.ISO_code)]
         df2_filtered = df2[(df2.attributes_iso3 == self.ISO_code)]
 
-        code1 = None
-        code2 = None
+        code1 = "None"
+        code2 = "None"
         best_fuzz_ratio1 = 0
         for i in df1_filtered['attributes.gis_name'].values:
             score1 = self.find_fuzz_ratio(loc, i)
@@ -212,9 +212,9 @@ class codeMatch():
                 int_row_num = int(row_num[0])
                 code2 = df2.iat[int_row_num, 3]   
 
-        # if best_fuzz_ratio1 == 0 and best_fuzz_ratio2 == 0:
-        #     return None
-        if best_fuzz_ratio1 == best_fuzz_ratio2:
+        if best_fuzz_ratio1 == 0 and best_fuzz_ratio2 == 0:
+            return (0,"None")
+        elif best_fuzz_ratio1 == best_fuzz_ratio2:
             return (1,code1)
         elif best_fuzz_ratio2 > best_fuzz_ratio1:
             return (2,code2)
@@ -231,7 +231,7 @@ class codeMatch():
             dict = {"Location":loc, "P-Code":p_code}
             if tag == 1:
                 self.p_code_1.append(dict)
-            else:
+            if tag == 2:
                 self.p_code_2.append(dict)
                 
 # test = codeMatch('Rwanda', ['Gatsibo', 'the Eastern Province', 'Gatsibo District', 'Eastern Province', 'the City of Kigali'])
