@@ -34,9 +34,9 @@ class InfoPage(Frame):
         self.midbanner = Label(self, width = self.screen_width, height = 60, bg = "#EBEBEB")
         self.midbanner.place(x = 0, y = 66)
 
-        self.back_arrow_photo = ImageTk.PhotoImage(Image.open(Path("src/Assets/Images/Arrow.png")).resize((50, 50)))
-        self.back_button = Button(self, image = self.back_arrow_photo, borderwidth = 0, command = self.back_main)
-        self.back_button.place(x = 0, y = 76)
+        self.home_photo = ImageTk.PhotoImage(Image.open(Path("src/Assets/Images/home.png")).resize((50, 50)))
+        self.home_button = Button(self, image = self.home_photo, bg = "white", borderwidth = 0, command = self.back_main)
+        self.home_button.place(x = 9, y = 8)
 
         grid_x = (self.screen_width-910)/2
         grid_y = 150
