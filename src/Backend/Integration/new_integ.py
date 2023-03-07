@@ -12,7 +12,7 @@ from QA_model import qaModel
 from code_matching import codeMatch
 from locations import Locations
 from readfile import ReadFile
-
+import os
 
 class main():
     def __init__(self, file):
@@ -31,36 +31,25 @@ class main():
 
 
 
-# get first oage content
+
     def get_first_page(self):
         # reader = ReadFile()
+        
         self.first_page = self.reader.exec(self.file)[0]
-
-# get other pages content
+    
     def get_other_pages(self):
         # reader = ReadFile()
         self.other_pages = self.reader.exec(self.file)[1]
-
-# answers from qa model:
-# ["What is the Country of Disaster?",
-        # "What is the Operation Start Date?", 
-        # "What is the Operation End Date?",
-        # "What is the number of people affected?", 
-        # "What is the number of people assisted?", 
-        # "What is the Glide Number?", 
-        # "What is the Operation n°?", 
-        # "What is the Operation Budget?", 
-        # "What is the Host National Society?"]
+    
     def get_answers(self):
         answers=qaModel(self.file).answers
         return answers
        
-# Use qa model to get country
+    
     def get_admin_0(self):
         country = self.get_answers()["What is the Country of Disaster?"]
         return country
-    
-# codematch to get ISO
+
     def get_ISO_code(self):
         fuzz = codeMatch(self.admin_0, self.loc_list)
         iso_code = fuzz.getISOCode()
@@ -116,50 +105,68 @@ class main():
 def dict_parser(final,path):
        # for item in final.items():
 
+        print(final)
         Country = final['Country']
         ISO = final['ISO']
         
-        Admin1 = " "
-        ad1len = len(final['Admin1'])
-        for x in range(ad1len):
-            result = final['Admin1'][x].get('P-Code')
-            Admin1 = result + " "
-        
-        Admin2 = " "
-        ad2len = len(final['Admin2'])
-        for x in range(ad2len):
-            result = final['Admin2'][x].get('P-Code')
-            Admin2 = result + " "
-        
-        Start = final['Start']
-        End = final['End']
-        Affected = final['Affected']
-        Assisted = final['Assisted']
-        Glide = final['Glide']
-        OpNum = final['OpNum']
-        OpBud = final['OpBud']
-        Host = final['Host']        
-        
-        df = pd.read_excel('src/Backend/Integration/batchresults.xlsx')
-        list_row = [path, Country, ISO, Admin1, Admin2,Start,End,Affected,Assisted,Glide,OpNum,OpBud,Host]
-        df = df.append(list_row, ignore_index=True )
-        #df = df.append(pd.Series(list_row, index=df.columns[:len(list_row)]), ignore_index=True)
-        df.to_excel('src/Backend/Integration/batchresults.xlsx', index=False)  
+        try:
+            Admin1 = " "
+            ad1len = len(final['Admin1'])
+            for x in range(ad1len):
+                result = final['Admin1'][x].get('P-Code')
+                print(result)
+                Admin1 = result + " "
             
+            Admin2 = " "
+            ad2len = len(final['Admin2'])
+            for x in range(ad2len):
+                result = final['Admin2'][x].get('P-Code')
+                Admin2 = result + " "
+        except:
+            Admin1 = " "
+            Admin2 = " "
+        finally:
+            Start = final['Start']
+            End = final['End']
+            Affected = final['Affected']
+            Assisted = final['Assisted']
+            Glide = final['Glide']
+            OpNum = final['OpNum']
+            OpBud = final['OpBud']
+            Host = final['Host']        
+            
+            df = pd.read_excel('src/Backend/Integration/batchresults.xlsx')
+            list_row = [path, Country, ISO, Admin1, Admin2,Start,End,Affected,Assisted,Glide,OpNum,OpBud,Host]
+            #df = df.append(list_row, ignore_index=True )
+            df = df.append(pd.Series(list_row, index=df.columns[:len(list_row)]), ignore_index=True)
+            df.to_excel('src/Backend/Integration/batchresults.xlsx', index=False)
+
+
+dir_path = r'C:\\Users\\zaynb\\Documents\\COMP0016-Team-3\\sampledocs'
+
+docs = []
+
+for path in os.listdir(dir_path):
+    if os.path.isfile(os.path.join(dir_path, path)):
+        docs.append("sampledocs/" + path)
+
+for x in docs:
+    path = x
+    test = main(path)
+    dict_parser(test.final_extract,path)
 
     
-
 # test = main("src/Backend/Integration/testfile.pdf")
-path = "src/Backend/Integration/MDRKH001final.pdf"
-test = main(path)
-#file_num = 1 #edit
-#print(test.final_extract)
-##dict_parser(test.final_extract,path)
-# test_dict = {'Country': 'Rwanda', 'ISO': 'RWA', 'Admin1': [{'Location': 'Eastern Province', 'P-Code': '20RWA005'}, {'Location': 'the City of Kigali', 'P-Code': '20RWA001'}], 'Admin2': [{'Location': 'Flanders', 'P-Code': '20RWA004042'}, {'Location': 'Gatsibo district', 'P-Code': '20RWA005053'}, {'Location': 'Gatsibo District', 'P-Code': '20RWA005053'}, {'Location': 'Gatsibo d istrict \n©IFRC', 'P-Code': '20R053WA005053'}], 'Start': '11 July 2017', 'End': '01 September 2017', 'Affected': '675', 'Assisted': '811 households', 'Glide': 'ST-2017 -000035 -RWA', 'OpNum': 'MDRRW014', 'OpBud': 'CHF 49,122', 'Host': 'Rwanda Red Cross Society'}
-# dict_parser(test_dict,path)
-# print(test.loc_list)
-# print(test.get_admin_0)
-# print(test.final_extract)
+#path = "sampledocs\MDRUG040efr.pdf"
+#test = main(path)
+#dict_parser(test.final_extract,path)
+
+#test_dict = {'Country': 'Rwanda', 'ISO': 'RWA', 'Admin1': [{'Location': 'Eastern Province', 'P-Code': '20RWA005'}, {'Location': 'the City of Kigali', 'P-Code': '20RWA001'}], 'Admin2': [{'Location': 'Flanders', 'P-Code': '20RWA004042'}, {'Location': 'Gatsibo district', 'P-Code': '20RWA005053'}, {'Location': 'Gatsibo District', 'P-Code': '20RWA005053'}, {'Location': 'Gatsibo d istrict \n©IFRC', 'P-Code': '20R053WA005053'}], 'Start': '11 July 2017', 'End': '01 September 2017', 'Affected': '675', 'Assisted': '811 households', 'Glide': 'ST-2017 -000035 -RWA', 'OpNum': 'MDRRW014', 'OpBud': 'CHF 49,122', 'Host': 'Rwanda Red Cross Society'}
+#test_dict = {'Country': 'Haiti', 'ISO': 'HAI', 'Admin1': [{'Location': 'Jamaica', 'P-Code': None}, {'Location': 'Kingston', 'P-Code': '20JAM003'}, {'Location': 'Saint Andrew', 'P-Code': '20BRB002'}, {'Location': 'Saint Lucia', 'P-Code': None}], 'Admin2': [], 'Start': '1 October 2016', 'End': '\nDREF Operation Final Report', 'Affected': '100,000 to  \n150,000 persons', 'Assisted': '524 families', 'Glide': 'Category 5', 'OpNum': 'MDRJM004', 'OpBud': '130,149 Swiss francs', 'Host': 'The Jamaica Red Cross'}
+
+#dict_parser(test_dict,path)
+
+# # print(test.loc_list)
 # print("admin 0: " + test.admin_0)
 # print(f"ISO code: {test.ISO}" )
 # # test.get_pcodes()
