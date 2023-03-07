@@ -108,51 +108,49 @@ def dict_parser(final,path):
         Country = final['Country']
         ISO = final['ISO']
         
-        try:
-            Admin1 = " "
-            ad1len = len(final['Admin1'])
-            for x in range(ad1len):
-                result = final['Admin1'][x].get('P-Code')
-                print(result)
-                Admin1 = result + " "
-            
-            Admin2 = " "
-            ad2len = len(final['Admin2'])
-            for x in range(ad2len):
-                result = final['Admin2'][x].get('P-Code')
-                Admin2 = result + " "
-        except:
-            Admin1 = " "
-            Admin2 = " "
-        finally:
-            Start = final['Start']
-            End = final['End']
-            Affected = final['Affected']
-            Assisted = final['Assisted']
-            Glide = final['Glide']
-            OpNum = final['OpNum']
-            OpBud = final['OpBud']
-            Host = final['Host']        
-            
-            df = pd.read_excel('src/Backend/Integration/batchresults.xlsx')
-            list_row = [path, Country, ISO, Admin1, Admin2,Start,End,Affected,Assisted,Glide,OpNum,OpBud,Host]
-            #df = df.append(list_row, ignore_index=True )
-            df = df.append(pd.Series(list_row, index=df.columns[:len(list_row)]), ignore_index=True)
-            df.to_excel('src/Backend/Integration/batchresults.xlsx', index=False)
+        Admin1 = " "
+        ad1len = len(final['Admin1'])
+        for x in range(ad1len):
+            result = final['Admin1'][x].get('P-Code')
+            if result != "None":
+                Admin1 = Admin1 + result + " "
+
+        Admin2 = " "
+        ad2len = len(final['Admin2'])
+        for x in range(ad2len):
+            result = final['Admin2'][x].get('P-Code')
+            if result != "None":
+                Admin2 = Admin2 + result + " "
+
+        Start = final['Start']
+        End = final['End']
+        Affected = final['Affected']
+        Assisted = final['Assisted']
+        Glide = final['Glide']
+        OpNum = final['OpNum']
+        OpBud = final['OpBud']
+        Host = final['Host']        
+        
+        df = pd.read_excel('src/Backend/Integration/batchresults.xlsx')
+        list_row = [path, Country, ISO, Admin1, Admin2,Start,End,Affected,Assisted,Glide,OpNum,OpBud,Host]
+        #df = df.append(list_row, ignore_index=True )
+        df = df.append(pd.Series(list_row, index=df.columns[:len(list_row)]), ignore_index=True)
+        df.to_excel('src/Backend/Integration/batchresults.xlsx', index=False)
 
 
 dir_path = r'C:\\Users\\zaynb\\Documents\\COMP0016-Team-3\\sampledocs'
 docs = []
-
 for path in os.listdir(dir_path):
     if os.path.isfile(os.path.join(dir_path, path)):
         docs.append("sampledocs/" + path)
-
+        
 for x in docs:
     path = x
     test = main(path)
     dict_parser(test.final_extract,path)
 
+    
+    
     
 # test = main("src/Backend/Integration/testfile.pdf")
 #path = "src/Backend/Integration/MDRKH001final.pdf"
