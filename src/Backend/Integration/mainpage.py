@@ -87,10 +87,10 @@ class MainPage(Frame):
         self.remove_a_button.image = self.remove_a_image
         self.remove_a_button.place(x = (self.screen_width-800)/2+517, y = self.box_y+305)
 
-        self.extract_image = ImageTk.PhotoImage(Image.open(Path("src/Assets/Images/extract_button.png")).resize((266, 86)))
-        self.extract_button = Button(self, image = self.extract_image, borderwidth = 0, command = self.click_extract)
-        self.extract_button.image = self.extract_image
-        self.extract_button.place(x = (self.screen_width-800)/2+517, y = self.box_y+403)
+        self.preview_image = ImageTk.PhotoImage(Image.open(Path("src/Assets/Images/preview_button.png")).resize((266, 86)))
+        self.preview_button = Button(self, image = self.preview_image, borderwidth = 0, command = self.click_preview)
+        self.preview_button.image = self.preview_image
+        self.preview_button.place(x = (self.screen_width-800)/2+517, y = self.box_y+403)
 
     def click_info(self):
         messagebox.showinfo(title = "Info", 
@@ -122,8 +122,13 @@ class MainPage(Frame):
         if messagebox.askyesno(title = "Remove all files?", message = "Do you really want to remove all the files?"):
             self.listbox.delete(0, END)
 
-    def click_extract(self):
-        self.fronttoback.set_files(self.listbox.get(0 , END))
+    def click_preview(self):
+        if self.listbox.size() > 0:
+            self.viewpage.set_files(self.listbox.get(0 , END))
+            self.fronttoback.set_files(self.listbox.get(0 , END))
+            self.controller.show_frame("ViewPage")
+        else:
+            messagebox.showinfo(title = "No file uploaded", message = "Please upload one or more files before you proceed")
 
     def upload_failure(self):
         messagebox.showerror(title = "Upload failed", message = "File not supported, pdf only")
