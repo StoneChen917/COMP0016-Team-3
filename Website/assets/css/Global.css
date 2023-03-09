@@ -3,7 +3,7 @@
 /* overwrite default value */
 
 html {
-    font-family: 'IBM Plex Sans', sans-serif;
+    font-family: serif;
     margin: 0;
     padding: 0;
     width: 100vw;
@@ -50,6 +50,8 @@ a {
     color: #595959;
 }
 
+hr{ width:81%;}
+
 em {
     font-weight: 700;
 }
@@ -84,7 +86,7 @@ section {
 }
 
 .section h3 {
-    color: #EF3741;
+    color: #12284C;
 }
 
 .section p,
