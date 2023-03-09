@@ -15,6 +15,45 @@
 
 </head>
 
+<style>
+    .styled-table {
+        border-collapse: collapse;
+        margin: 25px 0;
+        font-size: 0.9em;
+        font-family: sans-serif;
+        min-width: 400px;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+    }
+
+    .styled-table thead tr {
+        background-color: #f06068;
+        color: #ffffff;
+        text-align: left;
+    }
+
+    .styled-table th,
+    .styled-table td {
+        padding: 12px 15px;
+    }
+
+    .styled-table tbody tr {
+        border-bottom: 1px solid #dddddd;
+    }
+
+    .styled-table tbody tr:nth-of-type(even) {
+        background-color: #f3f3f3;
+    }
+
+    .styled-table tbody tr:last-of-type {
+        border-bottom: 2px solid #f06068;
+    }
+
+    .styled-table tbody tr.active-row {
+        font-weight: bold;
+        color: #f06068;
+    }
+</style>
+
 <body>
     <header>
         <!-- ***** Logo Start ***** -->
@@ -62,8 +101,41 @@
     <!-- the first re-usable section with topic and contents -->
     <section class="section" id="achievements">
         <!-- topic -->
-        <h3>Evaluations</h3>
-        <!-- contents -->
+        <div style="text-align: center;"> <h3>Evaluations</h3></div>
+        <hr class="solid">
+        <div style="text-align: center;"><h4 class="mb-4">MoSCoW List Achievement</h4></div>
+<!--        <div class="table-responsive">-->
+        <div style="text-align: center;">
+            <table class="center">
+                <table class="styled-table">
+                    <thead>
+                    <tr>
+                        <th>ID</th><th>Description</th><th>Priority</th><th>State</th><th>Contributors</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr><td>1</td><td>Operation number</td><td>MUST</td><td>&#10004</td><td>Hannah</td></tr>
+                    <tr class="active-row"><td>2</td><td>Admin 0</td><td>MUST</td><td>&#10004</td><td>Tosin</td></tr>
+                    <tr><td>3</td><td>Admin 1</td><td>MUST</td><td>&#10004</td><td>Tosin</td></tr>
+                    <tr class="active-row"><td>4</td><td>Admin 2</td><td>MUST</td><td>&#10004</td><td>Tosin</td></tr>
+                    <tr><td>5</td><td>P codes</td><td>MUST</td><td>&#10004</td><td>Hannah</td></tr>
+                    <tr class="active-row"><td>6</td><td>Operation start date</td><td>SHOULD</td><td>&#10004</td><td>Hannah</td></tr>
+                    <tr><td>7</td><td>Operation end dates</td><td>SHOULD</td><td>&#10004</td><td>Hannah</td></tr>
+                    <tr class="active-row"><td>8</td><td>Glide number</td><td>SHOULD</td><td>&#10004</td><td>Hannah</td></tr>
+                    <tr><td>9</td><td>Number of people affected</td><td>SHOULD</td><td>&#10004</td><td>Hannah</td></tr>
+                    <tr class="active-row"><td>10</td><td>Number of people assisted</td><td>SHOULD</td><td>&#10004</td><td>Hannah</td></tr>
+                    <tr><td>11</td><td>Host National Society</td><td>SHOULD</td><td>&#10004</td><td>Hannah</td></tr>
+                    <tr class="active-row"><td>12</td><td>Details of operational strategy</td><td>COULD</td><td></td><td>Hannah</td></tr>
+
+                    <tr><td colspan="2">Key Functionalities:</td><td colspan="3"><code>100 %</code></td></tr><tr><td colspan="2">Optional Functionalities:</td><td colspan="3"><code>66 %</code></td></tr>
+                    </tbody>
+                </table>
+            </table>
+        </div>
+
+    </section>
+
+
         <h1>Evaluating QA Models</h1>
         <h5>Common Metrics to Evaluate QA Models</h5>
         <p align="justify">There are two dominant metrics used by many question answering datasets, including SQuAD: exact match (EM) and F1 score. These scores are computed on individual question+answer pairs. When multiple correct answers are possible for a given question, the maximum score over all possible correct answers is computed. Overall EM and F1 scores are computed for a model by averaging over the individual example scores.
@@ -229,7 +301,7 @@
                 <td>87.5%</td>
             </tr>
         </table>
-    </section>
+<!--    </section>-->
 
 
     <section class="section" id="contributions">
