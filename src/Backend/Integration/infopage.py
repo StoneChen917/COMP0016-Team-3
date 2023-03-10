@@ -24,7 +24,7 @@ class InfoPage(Frame):
         self.screen_width = self.winfo_screenwidth() 
         self.screen_height = self.winfo_screenheight()
 
-        self.file_name_text = ""
+        self.files = []
         self.file_num = 0
         self.file_max = 0
         self.answers = []
@@ -54,6 +54,9 @@ class InfoPage(Frame):
         self.file_name_text.place(x = (self.screen_width-self.file_name_text.winfo_reqwidth())/2, y = 66)
 
         self.info_image = ImageTk.PhotoImage(Image.open(Path("src/Assets/Images/info.png")).resize((23, 23)))
+
+        self.file_name_text = Label(self, text = "", fg = darkish_blue, bg = light_greyish, font = ('Verdana', 15, "bold"))
+        self.file_name_text.place(x = (self.screen_width-self.file_name_text.winfo_reqwidth())/2, y = 66)
         
         self.admin0_label = Label(self, text = "Admin 0", font = ('Verdana', 15), borderwidth = 2, fg = darkish_blue,
                                                 relief = "solid", anchor = "w")
@@ -170,11 +173,14 @@ class InfoPage(Frame):
         self.forward_arrow_photo = ImageTk.PhotoImage(Image.open(Path("src/Assets/Images/forward_arrow.png")).resize((50, 70)))
         self.forward_arrow_button = Button(self, image = self.forward_arrow_photo, bg = light_greyish, borderwidth = 0, command = self.click_forward_arrow)
         self.forward_arrow_button.place(x = grid_x+912, y = grid_y+(label_height*12-50)/2+3)
+
+        self.file_num_text = Label(self, text = "", fg = darkish_blue, bg = light_greyish, font = ('Verdana', 15, "bold"))
+        self.file_num_text.place(x = (self.screen_width-self.file_num_text.winfo_reqwidth())/2, y = grid_y+label_height*12+3)
        
         self.save_image = ImageTk.PhotoImage(Image.open(Path("src/Assets/Images/save_button.png")).resize((262, 82)))
         self.save_button = Button(self, image = self.save_image, borderwidth = 0, command = self.click_push)
         self.save_button.image = self.save_image
-        self.save_button.place(x = (self.screen_width-self.save_button.winfo_reqwidth())/2, y = 600)
+        self.save_button.place(x = (self.screen_width-self.save_button.winfo_reqwidth())/2, y = grid_y+label_height*12+38)
 
     def click_admin0_info(self):
         messagebox.showinfo(title = "Info", message = "Admin 0 code")
@@ -217,49 +223,70 @@ class InfoPage(Frame):
             self.controller.show_frame("MainPage")
 
     def set_answers(self):
+        self.files = self.fronttoback.get_files()
         self.file_max = self.fronttoback.get_max()
+        self.answers = self.fronttoback.get_answers()
         self.update_text(0)
 
     def update_text(self, i):
+        self.file_name_text.config(text = self.files[i])
+        self.file_name_text.place_forget()
+        self.file_name_text.place(x = (self.screen_width-self.file_name_text.winfo_reqwidth())/2, y = 66)
+        self.file_num_text.config(text = str(self.file_num+1)+" / "+str(self.file_max+1))
         # admin 0
         self.admin0_text.delete('1.0', END)
-        self.admin0_text.insert(INSERT, self.fronttoback.get_glide(i))
+        self.admin0_text.insert(INSERT, self.answers[i]["Country"])
         # iso
         self.iso_text.delete('1.0', END)
-        self.iso_text.insert(INSERT, self.fronttoback.get_iso(i))
+        self.iso_text.insert(INSERT, self.answers[i]["iso"])
         # Admin 1
         self.admin1_text.delete('1.0', END)
-        self.admin1_text.insert(INSERT, self.fronttoback.get_admin1(i))
+        self.admin1_text.insert(INSERT, self.answers[i]["Admin1"])
         # Admin 2
         self.admin2_text.delete('1.0', END)
-        self.admin2_text.insert(INSERT, self.fronttoback.get_admin2(i))
+        self.admin2_text.insert(INSERT, self.answers[i]["Admin2"])
         # number
         self.operation_number_text.delete('1.0', END)
-        self.operation_number_text.insert(INSERT, self.fronttoback.get_operation_number(i))
+        self.operation_number_text.insert(INSERT, self.answers[i]["OpNum"])
         # start
         self.operation_start_date_text.delete('1.0', END)
-        self.operation_start_date_text.insert(INSERT, self.fronttoback.get_start(i))
+        self.operation_start_date_text.insert(INSERT, self.answers[i]["Start"])
         # end
         self.operation_end_date_text.delete('1.0', END)
-        self.operation_end_date_text.insert(INSERT, self.fronttoback.get_end(i))
+        self.operation_end_date_text.insert(INSERT, self.answers[i]["End"])
         # glide
         self.glide_number_text.delete('1.0', END)
-        self.glide_number_text.insert(INSERT, self.fronttoback.get_glide(i))
+        self.glide_number_text.insert(INSERT, self.answers[i]["Glide"])
         # affected
         self.affected_text.delete('1.0', END)
-        self.affected_text.insert(INSERT, self.fronttoback.get_affected(i))
+        self.affected_text.insert(INSERT, self.answers[i]["Affected"])
         # assisted
         self.assisted_text.delete('1.0', END)
-        self.assisted_text.insert(INSERT, self.fronttoback.get_assisted(i))
+        self.assisted_text.insert(INSERT, self.answers[i]["Assisted"])
         # budget
         self.operation_budget_text.delete('1.0', END)
-        self.operation_budget_text.insert(INSERT, self.fronttoback.get_operation_budget(i))
+        self.operation_budget_text.insert(INSERT, self.answers[i]["OpBud"])
         # host
         self.host_national_society_text.delete('1.0', END)
-        self.host_national_society_text.insert(INSERT, self.fronttoback.get_host(i))
+        self.host_national_society_text.insert(INSERT, self.answers[i]["Host"])
+
+    def update_answers(self):
+        self.answers[self.file_num]["Country"] = self.admin0_text.get("1.0",END)
+        self.answers[self.file_num]["iso"] = self.iso_text.get("1.0",END)
+        self.answers[self.file_num]["Admin1"] = self.admin1_text.get("1.0",END)
+        self.answers[self.file_num]["Admin2"] = self.admin2_text.get("1.0",END)
+        self.answers[self.file_num]["OpNum"] = self.operation_number_text.get("1.0",END)
+        self.answers[self.file_num]["Start"] = self.operation_start_date_text.get("1.0",END)
+        self.answers[self.file_num]["End"] = self.operation_end_date_text.get("1.0",END)
+        self.answers[self.file_num]["Glide"] = self.glide_number_text.get("1.0",END)
+        self.answers[self.file_num]["Affected"] = self.affected_text.get("1.0",END)
+        self.answers[self.file_num]["Assisted"] = self.assisted_text.get("1.0",END)
+        self.answers[self.file_num]["OpBud"] = self.operation_budget_text.get("1.0",END)
+        self.answers[self.file_num]["Host"] = self.host_national_society_text.get("1.0",END)
 
     def click_back_arrow(self):
         if self.file_num > 0:
+            self.update_answers()
             self.file_num -= 1
             self.update_text(self.file_num)
         else:
@@ -267,12 +294,14 @@ class InfoPage(Frame):
 
     def click_forward_arrow(self):
         if self.file_num < self.file_max:
+            self.update_answers()
             self.file_num += 1
             self.update_text(self.file_num)
         else:
             messagebox.showinfo(title = "Last file reached", message = "This is the last of all the files you uploaded")
 
     def click_push(self):
-        for i in self.answers:
-            pythontopostgres.save_to_table(i["OpNum"], i["Country"], i["Admin1"], i["Admin2"], i["iso"], i["Glide"], 
-                                           i["Host"], i["OpBud"], i["Start"], i["End"], i["Affected"], i["Assisted"])
+        if messagebox.askyesno(title = "Push to database?", message = "Have you checked if all the data are correct?"):
+            for i in self.answers:
+                pythontopostgres.save_to_table(i["OpNum"], i["Country"], i["Admin1"], i["Admin2"], i["iso"], i["Glide"], 
+                                            i["Host"], i["OpBud"], i["Start"], i["End"], i["Affected"], i["Assisted"])
