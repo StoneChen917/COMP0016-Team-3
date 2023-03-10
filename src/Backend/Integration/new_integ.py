@@ -102,7 +102,7 @@ class main():
         return final
 
 
-def dict_parser(final,path):
+def dict_parser(final,path,list_answers):
     
         #print(final)
         Country = final['Country']
@@ -133,13 +133,16 @@ def dict_parser(final,path):
         
         df = pd.read_excel('src/Backend/Integration/batchresults.xlsx')
         list_row = [path, Country, ISO, Admin1, Admin2,Start,End,Affected,Assisted,Glide,OpNum,OpBud,Host]
+        doc_ans = {'path' : path, 'Country' : Country, 'ISO' : ISO, 'Admin1' : Admin1, 'Admin2' : Admin2,'Start' : Start,'End' : End,'Affected' : Affected,'Assisted' : Assisted,'Glide' : Glide,'OpNum': OpNum,'OpBud' : OpBud,'Host' : Host}
         #df = df.append(list_row, ignore_index=True )
+        list_answers.append(doc_ans)
         df = df.append(pd.Series(list_row, index=df.columns[:len(list_row)]), ignore_index=True)
         df.to_excel('src/Backend/Integration/batchresults.xlsx', index=False)
 
 
 dir_path = r'C:\\Users\\zaynb\\Documents\\COMP0016-Team-3\\sampledocs'
 docs = []
+list_answers = []
 for path in os.listdir(dir_path):
     if os.path.isfile(os.path.join(dir_path, path)):
         docs.append("sampledocs/" + path)
@@ -147,7 +150,7 @@ for path in os.listdir(dir_path):
 for x in docs:
     path = x
     test = main(path)
-    dict_parser(test.final_extract,path)
+    dict_parser(test.final_extract,path,list_answers)
 
     
     
@@ -168,3 +171,4 @@ for x in docs:
 # # test.get_pcodes()
 # print(f"admin1 codes: {test.admin_1_codes}")
 # print(f"admin2 codes: {test.admin_2_codes}")
+
