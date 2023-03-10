@@ -9,6 +9,7 @@ from infopage import InfoPage
 from viewpage import ViewPage
 from loadpage import LoadPage
 from fronttoback import Frontoback
+from backtofront import Backtofront
 import pythontopostgres
 #from new_integ import main
 
@@ -39,13 +40,15 @@ class UI(Tk):
         self.frames[InfoPage] = infopage
         infopage.grid(row = 0, column = 0, sticky = "nsew")
 
-        loadpage = LoadPage(container, self, self.fronttoback)
-        self.frames[LoadPage] = loadpage
-        loadpage.grid(row = 0, column = 0, sticky = "nsew")
-
         viewpage = ViewPage(container, self, self.fronttoback, infopage)
         self.frames[ViewPage] = viewpage
         viewpage.grid(row = 0, column = 0, sticky = "nsew")
+
+        self.backtofront = Backtofront(infopage)
+
+        loadpage = LoadPage(container, self, self.fronttoback)
+        self.frames[LoadPage] = loadpage
+        loadpage.grid(row = 0, column = 0, sticky = "nsew")
 
         mainpage = MainPage(container, self, self.fronttoback, viewpage)
         self.frames[MainPage] = mainpage
@@ -72,7 +75,9 @@ class UI(Tk):
 
     def check_time(self):
         if self.timer:
+            self.after(3000, self.backtofront.update_info())
             self.after(3000, self.show_frame("InfoPage"))
+            self.check_time()
         self.after(3000, self.check_time)
 
     def on_closing(self):

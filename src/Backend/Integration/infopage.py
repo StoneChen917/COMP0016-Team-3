@@ -216,43 +216,47 @@ class InfoPage(Frame):
         if messagebox.askyesno(title = "Back to main page?", message = "Changes will be lost"):
             self.controller.show_frame("MainPage")
 
-    def update_text(self):
+    def set_answers(self):
+        self.file_max = self.fronttoback.get_max()
+        self.update_text(0)
+
+    def update_text(self, i):
         # admin 0
         self.admin0_text.delete('1.0', END)
-        self.admin0_text.insert(INSERT, self.fronttoback.get_glide())
+        self.admin0_text.insert(INSERT, self.fronttoback.get_glide(i))
         # iso
         self.iso_text.delete('1.0', END)
-        self.iso_text.insert(INSERT, self.fronttoback.get_iso())
+        self.iso_text.insert(INSERT, self.fronttoback.get_iso(i))
         # Admin 1
         self.admin1_text.delete('1.0', END)
-        self.admin1_text.insert(INSERT, self.fronttoback.get_admin1())
+        self.admin1_text.insert(INSERT, self.fronttoback.get_admin1(i))
         # Admin 2
         self.admin2_text.delete('1.0', END)
-        self.admin2_text.insert(INSERT, self.fronttoback.get_admin2())
+        self.admin2_text.insert(INSERT, self.fronttoback.get_admin2(i))
         # number
         self.operation_number_text.delete('1.0', END)
-        self.operation_number_text.insert(INSERT, self.fronttoback.get_operation_number())
+        self.operation_number_text.insert(INSERT, self.fronttoback.get_operation_number(i))
         # start
         self.operation_start_date_text.delete('1.0', END)
-        self.operation_start_date_text.insert(INSERT, self.fronttoback.get_start())
+        self.operation_start_date_text.insert(INSERT, self.fronttoback.get_start(i))
         # end
         self.operation_end_date_text.delete('1.0', END)
-        self.operation_end_date_text.insert(INSERT, self.fronttoback.get_end())
+        self.operation_end_date_text.insert(INSERT, self.fronttoback.get_end(i))
         # glide
         self.glide_number_text.delete('1.0', END)
-        self.glide_number_text.insert(INSERT, self.fronttoback.get_glide())
+        self.glide_number_text.insert(INSERT, self.fronttoback.get_glide(i))
         # affected
         self.affected_text.delete('1.0', END)
-        self.affected_text.insert(INSERT, self.fronttoback.get_affected())
+        self.affected_text.insert(INSERT, self.fronttoback.get_affected(i))
         # assisted
         self.assisted_text.delete('1.0', END)
-        self.assisted_text.insert(INSERT, self.fronttoback.get_assisted())
+        self.assisted_text.insert(INSERT, self.fronttoback.get_assisted(i))
         # budget
         self.operation_budget_text.delete('1.0', END)
-        self.operation_budget_text.insert(INSERT, self.fronttoback.get_operation_budget())
+        self.operation_budget_text.insert(INSERT, self.fronttoback.get_operation_budget(i))
         # host
         self.host_national_society_text.delete('1.0', END)
-        self.host_national_society_text.insert(INSERT, self.fronttoback.get_host())
+        self.host_national_society_text.insert(INSERT, self.fronttoback.get_host(i))
 
     def click_back_arrow(self):
         if self.file_num > 0:
@@ -269,4 +273,6 @@ class InfoPage(Frame):
             messagebox.showinfo(title = "Last file reached", message = "This is the last of all the files you uploaded")
 
     def click_push(self):
-        pythontopostgres.save_to_table()
+        for i in self.answers:
+            pythontopostgres.save_to_table(i["OpNum"], i["Country"], i["Admin1"], i["Admin2"], i["iso"], i["Glide"], 
+                                           i["Host"], i["OpBud"], i["Start"], i["End"], i["Affected"], i["Assisted"])
