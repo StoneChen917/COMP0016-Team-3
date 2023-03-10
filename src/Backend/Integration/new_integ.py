@@ -140,12 +140,12 @@ def dict_parser(final,path,list_answers):
         df.to_excel('src/Backend/Integration/batchresults.xlsx', index=False)
 
 
-dir_path = r'C:\\Users\\zaynb\\Documents\\COMP0016-Team-3\\sampledocs'
+#dir_path = r'C:\\Users\\zaynb\\Documents\\COMP0016-Team-3\\sampledocs'
 docs = []
 list_answers = []
-for path in os.listdir(dir_path):
-    if os.path.isfile(os.path.join(dir_path, path)):
-        docs.append("sampledocs/" + path)
+#for path in os.listdir(dir_path):
+#    if os.path.isfile(os.path.join(dir_path, path)):
+#        docs.append("sampledocs/" + path)
         
 for x in docs:
     path = x
