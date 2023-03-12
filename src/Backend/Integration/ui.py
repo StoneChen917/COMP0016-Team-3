@@ -87,6 +87,7 @@ class UI(Tk):
                       
     
 app = UI()
+app.tk.call('tk', 'scaling', 2.0)
 app.state('zoomed')
 app.protocol("WM_DELETE_WINDOW", app.on_closing)
 app.check_time()
