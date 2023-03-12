@@ -198,10 +198,10 @@ class InfoPage(Frame):
         messagebox.showinfo(title = "Info", message = "The unique operation number. E.g. MDRJM004")
 
     def click_op_start_info(self):
-        messagebox.showinfo(title = "Info", message = "The start date of the operation")
+        messagebox.showinfo(title = "Info", message = "The start date of the operation, format is YYYY-MM-DD")
 
     def click_op_end_info(self):
-        messagebox.showinfo(title = "Info", message = "The end date of the operation")
+        messagebox.showinfo(title = "Info", message = "The end date of the operation, format is YYYY-MM-DD")
 
     def click_glide_info(self):
         messagebox.showinfo(title = "Info", message = "The components of a GLIDE number consist of two letters to identify the disaster type (e.g. EQ - earthquake); the year of the disaster; a six-digit, sequential disaster number; and the three-letter iso code for country of occurrence.")
@@ -235,40 +235,88 @@ class InfoPage(Frame):
         self.file_num_text.config(text = str(self.file_num+1)+" / "+str(self.file_max+1))
         # admin 0
         self.admin0_text.delete('1.0', END)
-        self.admin0_text.insert(INSERT, self.answers[i]["Country"])
+        if not self.answers[i]["Country"]:
+            self.admin0_text.tag_config(background="red")
+        else:
+            self.admin0_text.tag_config(background="white")
+            self.admin0_text.insert(INSERT, self.answers[i]["Country"])
         # iso
         self.iso_text.delete('1.0', END)
-        self.iso_text.insert(INSERT, self.answers[i]["iso"])
+        if not self.answers[i]["iso"]:
+            self.iso_text.tag_config(background="red")
+        else:
+            self.iso_text.tag_config(background="white")
+            self.iso_text.insert(INSERT, self.answers[i]["iso"])
         # Admin 1
         self.admin1_text.delete('1.0', END)
-        self.admin1_text.insert(INSERT, self.answers[i]["Admin1"])
+        if not self.answers[i]["Admin1"]:
+            self.admin1_text.tag_config(background="red")
+        else:
+            self.admin1_text.tag_config(background="white")
+            self.admin1_text.insert(INSERT, self.answers[i]["Admin1"])
         # Admin 2
         self.admin2_text.delete('1.0', END)
-        self.admin2_text.insert(INSERT, self.answers[i]["Admin2"])
+        if not self.answers[i]["Admin2"]:
+            self.admin2_text.tag_config(background="red")
+        else:
+            self.admin2_text.tag_config(background="white")
+            self.admin2_text.insert(INSERT, self.answers[i]["Admin2"])
         # number
         self.operation_number_text.delete('1.0', END)
-        self.operation_number_text.insert(INSERT, self.answers[i]["OpNum"])
+        if not self.answers[i]["OpNum"]:
+            self.operation_number_text.tag_config(background="red")
+        else:
+            self.operation_number_text.tag_config(background="white")
+            self.operation_number_text.insert(INSERT, self.answers[i]["OpNum"])
         # start
         self.operation_start_date_text.delete('1.0', END)
-        self.operation_start_date_text.insert(INSERT, self.answers[i]["Start"])
+        if not self.answers[i]["Start"]:
+            self.operation_start_date_text.tag_config(background="red")
+        else:
+            self.operation_start_date_text.tag_config(background="white")
+            self.operation_start_date_text.insert(INSERT, self.answers[i]["Start"])
         # end
         self.operation_end_date_text.delete('1.0', END)
-        self.operation_end_date_text.insert(INSERT, self.answers[i]["End"])
+        if not self.answers[i]["End"]:
+            self.operation_end_date_text.tag_config(background="red")
+        else:
+            self.operation_end_date_text.tag_config(background="white")
+            self.operation_end_date_text.insert(INSERT, self.answers[i]["End"])
         # glide
         self.glide_number_text.delete('1.0', END)
-        self.glide_number_text.insert(INSERT, self.answers[i]["Glide"])
+        if not self.answers[i]["Glide"]:
+            self.glide_number_text.tag_config(background="red")
+        else:
+            self.glide_number_text.tag_config(background="white")
+            self.glide_number_text.insert(INSERT, self.answers[i]["Glide"])
         # affected
         self.affected_text.delete('1.0', END)
-        self.affected_text.insert(INSERT, self.answers[i]["Affected"])
+        if not self.answers[i]["Affected"]:
+            self.affected_text.tag_config(background="red")
+        else:
+            self.affected_text.tag_config(background="white")
+            self.affected_text.insert(INSERT, self.answers[i]["Affected"])
         # assisted
         self.assisted_text.delete('1.0', END)
-        self.assisted_text.insert(INSERT, self.answers[i]["Assisted"])
+        if not self.answers[i]["Assisted"]:
+            self.assisted_text.tag_config(background="red")
+        else:
+            self.assisted_text.tag_config(background="white")
+            self.assisted_text.insert(INSERT, self.answers[i]["Assisted"])
         # budget
         self.operation_budget_text.delete('1.0', END)
-        self.operation_budget_text.insert(INSERT, self.answers[i]["OpBud"])
+        if not self.answers[i]["OpBud"]:
+            self.operation_budget_text.tag_config(background="red")
+        else:
+            self.operation_budget_text.tag_config(background="white")
+            self.operation_budget_text.insert(INSERT, self.answers[i]["OpBud"])
         # host
         self.host_national_society_text.delete('1.0', END)
-        self.host_national_society_text.insert(INSERT, self.answers[i]["Host"])
+        if not self.answers[i]["Host"]:
+            self.host_national_society_text.tag_config(background="red")
+        else:
+            self.host_national_society_text.tag_config(background="white")
+            self.host_national_society_text.insert(INSERT, self.answers[i]["Host"])
 
     def update_answers(self):
         self.answers[self.file_num]["Country"] = self.admin0_text.get("1.0",END)
@@ -300,8 +348,20 @@ class InfoPage(Frame):
         else:
             messagebox.showinfo(title = "Last file reached", message = "This is the last of all the files you uploaded")
 
+    def check_empty(self):
+        for i in range(self.file_max):
+            if (not self.answers["OpNum"] or not self.answers["Country"] or not self.answers["Admin1"] or not self.answers["Admin2"] 
+                    or not self.answers["iso"] or not self.answers["Glide"] or not self.answers["Host"] or not self.answers["OpBud"] 
+                    or not self.answers["Start"] or not self.answers["End"]or not self.answers["Affected"] or not self.answers["Assisted"]):
+                self.file_num = i
+                self.update_text(self.file_num)
+                messagebox.showwarning(title = "Warning", message = "Please fill all blank fields before proceed")
+                return True
+        return False
+
     def click_push(self):
         if messagebox.askyesno(title = "Push to database?", message = "Have you checked if all the data are correct?"):
-            for i in self.answers:
-                pythontopostgres.save_to_table(i["OpNum"], i["Country"], i["Admin1"], i["Admin2"], i["iso"], i["Glide"], 
-                                            i["Host"], i["OpBud"], i["Start"], i["End"], i["Affected"], i["Assisted"])
+            if not self.check_empty():
+                for i in self.answers:
+                    pythontopostgres.save_to_table(i["OpNum"], i["Country"], i["Admin1"], i["Admin2"], i["iso"], i["Glide"], 
+                                                i["Host"], i["OpBud"], i["Start"], i["End"], i["Affected"], i["Assisted"])
