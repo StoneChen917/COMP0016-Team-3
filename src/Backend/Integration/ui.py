@@ -33,6 +33,7 @@ class UI(Tk):
 
         self.frames = {}
         self.timer = False
+        self.start_extraction = False
 
         self.fronttoback = Frontoback()
 
@@ -75,9 +76,13 @@ class UI(Tk):
 
     def check_time(self):
         if self.timer:
-            self.after(3000, self.backtofront.update_info())
-            self.after(3000, self.show_frame("InfoPage"))
-            self.check_time()
+            if not self.start_extraction:
+                self.start_extraction = True
+                self.fronttoback.extract_answers()
+            if self.fronttoback.is_finished():
+                self.backtofront.update_info()
+                self.show_frame("InfoPage")
+                self.start_extraction = False
         self.after(3000, self.check_time)
 
     def on_closing(self):

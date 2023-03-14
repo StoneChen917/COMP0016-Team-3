@@ -236,92 +236,44 @@ class InfoPage(Frame):
         self.file_num_text.config(text = str(self.file_num+1)+" / "+str(self.file_max+1))
         # admin 0
         self.admin0_text.delete('1.0', END)
-        if not self.answers[i]["Country"]:
-            self.admin0_text.tag_config(background="red")
-        else:
-            self.admin0_text.tag_config(background="white")
-            self.admin0_text.insert(INSERT, self.answers[i]["Country"])
+        self.admin0_text.insert(INSERT, self.answers[i]["Country"])
         # iso
         self.iso_text.delete('1.0', END)
-        if not self.answers[i]["iso"]:
-            self.iso_text.tag_config(background="red")
-        else:
-            self.iso_text.tag_config(background="white")
-            self.iso_text.insert(INSERT, self.answers[i]["iso"])
+        self.iso_text.insert(INSERT, self.answers[i]["ISO"])
         # Admin 1
         self.admin1_text.delete('1.0', END)
-        if not self.answers[i]["Admin1"]:
-            self.admin1_text.tag_config(background="red")
-        else:
-            self.admin1_text.tag_config(background="white")
-            self.admin1_text.insert(INSERT, self.answers[i]["Admin1"])
+        self.admin1_text.insert(INSERT, self.answers[i]["Admin1"])
         # Admin 2
         self.admin2_text.delete('1.0', END)
-        if not self.answers[i]["Admin2"]:
-            self.admin2_text.tag_config(background="red")
-        else:
-            self.admin2_text.tag_config(background="white")
-            self.admin2_text.insert(INSERT, self.answers[i]["Admin2"])
+        self.admin2_text.insert(INSERT, self.answers[i]["Admin2"])
         # number
         self.operation_number_text.delete('1.0', END)
-        if not self.answers[i]["OpNum"]:
-            self.operation_number_text.tag_config(background="red")
-        else:
-            self.operation_number_text.tag_config(background="white")
-            self.operation_number_text.insert(INSERT, self.answers[i]["OpNum"])
+        self.operation_number_text.insert(INSERT, self.answers[i]["OpNum"])
         # start
         self.operation_start_date_text.delete('1.0', END)
-        if not self.answers[i]["Start"]:
-            self.operation_start_date_text.tag_config(background="red")
-        else:
-            self.operation_start_date_text.tag_config(background="white")
-            self.operation_start_date_text.insert(INSERT, self.answers[i]["Start"])
+        self.operation_start_date_text.insert(INSERT, self.answers[i]["Start"])
         # end
         self.operation_end_date_text.delete('1.0', END)
-        if not self.answers[i]["End"]:
-            self.operation_end_date_text.tag_config(background="red")
-        else:
-            self.operation_end_date_text.tag_config(background="white")
-            self.operation_end_date_text.insert(INSERT, self.answers[i]["End"])
+        self.operation_end_date_text.insert(INSERT, self.answers[i]["End"])
         # glide
         self.glide_number_text.delete('1.0', END)
-        if not self.answers[i]["Glide"]:
-            self.glide_number_text.tag_config(background="red")
-        else:
-            self.glide_number_text.tag_config(background="white")
-            self.glide_number_text.insert(INSERT, self.answers[i]["Glide"])
+        self.glide_number_text.insert(INSERT, self.answers[i]["Glide"])
         # affected
         self.affected_text.delete('1.0', END)
-        if not self.answers[i]["Affected"]:
-            self.affected_text.tag_config(background="red")
-        else:
-            self.affected_text.tag_config(background="white")
-            self.affected_text.insert(INSERT, self.answers[i]["Affected"])
+        self.affected_text.insert(INSERT, self.answers[i]["Affected"])
         # assisted
         self.assisted_text.delete('1.0', END)
-        if not self.answers[i]["Assisted"]:
-            self.assisted_text.tag_config(background="red")
-        else:
-            self.assisted_text.tag_config(background="white")
-            self.assisted_text.insert(INSERT, self.answers[i]["Assisted"])
+        self.assisted_text.insert(INSERT, self.answers[i]["Assisted"])
         # budget
         self.operation_budget_text.delete('1.0', END)
-        if not self.answers[i]["OpBud"]:
-            self.operation_budget_text.tag_config(background="red")
-        else:
-            self.operation_budget_text.tag_config(background="white")
-            self.operation_budget_text.insert(INSERT, self.answers[i]["OpBud"])
+        self.operation_budget_text.insert(INSERT, self.answers[i]["OpBud"])
         # host
         self.host_national_society_text.delete('1.0', END)
-        if not self.answers[i]["Host"]:
-            self.host_national_society_text.tag_config(background="red")
-        else:
-            self.host_national_society_text.tag_config(background="white")
-            self.host_national_society_text.insert(INSERT, self.answers[i]["Host"])
+        self.host_national_society_text.insert(INSERT, self.answers[i]["Host"])
 
     def update_answers(self):
         self.answers[self.file_num]["Country"] = self.admin0_text.get("1.0",END)
-        self.answers[self.file_num]["iso"] = self.iso_text.get("1.0",END)
+        self.answers[self.file_num]["ISO"] = self.iso_text.get("1.0",END)
         self.answers[self.file_num]["Admin1"] = self.admin1_text.get("1.0",END)
         self.answers[self.file_num]["Admin2"] = self.admin2_text.get("1.0",END)
         self.answers[self.file_num]["OpNum"] = self.operation_number_text.get("1.0",END)
@@ -351,9 +303,9 @@ class InfoPage(Frame):
 
     def check_empty(self):
         for i in range(self.file_max):
-            if (not self.answers["OpNum"] or not self.answers["Country"] or not self.answers["Admin1"] or not self.answers["Admin2"] 
-                    or not self.answers["iso"] or not self.answers["Glide"] or not self.answers["Host"] or not self.answers["OpBud"] 
-                    or not self.answers["Start"] or not self.answers["End"]or not self.answers["Affected"] or not self.answers["Assisted"]):
+            if (not self.answers[i]["OpNum"] or not self.answers[i]["Country"] or not self.answers[i]["Admin1"] or not self.answers[i]["Admin2"] 
+                    or not self.answers[i]["ISO"] or not self.answers[i]["Glide"] or not self.answers[i]["Host"] or not self.answers[i]["OpBud"] 
+                    or not self.answers[i]["Start"] or not self.answers[i]["End"]or not self.answers[i]["Affected"] or not self.answers[i]["Assisted"]):
                 self.file_num = i
                 self.update_text(self.file_num)
                 messagebox.showwarning(title = "Warning", message = "Please fill all blank fields before proceed")
@@ -364,5 +316,5 @@ class InfoPage(Frame):
         if messagebox.askyesno(title = "Push to database?", message = "Have you checked if all the data are correct?"):
             if not self.check_empty():
                 for i in self.answers:
-                    pythontopostgres.save_to_table(i["OpNum"], i["Country"], i["Admin1"], i["Admin2"], i["iso"], i["Glide"], 
+                    pythontopostgres.save_to_table(i["OpNum"], i["Country"], i["Admin1"], i["Admin2"], i["ISO"], i["Glide"], 
                                                 i["Host"], i["OpBud"], i["Start"], i["End"], i["Affected"], i["Assisted"])

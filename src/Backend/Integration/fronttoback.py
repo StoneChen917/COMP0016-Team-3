@@ -11,16 +11,12 @@ class Frontoback():
         self.max = 0
 
     def extract_answers(self):
-        integ = (self.files)
-        self.answers = integ.final_extract
+        self.answers = new_integ.front_integ(self.files)
         self.max = len(self.answers) - 1
         self.finished = True
 
     def reset_ftb(self):
         self.finished = False
-        self.files = []
-        self.answers = []
-        self.max = 0
 
     def is_finished(self):
         return self.finished
