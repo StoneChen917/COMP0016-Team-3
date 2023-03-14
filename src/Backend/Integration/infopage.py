@@ -234,6 +234,8 @@ class InfoPage(Frame):
         self.file_name_text.place_forget()
         self.file_name_text.place(x = (self.screen_width-self.file_name_text.winfo_reqwidth())/2, y = 66)
         self.file_num_text.config(text = str(self.file_num+1)+" / "+str(self.file_max+1))
+        self.file_num_text.place_forget()
+        self.file_num_text.place(x = (self.screen_width-self.file_num_text.winfo_reqwidth())/2, y = 100+31*12+3)
         # admin 0
         self.admin0_text.delete('1.0', END)
         self.admin0_text.insert(INSERT, self.answers[i]["Country"])
