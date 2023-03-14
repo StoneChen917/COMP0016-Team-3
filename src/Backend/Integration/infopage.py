@@ -221,6 +221,7 @@ class InfoPage(Frame):
     def back_main(self):
         if messagebox.askyesno(title = "Back to main page?", message = "Changes will be lost"):
             self.controller.show_frame("MainPage")
+            self.fronttoback.reset_ftb()
 
     def set_answers(self):
         self.files = self.fronttoback.get_files()

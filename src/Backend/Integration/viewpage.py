@@ -76,7 +76,7 @@ class ViewPage(Frame):
         self.controller.show_frame("MainPage")
     
     def click_extract(self):
-        #self.update_info_page()
+        self.update_info_page()
         self.controller.show_frame("LoadPage")
 
     def update_info_page(self):

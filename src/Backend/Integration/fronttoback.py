@@ -1,4 +1,4 @@
-#from new_integ import main
+import new_integ
 
 
 
@@ -11,10 +11,19 @@ class Frontoback():
         self.max = 0
 
     def extract_answers(self):
-        integ = main(self.files)
+        integ = (self.files)
         self.answers = integ.final_extract
         self.max = len(self.answers) - 1
         self.finished = True
+
+    def reset_ftb(self):
+        self.finished = False
+        self.files = []
+        self.answers = []
+        self.max = 0
+
+    def is_finished(self):
+        return self.finished
 
     def get_files(self):
         return self.files

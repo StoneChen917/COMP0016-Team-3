@@ -75,7 +75,7 @@ class UI(Tk):
 
     def check_time(self):
         if self.timer:
-            #self.after(3000, self.backtofront.update_info())
+            self.after(3000, self.backtofront.update_info())
             self.after(3000, self.show_frame("InfoPage"))
             self.check_time()
         self.after(3000, self.check_time)
