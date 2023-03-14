@@ -76,7 +76,8 @@ class ViewPage(Frame):
         self.controller.show_frame("MainPage")
     
     def click_extract(self):
-        self.controller.show_frame("LoadPage")
+        if messagebox.askyesno(title = "Extract data?", message = "This may take some time"):
+            self.controller.show_frame("LoadPage")
 
     def set_files(self, files):
         self.files = files
