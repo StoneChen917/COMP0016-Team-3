@@ -16,6 +16,13 @@
 </head>
 
 <style>
+    h1 {text-align: center;}
+    /*h2 {text-align: center;}*/
+    /*h3 {text-align: center;}*/
+    /*h4 {text-align: center;}*/
+    /*h5 {text-align: center;}*/
+
+
     .styled-table {
         border-collapse: collapse;
         margin: 25px 0;
@@ -200,7 +207,7 @@
     <!-- the first re-usable section with topic and contents -->
     <section class="section" id="achievements">
         <!-- topic -->
-        <div style="text-align: center;"> <h3>Evaluations</h3></div>
+        <div style="text-align: center;"> <h1>Evaluations</h1></div>
         <hr class="solid">
         <div style="text-align: center;"><h4 class="mb-4">MoSCoW List Achievement</h4></div>
 <!--        <div class="table-responsive">-->
@@ -273,7 +280,7 @@
     </section>
 
 
-        <h1>Evaluating QA Models</h1>
+        <center></align><h3>Evaluating QA Models</h3>
         <h5>Common Metrics to Evaluate QA Models</h5>
         <p align="justify">There are two dominant metrics used by many question answering datasets, including SQuAD: exact match (EM) and F1 score. These scores are computed on individual question+answer pairs. When multiple correct answers are possible for a given question, the maximum score over all possible correct answers is computed. Overall EM and F1 scores are computed for a model by averaging over the individual example scores.
         </p>
@@ -441,12 +448,6 @@
 <!--    </section>-->
 
 
-    <section class="section" id="contributions">
-        <!-- topic -->
-        <h3>Individual Contributions</h3>
-        <!-- contents -->
-        <img src="assets/images/evaluation/individual_contributions.png" alt="individual contributions table">
-    </section>
 
     <section class="section" id="critical-evaluation">
         <!-- topic -->
@@ -462,25 +463,27 @@
         </p>
         <h4>Efficiency</h4>
         <p>
-            We are using Elasticsearch for the search engine. This is a highly optimised framework for search tasks, offering high performance for any search algorithm. After having optimised the API calls to the X5GON API service, which were an efficiency bottleneck
-            before, our application has delivered highly efficient search performance.
+            A huge shortcoming of our system is its efficiency. As there are so many integrated parts, it takes a while for the final extraction to take place. This is, more specifically, to do with the QA model, and Fuzzy Matching to find the P-codes for locations.
+            As for the extraction of P-codes, this is due to the pattern matching structure that we implemented. Once the Admins have been extracted, it then tries to find the matching P-code from the Excel database. However, the issue is that the databases have approximately 40,000 rows of data.
+            Our efforts to reduce this time by filtering through country codes, reduced it to an average of around 2 minutes of extraction.
+
+            Although this is a huge cut in time, it could be further improved if we implemented a better algorithm to search for the correct match quicker.
         </p>
         <h4>Compatibility</h4>
         <p>
-            We have not been able to optimise our application for mobile devices, as mentioned above. Nonetheless, the application is deployed as a cloud-based web application on Azure. This offers performance and compatibility independent of the user's operating
-            system. It is thus compatible with Windows, Linux and Mac, as well as mobile operating systems for smartphones and tablets.
+            Our program is deployed as an application built with python UI library Tkinter. It runs well across Windows, Linus and Mac, and had only been run on laptops thus far.
         </p>
         <h4>Maintainability</h4>
         <p>
-            The code has been written with software engineering practices in mind. The architecture clearly separates the project into frontend and backend. There are only a few API calls that the frontend (view) uses to communicate with the backend (controller).
-            The controller then allocates tasks to the relevant models. This allows future developers to expand the system with additional views, such as a mobile application, as well as more search models.
+            Our system was structured with maintainability in mind. It separates frontend and backend, so that communication can clearly be seen in the code. We used an object-oriented approach in order to structure and separate tasks to different classes.
+            All this means that the code can easily be modified, or extended for future use,
         </p>
         <h4>Project management</h4>
         <p>
-            We employed an agile approach to software engineering in our project. By defining 2-week sprints with clear objectives, we were able to respond to feedback from the clients. Our central team management platform was Notion. We collected meeting notes there
-            such that everyone was on the same page. It also acted as a central store for key documents, such as the requirements, technologies and designs. Weekly team syncs were used to discuss progress and blockers, as well as to set tasks for each
-            team member. This worked well for keeping everyone involved and making continuous progress with the project. Reflecting on the team effort throughout, there was a noticeable increase in effort towards the end of the project. This could have
-            been prevented by a more disciplined work ethic in the earlier stages of the project, where we made less progress than what we could have done.
+            We practiced agile method to software engineering as a team. We had lab meetings, where we discuss progress with our TA, every Tuesday. Aside from that, we also held weekly team meeting to delegate tasks for the week, and discuss progress and ideas, keeping each other on the same page.
+            Our main means of team communication was through WhatsApp, and other meetings and discussions were held on Microsoft Teams. Our collaborative platform was Notion, where we stored meeting minutes, delegated weekly tasks for each member, and stored any other important documents or information.
+            This helped us to keep track of progress, and make sure that everyone knew what tasks they were meant to be doing at any given time during the project.
+
         </p>
     </section>
 
@@ -489,6 +492,9 @@
         <h3>Future Work</h3>
         <!-- contents -->
         <p>
+            Though our system meets all but 1 of our clients' requirements, there are still some improvements that could be made. One major improvement would be the retrieval time. perhaps finding a quicker answering model, or using a better algorithm/data structure to find codes.
+            Another improvement would be to find a better QA model, or train the existing model. As evaluated above, the QA model has some shortcomings in terms of answer accuracy
+
             The application is far from complete, there are many more features that could be implemented.
             One issue with the current application is that it does not use HTTPS.
             Since it is not deployed on a public domain, we could not apply for an SSL certificate.
