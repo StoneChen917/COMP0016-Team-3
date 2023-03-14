@@ -140,17 +140,23 @@ def dict_parser(final,path,list_answers):
         df.to_excel('src/Backend/Integration/batchresults.xlsx', index=False)
 
 
+
+def front_integ(docs):
+    list_answers = []
+    for x in docs:
+        path = x
+        test = main(path)
+        dict_parser(test.final_extract,path,list_answers)
+    return list_answers
+    
 #dir_path = r'C:\\Users\\zaynb\\Documents\\COMP0016-Team-3\\sampledocs'
-docs = []
-list_answers = []
+#docs = []
+
 #for path in os.listdir(dir_path):
 #    if os.path.isfile(os.path.join(dir_path, path)):
 #        docs.append("sampledocs/" + path)
         
-for x in docs:
-    path = x
-    test = main(path)
-    dict_parser(test.final_extract,path,list_answers)
+
 
     
     
