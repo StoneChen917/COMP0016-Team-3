@@ -162,10 +162,10 @@ def front_integ(docs):
     
     
 # test = main("src/Backend/Integration/testfile.pdf")
-#path = "src/Backend/Integration/MDRKH001final.pdf"
-#test = main(path)
+path = "src/Backend/Integration/MDRBR008dfr.pdf"
+test = main(path)
 #file_num = 1 #edit
-#print(test.final_extract)
+print(test.final_extract)
 ##dict_parser(test.final_extract,path)
 # test_dict = {'Country': 'Rwanda', 'ISO': 'RWA', 'Admin1': [{'Location': 'Eastern Province', 'P-Code': '20RWA005'}, {'Location': 'the City of Kigali', 'P-Code': '20RWA001'}], 'Admin2': [{'Location': 'Flanders', 'P-Code': '20RWA004042'}, {'Location': 'Gatsibo district', 'P-Code': '20RWA005053'}, {'Location': 'Gatsibo District', 'P-Code': '20RWA005053'}, {'Location': 'Gatsibo d istrict \n©IFRC', 'P-Code': '20R053WA005053'}], 'Start': '11 July 2017', 'End': '01 September 2017', 'Affected': '675', 'Assisted': '811 households', 'Glide': 'ST-2017 -000035 -RWA', 'OpNum': 'MDRRW014', 'OpBud': 'CHF 49,122', 'Host': 'Rwanda Red Cross Society'}
 # dict_parser(test_dict,path)
