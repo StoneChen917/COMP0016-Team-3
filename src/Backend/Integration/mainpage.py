@@ -96,21 +96,22 @@ class MainPage(Frame):
         messagebox.showinfo(title = "Info", 
                                 message = """1.Upload your file by drag and drop, or select from folders. (pdf only)\n2.Check if the informations are correct and push it to the database.""")
 
-    def click_upload_folder(self):
-        mypath = filedialog.askdirectory()
+    def get_files_in_folder(self, mypath):
         files = [mypath+"/"+f for f in os.listdir(mypath) if os.path.isfile(os.path.join(mypath, f))]
         for f in files:
             if "PDF document" in magic.from_file(f):
                 self.listbox.insert(END, f)
-            else:
-                self.upload_failure(f)
+
+    def click_upload_folder(self):
+        mypath = filedialog.askdirectory()
+        self.get_files_in_folder(mypath)
 
     def click_upload_file(self):
         f = filedialog.askopenfilename()
         if "PDF document" in magic.from_file(f):
             self.listbox.insert(END, f)
         else:
-            self.upload_failure(f)
+            self.upload_failure()
 
     def click_remove_selected(self):
         if messagebox.askyesno(title = "Remove selected files?", message = "Do you really want to remove the selected files?"):
@@ -164,7 +165,7 @@ class MainPage(Frame):
                         last_reached = True
                         keepgoing = False
                     elif string[i] == "}" and string[i+1] == " ":
-                        file_end = i+1
+                        file_end = i
                         keepgoing = False
                     else:
                         i += 1
@@ -178,12 +179,9 @@ class MainPage(Frame):
         return files
 
     def drop_file(self, event):
-        files = self.split_file_names(event.data)
-        failed = False
-        for f in files:
-            if not "PDF document" in magic.from_file(f):
-                self.upload_failure(f)
-                failed = True
-        if not failed:
-            for f in files:
-                self.listbox.insert(END, f)
+        items = self.split_file_names(event.data)
+        for i in items:
+            if os.path.isdir(i):
+                self.get_files_in_folder(i)
+            elif "PDF document" in magic.from_file(i):
+                self.listbox.insert(END, i)

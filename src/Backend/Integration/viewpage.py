@@ -76,12 +76,8 @@ class ViewPage(Frame):
         self.controller.show_frame("MainPage")
     
     def click_extract(self):
-        self.update_info_page()
-        self.controller.show_frame("LoadPage")
-
-    def update_info_page(self):
-        self.fronttoback.extract_answers()
-        self.infopage.update_text()
+        if messagebox.askyesno(title = "Extract data?", message = "This may take some time"):
+            self.controller.show_frame("LoadPage")
 
     def set_files(self, files):
         self.files = files

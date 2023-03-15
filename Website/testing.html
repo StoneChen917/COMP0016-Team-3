@@ -41,14 +41,10 @@
                 <a class="mainlink" href="design.html">Design</a>
             </li>
             <li class="submenu" class="submenu">
-<<<<<<< Updated upstream
-                <a class="mainlink" href="implementation.html">Implementation</a>
-=======
                 <a class="mainlink" href="system_design.html">System Design</a>
             </li>
             <li class="submenu" class="submenu">
                 <a class="mainlink" href="implementatio.html">Implementation</a>
->>>>>>> Stashed changes
             </li>
             <li class="submenu" class="submenu">
                 <a class="mainlink" href="testing.html">Testing</a>
@@ -164,36 +160,23 @@
         <h3>Testing</h3>
         <!-- contents -->
         <b>Testing strategy</b>
-        <p align="justify">During the development process, we used test-driven development using unit testing. It allowed us to make sure the project was bug-free before adding new functionnalities, 
-            hence making the project more maintainable and scalable. We conceived the software by small steps, 
-            each time adding corresponding tests to the new parts of code.</p>
-        <b>Unit testing</b>
-        <p align="justify">The main type of testing we used was unit testing. We aimed to have a decent coverage by the end of the project for the back-end (i.e >50%). When implementing functionalities,  we created  Unit tests in to check it was functionning correctly. We tried creating tests for as many branches as we could to avoid unexpected behaviors. We tried to test both the intended behaviors of our code and the exception throwing behaviors in order to be as complete as possible. 
-            All of the failed tests were looked into and we tried to fix the corresponding bugs immediately. However, some bugs appeared with deployment and we couldn't use unit testing on them.
-        </p>
-        <b>Responsive design testing</b><br>
-        <img src="assets/images/responsive ipad.png" class="small-size-image"><img src="assets/images/responsive samsung.png" class="small-size-image">
-        <p align="justify">Using responsive web design testing tools like 
-            <a class="mainlink" href="http://mattkersley.com/responsive/">Matt Kersley's</a>
-             and <a class="mainlink" href="https://www.browserstack.com/responsive">BrowserStack</a> 
-            we were able to test the design of our website on different devices like cellphones or tablets. While developing the front-end and the interface, we tried to make the application accessible by mobile users. As you can see on the images, the application is usable for Ipad and Samsung users. However, it is not perfect and some contents sometime do not show properly. Furthermore, the application is not optimised for very small screens (eg.320 x 480px)
-            
+        <p align="justify"> Unit Tests - We did this to ensure that the individual components of the program were functional. This increases confidence of each component working.
+            <br>Integration Test - As the frontend and backend were formed in two seperate sections, we ran tests to ensure the connection between the two were running correctly.
+            <br>User Tests - We conducted user tests to ensure that our interface was easy and efficient to use and understand.
 
         </p>
-        <b>Performance testing</b>
-        <p>During the project, we performed two types of performance testing:<br><br>
-            - <em>Time efficiency testing</em>: User feedback indicated that search was to slow. To help tackle that, we decided to implement time efficiency testing.
-            We timed each method in the search route for the back-end API, in order to find the parts which took the most time. We found out the problem was the fact that to add metadata to the results we had to send one query per document to the X5GON API. Each request took around 0.5 second. To tackle that, we decided to implement parallel requests.<br><br>
-            - <em>Search accuracy testing</em>: Using another dataset, we tested our different search algorithms on a manually-labelled judgement list. more details on that are included in the <a class="mainlink" href="research.html">Research tab</a>
+        <b>Unit testing</b>
+        <p align="justify">We conducted user tests in the following areas:<br>- Front to back tests <br>- Code matching tests<br>- UI tests<br>- Location testing<br>- Integration file testing<br>- Postgres database testing<br>- Read File tests<br>- Q&A model tests
+            <br>Splitting the sections up into sections allows tests to be correctly made. This also allows for in-depth testing with the correct levels of coverage.
+
         </p>
-        <b>Client acceptance testing</b>
-        <p align="justify">We asked our clients and Teaching Assistant for feedback in order to make user experience more pleasant. As developers, it is hard to have an objective opinion of our design as we are accustomed to it and know how it works. We simply showed them the deployment version of our project and asked them to use it the way they would if they wanted to use the tool.<br><br>
-            The feedback was the following: <br><br>
-            - There was no way to tell the users that the engine was searching, and when the search took long they could not know if it was a bug or not. <em>To solve that we added a "Loading" animation to the search front-end.</em><br><br>
-            - The loading time for search was too long: testers felt like the search engine was slower than other search engines they were used to. <em>To solve that we implemented parallel requests to the X5GON api</em><br><br>
-            - Users found annoying the fact that when clicking on a search result it showed it on the same tab, hence making the users loose the result page. <em>To solve that, we decided to show content on a new tab from the search results</em><br><br>
-            - Users were disoriented by the fact that when adding filters they had to search again to show the results with the filters. <em> To solve that, we could in the future decide to launch a new search request each time new filters are added.</em><br><br>
-        Other feedback was received and acted upon like the lack of popup message on log-in.
+        <b>Integration testing</b><br>
+        <p align="justify"> Integration tests between the front and back end are necessary in covering all types of input and data sent between the UI interface from the user, and the correct answers/ outputs needed to be sent back to the UI from the backend files.
+
+        </p>
+        <b>User testing</b><br>
+        <p align="justify">
+
         </p>
         
     </section>
@@ -216,15 +199,8 @@
                         <div class="col-3"><a href="requirements.html">Requirement</a></div>
                         <div class="col-3"><a href="research.html">Research</a></div>
                         <div class="col-3"><a href="design.html">Design</a></div>
-<<<<<<< Updated upstream
                         <div class="col-3"><a href="implementation.html">Implementation</a></div>
                         <div class="col-3"><a href="testing.html">Testing</a></div>
-=======
-                        <div class="col-3"><a href="system_design.html">System Design</a></div>
-
-                        <div class="col-3"><a href="implementatio.html">Implementation</a></div>
-                        <div class="col-3"><a href="testin.html">Testing</a></div>
->>>>>>> Stashed changes
                         <div class="col-3"><a href="evaluation.html">Evaluation</a></div>
                         <div class="col-3"><a href="appendix.html">Appendix</a></div>
                     </div>

@@ -10,7 +10,7 @@ port_id = 5433
 conn = None
 cur = None
 
-def save_to_table(op_num, ad0, ad1, ad2, iso, glide, hns, ob, osd, oed, npaf, npas):
+def save_to_table(op_num, ctry, ad1, ad2, iso, glide, hns, ob, osd, oed, npaf, npas):
     conn = psycopg2.connect(
                 host = hostname,
                 dbname = database,
@@ -20,11 +20,11 @@ def save_to_table(op_num, ad0, ad1, ad2, iso, glide, hns, ob, osd, oed, npaf, np
     
     cur = conn.cursor()
 
-    disaster_insert_script = ''' INSERT INTO Disaster (operation_number, admin0, admin1, admin2, iso_info, glide_number, host_national_society, operation_budget, 
+    disaster_insert_script = ''' INSERT INTO Disaster (operation_number, country, admin_1_code, admin_2_code, iso_info, glide_number, host_national_society, operation_budget, 
                           operation_start_date, operation_end_date, number_of_people_affected, number_of_people_assisted) 
                           VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)'''
 
-    disaster_insert_value = (op_num, ad0, ad1, ad2, iso, glide, hns, ob, osd, oed, npaf, npas)
+    disaster_insert_value = (op_num, ctry, ad1, ad2, iso, glide, hns, ob, osd, oed, npaf, npas)
     
     cur.execute(disaster_insert_script, disaster_insert_value)
 
@@ -48,17 +48,17 @@ def create_script():
 
     create_script = '''   CREATE TABLE IF NOT EXISTS Disaster (
                             operation_number          varchar PRIMARY KEY,
-                            admin_0_code              varchar NOT NULL,
+                            country                   varchar NOT NULL,
                             admin_1_code              varchar NOT NULL,
                             admin_2_code              varchar NOT NULL,
                             iso_info                  varchar NOT NULL,
                             glide_number              varchar NOT NULL,
                             host_national_society     varchar NOT NULL,
                             operation_budget          varchar NOT NULL,
-                            operation_start_date      DATE,
-                            operation_end_date        DATE,
-                            number_of_people_affected INT,
-                            number_of_people_assisted INT)'''                    
+                            operation_start_date      varchar NOT NULL,
+                            operation_end_date        varchar NOT NULL,
+                            number_of_people_affected varchar NOT NULL,
+                            number_of_people_assisted varchar NOT NULL)'''                    
     cur.execute(create_script)
     conn.commit()
     if cur is not None:

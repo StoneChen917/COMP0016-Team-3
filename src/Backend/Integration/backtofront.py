@@ -5,5 +5,5 @@ class Backtofront():
         self.infopage = infopage
 
     def update_info(self):
-        
         self.infopage.set_answers()
+        self.infopage.update_text(0)
