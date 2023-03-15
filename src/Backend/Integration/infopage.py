@@ -315,8 +315,10 @@ class InfoPage(Frame):
         return False
 
     def click_push(self):
-        if messagebox.askyesno(title = "Push to database?", message = "Have you checked if all the data are correct?"):
+        if messagebox.askyesno(title = "Save to database?", message = "Have you checked if all the data are correct?"):
             if not self.check_empty():
                 for i in self.answers:
                     pythontopostgres.save_to_table(i["OpNum"], i["Country"], i["Admin1"], i["Admin2"], i["ISO"], i["Glide"], 
                                                 i["Host"], i["OpBud"], i["Start"], i["End"], i["Affected"], i["Assisted"])
+                messagebox.showinfo(title = "Success", message = "Data have been saved")
+                self.controller.show_frame("MainPage")
