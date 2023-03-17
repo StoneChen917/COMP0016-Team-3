@@ -185,10 +185,14 @@
             <i class="fa fa-caret-down"></i>
             </button>
             <div class="dropdown-content">
-            <a href="#abstracts">Abstracts</a>
-            <a href="#features">Features</a>
-            <a href="#team-members">Team Members</a>
-            <a href="#gantt-chart">Gantt Chart</a>
+            <a href="evaluation.html#achievements">Achievements</a>
+            <a href="evaluation.html#QA">QA Models</a>
+            <a href="evaluation.html#spacy">spaCy Models</a>
+            <a href="evaluation.html#string">String Matching</a>
+            <a href="evaluation.html#critical">Critical Evaluation</a>
+            <a href="evaluation.html#future">Future Work</a>
+
+
             </div>
         </div> 
         <div class="dropdown">
@@ -281,30 +285,30 @@
 
     </section>
 
-
-        <center></align><h3>Evaluating QA Models</h3>
-        <h5>Common Metrics to Evaluate QA Models</h5>
-        <p align="justify">There are two dominant metrics used by many question answering datasets, including SQuAD: exact match (EM) and F1 score. These scores are computed on individual question+answer pairs. When multiple correct answers are possible for a given question, the maximum score over all possible correct answers is computed. Overall EM and F1 scores are computed for a model by averaging over the individual example scores.
+    <section class="section" id="QA">
+        </align><h1>Evaluating QA Models</h1>
+        <h4>Common Metrics to Evaluate QA Models</h4>
+        <p>There are two dominant metrics used by many question answering datasets, including SQuAD: exact match (EM) and F1 score. These scores are computed on individual question+answer pairs. When multiple correct answers are possible for a given question, the maximum score over all possible correct answers is computed. Overall EM and F1 scores are computed for a model by averaging over the individual example scores.
         </p>
 
-        <h5>Exact Match</h5>
-        <p align="justify">For each question+answer pair, if the characters of the model's prediction exactly match the characters of (one of) the True Answer(s), EM = 1, otherwise EM = 0. This is a strict all-or-nothing metric; being off by a single character results in a score of 0. When assessing against a negative example, if the model predicts any text at all, it automatically receives a 0 for that example.
+        <h4>Exact Match</h4>
+        <p>For each question+answer pair, if the characters of the model's prediction exactly match the characters of (one of) the True Answer(s), EM = 1, otherwise EM = 0. This is a strict all-or-nothing metric; being off by a single character results in a score of 0. When assessing against a negative example, if the model predicts any text at all, it automatically receives a 0 for that example.
         </p>
 
-        <h5>F1</h5>
-        <p align="justify">F1 score is a common metric for classification problems, and widely used in QA. It is appropriate when we care equally about precision and recall. In this case, it's computed over the individual words in the prediction against those in the True Answer. The number of shared words between the prediction and the truth is the basis of the F1 score: precision is the ratio of the number of shared words to the total number of words in the prediction, and recall is the ratio of the number of shared words to the total number of words in the ground truth. 
+        <h4>F1</h4>
+        <p>F1 score is a common metric for classification problems, and widely used in QA. It is appropriate when we care equally about precision and recall. In this case, it's computed over the individual words in the prediction against those in the True Answer. The number of shared words between the prediction and the truth is the basis of the F1 score: precision is the ratio of the number of shared words to the total number of words in the prediction, and recall is the ratio of the number of shared words to the total number of words in the ground truth. 
         </p>
 
         <h4>Datasets Used</h4>
-        <p align="justify">The Stanford Question Answering Dataset (SQuAD) is a set of question and answer pairs that present a strong challenge for NLP models. Due to its size (100,000+ questions), its difficulty due to the model only has access to a single passage and the fact that its answers are more complex and thus require more-intensive reasoning, SQuAD is an excellent dataset to train NLP models on.
+        <p>The Stanford Question Answering Dataset (SQuAD) is a set of question and answer pairs that present a strong challenge for NLP models. Due to its size (100,000+ questions), its difficulty due to the model only has access to a single passage and the fact that its answers are more complex and thus require more-intensive reasoning, SQuAD is an excellent dataset to train NLP models on.
         <br>
         SQuAD 1.1, the previous version of the SQuAD dataset, contains 100,000+ question-answer pairs on 500+ articles. SQuAD2.0 combines the 100,000 questions in SQuAD1.1 with over 50,000 unanswerable questions written adversarially by crowdworkers to look similar to answerable ones. To do well on SQuAD2.0, systems must not only answer questions when possible, but also determine when no answer is supported by the paragraph and abstain from answering. 
         <br>
         We have decided to choose a model that has been pre-trained on SQuAD2.0 for improved performance.
         </p>
 
-        <h4>Our Evaluations</h4>
-        <p align="justify">We shortlisted 5 well performing pre-trained QA models from Hugging Face and analysed them using their f1 and EM values on the SQuAD2.0 dataset, which are as follows:</p>
+        <h1>Our Evaluations</h1>
+        <p>We shortlisted 5 well performing pre-trained QA models from Hugging Face and analysed them using their f1 and EM values on the SQuAD2.0 dataset, which are as follows:</p>
         <br>
         <table>
             <tr>
@@ -341,6 +345,9 @@
         <br>
         <p>We also ran all models on a sample document provided by our client, asked the models questions related to our requirements, tabulated the results and asked our peers to rate the sensibility of the answers from 0-5 for each of the answers. The results are as follows:</p>
         <b></b>
+    </section>
+
+    <section class="section" id="spacy">
         <h1>Evaluating spaCy Models</h1>
         <h4>Testing location detection</h4>
         <p>SpaCy has 3 main NLP models: small, medium, and large, which you can choose from to perform a task. The team decided that the large model would be best for our task of extracting all Geopolitical Entities (GPE) from the document. </p>
@@ -395,6 +402,9 @@
 
         <p>Although all three models have the same F-score, the large model has a much larger vector size compared to the small and large model, making it more accurate.</p>
         <br>
+    </section>
+
+    <section class="section" id="string">  
         <h1>Evaluating Different String Matching Methods</h1>
         <p align = "justify">To decide which method of string matching was best, we decided to compare the Fuzzywuzzy module, Edit distance and Cosine Matching by using 40 random Admin 1 and Admin 2 locations extracted from 15 random documents. We decided to test 2 different cases:</p>
         <br>
@@ -447,11 +457,11 @@
                 <td>87.5%</td>
             </tr>
         </table>
-<!--    </section>-->
+   </section>
 
 
 
-    <section class="section" id="critical-evaluation">
+    <section class="section" id="critical">
         <!-- topic -->
         <h3>Critical Evaluation</h3>
         <!-- contents -->
@@ -497,7 +507,7 @@
         </p>
     </section>
 
-    <section class="section" id="future-work">
+    <section class="section" id="future">
         <!-- topic -->
         <h3>Future Work</h3>
         <!-- contents -->
