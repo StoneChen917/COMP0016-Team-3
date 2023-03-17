@@ -162,7 +162,7 @@ def front_integ(docs):
     
     
 # test = main("src/Backend/Integration/testfile.pdf")
-path = "src/Backend/Integration/MDRBR008dfr.pdf"
+path = "src/Backend/Integration/MDRKH001final.pdf"
 test = main(path)
 #file_num = 1 #edit
 print(test.final_extract)

@@ -250,13 +250,14 @@
             <tbody>
             <tr><td>Client Liaison</td><td>25</td><td>25</td><td>25</td><td>25</td></tr>
             <tr><td>Requirements Analysis(HCI)</td><td>25</td><td>25</td><td>25</td><td>25</td></tr>
-            <tr><td>Research</td><td></td><td></td><td></td><td></td></tr>
-            <tr><td>UI Design</td><td>80</td><td></td><td></td><td>20</td></tr>
-            <tr><td>Coding</td><td></td><td></td><td></td><td></td></tr>
-            <tr><td>Testing</td><td></td><td></td><td></td><td></td></tr>
-            <tr><td>Report Website</td><td></td><td></td><td></td><td></td></tr>
-            <tr><td>Monthly Blogs</td><td></td><td></td><td></td><td></td></tr>
-            <tr><td>Monthly Videos</td><td></td><td></td><td></td><td></td></tr>
+            <tr><td>Research</td><td>25</td><td>25</td><td>25</td><td>25</td></tr>
+            <tr><td>UI Design</td><td>80</td><td>0</td><td>0</td><td>20</td></tr>
+            <tr><td>Coding</td><td>25</td><td>25</td><td>25</td><td>25</td></tr>
+            <tr><td>Testing</td><td>25</td><td>25</td><td>25</td><td>25</td></tr>
+            <tr><td>Integration</td><td>15</td><td>70</td><td>0</td><td>15</td></tr>
+            <tr><td>Report Website</td><td>25</td><td>25</td><td>25</td><td>25</td></tr>
+            <tr><td>Monthly Blogs</td><td>0</td><td>100</td><td>0</td><td>0</td></tr>
+            <tr><td>Monthly Videos</td><td>0</td><td>0</td><td>0</td><td>100</td></tr>
             <tr><td>Overall Contribution</td><td></td><td></td><td></td><td></td></tr>
             <tr><td>Main roles</td><td></td><td></td><td></td><td></td></tr>
 
@@ -272,8 +273,9 @@
             </thead>
             <tbody>
             <tr><td>1</td><td>When multiple Admin 0 in document, may incorrectly identify the actual country</td><td>High</td></tr>
-
-
+            <tr><td>2</td><td>May find incorrect ISO code for locations that are neither in Admin1 location database or Admin 2 location database</td><td>High</td></tr>
+            <tr><td>3</td><td>Extracts ISO codes of locations that aren't in the country</td><td>Medium</td></tr>
+            <tr><td>4</td><td>spaCy model extracts duplicate locations (E.g 'Gatsibo' & 'Gatsibo District')</td><td>Low</td></tr>
             </tbody>
         </table>
 
@@ -454,33 +456,41 @@
         <h3>Critical Evaluation</h3>
         <!-- contents -->
         <h4>User Interface</h4>
-        <p>The user interface has been designed similar to Google's search interface. The design is kept simple and clean, and we have received positive feedback from the clients. There could be additional functionality in the UI, such as more search filters
-            and advanced search features such as support for boolean logic. The application is usable on mobile devices, however, more work would be needed for a fully responsive UI.
+        <p>Our user interface was created using Tkinter, which was a good enough interface to meet our requirement. It is also very user friendly and meets HCI standards, as it is well labelled with instrictions, and help buttons for further clarification. 
+            <br>
+            <br>
+            However, a minor improvement would be to use a better library could have been used instead, to make it more aesthetically pleasing, and to fit the Red Cross' style/theme.
         </p>
         <h4>Stability</h4>
-        <p>The application is deployed on the Azure Cloud using a free account. This limits the amount of cloud credit available, giving us little computing resources. We assume that this is one cause for the relatively slow performance of our deployed application.
-            However, we have not experienced any crashes. This indicates relatively high stability.
+        <p>
+            The Interface will be deployed as a program on relevant devices. The system may take a while to complete extraction, bust so far we have not had an issue with the system crashing.
+            Therefore, our system is very stable.
         </p>
         <h4>Efficiency</h4>
         <p>
             A huge shortcoming of our system is its efficiency. As there are so many integrated parts, it takes a while for the final extraction to take place. This is, more specifically, to do with the QA model, and Fuzzy Matching to find the P-codes for locations.
-            As for the extraction of P-codes, this is due to the pattern matching structure that we implemented. Once the Admins have been extracted, it then tries to find the matching P-code from the Excel database. However, the issue is that the databases have approximately 40,000 rows of data.
+            As for the extraction of P-codes, this is due to the pattern matching structure that we implemented. Once the Admins have been extracted, it then tries to find the matching P-code from the Excel database. 
+            <br>
+            <br>
+            However, the issue is that the databases have approximately 40,000 rows of data.
             Our efforts to reduce this time by filtering through country codes, reduced it to an average of around 2 minutes of extraction.
 
             Although this is a huge cut in time, it could be further improved if we implemented a better algorithm to search for the correct match quicker.
         </p>
         <h4>Compatibility</h4>
         <p>
-            Our program is deployed as an application built with python UI library Tkinter. It runs well across Windows, Linus and Mac, and had only been run on laptops thus far.
+            Our program is deployed as an application built with python UI library Tkinter. It runs well across Windows, Linux and Mac, and has only been run on laptops thus far.
         </p>
         <h4>Maintainability</h4>
         <p>
             Our system was structured with maintainability in mind. It separates frontend and backend, so that communication can clearly be seen in the code. We used an object-oriented approach in order to structure and separate tasks to different classes.
-            All this means that the code can easily be modified, or extended for future use,
+            All this means that the code can easily be modified, or extended for future use.
         </p>
         <h4>Project management</h4>
         <p>
             We practiced agile method to software engineering as a team. We had lab meetings, where we discuss progress with our TA, every Tuesday. Aside from that, we also held weekly team meeting to delegate tasks for the week, and discuss progress and ideas, keeping each other on the same page.
+            <br>
+            <br>
             Our main means of team communication was through WhatsApp, and other meetings and discussions were held on Microsoft Teams. Our collaborative platform was Notion, where we stored meeting minutes, delegated weekly tasks for each member, and stored any other important documents or information.
             This helped us to keep track of progress, and make sure that everyone knew what tasks they were meant to be doing at any given time during the project.
 
@@ -492,22 +502,13 @@
         <h3>Future Work</h3>
         <!-- contents -->
         <p>
-            Though our system meets all but 1 of our clients' requirements, there are still some improvements that could be made. One major improvement would be the retrieval time. perhaps finding a quicker answering model, or using a better algorithm/data structure to find codes.
-            Another improvement would be to find a better QA model, or train the existing model. As evaluated above, the QA model has some shortcomings in terms of answer accuracy
+            Though our system meets all but 1 of our clients' requirements, there are still some improvements that could be made. One major improvement would be the retrieval time. Perhaps finding a quicker answering model, or using a better algorithm/data structure to find codes.
+            Another improvement would be to find a better QA model, or train the existing model. As evaluated above, the QA model has some shortcomings in terms of answer accuracy, which could definitely be improved.
+            <br>
+            <br>
+            In terms of the user interface, the UI feedback could also be improved. For example on the screen where answers are displayed, currently, users have the ability to check answers and modify it, if any of them are incorrect. After modifying,
+            they can then save the correct answers to the database. Our suggested improvement would be to use a traffic light colour coding feedback system, based on hoe accurate the initial extracted answer is. That way users can correct the inaccurate ones.
 
-            The application is far from complete, there are many more features that could be implemented.
-            One issue with the current application is that it does not use HTTPS.
-            Since it is not deployed on a public domain, we could not apply for an SSL certificate.
-            Another issue is that in the X5GON database there are many documents that have the same title but different document IDs.
-            These are different parts of the same lecture series so it would make sense to group them together in one search result.
-            This would make the search results more concise, allowing the user to see more unique results at a glance.
-            Our clients also advised that they would like us to add pagination to the search results, however, we were unable to implement this due to a lack of time before the project submission.
-            <br>
-            <br>
-            One particularly relevant part of the unfinished requirements is the part about modelling knowledge.
-            Requirement 26 is "Show difficulty estimations of the documents to users (readability score)" and requirement 27 is "Estimate the current knowledge level of the user using their learning history".
-            Combining these two would allow the application to go beyond being a simple search engine, and more towards a recommendation system.
-            A learning platform that adapts materials to the user's knowledge could revolutionise the way we learn online.
         </p>
     </section>
     <footer class="footer-content">
