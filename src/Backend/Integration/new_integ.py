@@ -1,6 +1,17 @@
 # IMPROVEMENTS WHEN FINALISED
     # unify file, first page, and rest of pages
     # make models take in text from here, from class attributes
+import psycopg2
+
+
+
+hostname = "localhost"
+database = "cifrc"
+username = "postgres"
+pwd = "Abc123456"
+port_id = 5433
+conn = None
+cur = None
 
 import PyPDF2
 import pandas as pd
@@ -139,8 +150,6 @@ def dict_parser(final,path,list_answers):
         df = df.append(pd.Series(list_row, index=df.columns[:len(list_row)]), ignore_index=True)
         df.to_excel('src/Backend/Integration/batchresults.xlsx', index=False)
 
-
-
 def front_integ(docs):
     list_answers = []
     for x in docs:
@@ -154,18 +163,9 @@ def front_integ(docs):
 
 #for path in os.listdir(dir_path):
 #    if os.path.isfile(os.path.join(dir_path, path)):
-#        docs.append("sampledocs/" + path)
-        
-
-
-    
-    
+#        docs.append("sampledocs/" + path)    
     
 # test = main("src/Backend/Integration/testfile.pdf")
-path = "src/Backend/Integration/MDRKH001final.pdf"
-test = main(path)
-#file_num = 1 #edit
-print(test.final_extract)
 ##dict_parser(test.final_extract,path)
 # test_dict = {'Country': 'Rwanda', 'ISO': 'RWA', 'Admin1': [{'Location': 'Eastern Province', 'P-Code': '20RWA005'}, {'Location': 'the City of Kigali', 'P-Code': '20RWA001'}], 'Admin2': [{'Location': 'Flanders', 'P-Code': '20RWA004042'}, {'Location': 'Gatsibo district', 'P-Code': '20RWA005053'}, {'Location': 'Gatsibo District', 'P-Code': '20RWA005053'}, {'Location': 'Gatsibo d istrict \n©IFRC', 'P-Code': '20R053WA005053'}], 'Start': '11 July 2017', 'End': '01 September 2017', 'Affected': '675', 'Assisted': '811 households', 'Glide': 'ST-2017 -000035 -RWA', 'OpNum': 'MDRRW014', 'OpBud': 'CHF 49,122', 'Host': 'Rwanda Red Cross Society'}
 # dict_parser(test_dict,path)
@@ -178,3 +178,44 @@ print(test.final_extract)
 # print(f"admin1 codes: {test.admin_1_codes}")
 # print(f"admin2 codes: {test.admin_2_codes}")
 
+
+
+
+
+
+
+def save_to_table(op_num, ctry, ad1, ad2, iso, glide, hns, ob, osd, oed, npaf, npas):
+    conn = psycopg2.connect(
+                host = hostname,
+                dbname = database,
+                user = username,
+                password = pwd,
+                port = port_id)
+    
+    cur = conn.cursor()
+
+    disaster_insert_script = ''' INSERT INTO Disaster (operation_number, country, admin_1_code, admin_2_code, iso_info, glide_number, host_national_society, operation_budget, 
+                          operation_start_date, operation_end_date, number_of_people_affected, number_of_people_assisted) 
+                          VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)'''
+
+    disaster_insert_value = (op_num, ctry, ad1, ad2, iso, glide, hns, ob, osd, oed, npaf, npas)
+    
+    cur.execute(disaster_insert_script, disaster_insert_value)
+
+    conn.commit()
+    if cur is not None:
+        cur.close()
+    if cur is not None:
+        conn.close()
+
+dir_path = "C:/Users/0715s/Documents/Test"
+files = []
+for path in os.listdir(dir_path):
+    # check if current path is a file
+    if os.path.isfile(os.path.join(dir_path, path)):
+        files.append(os.path.join(dir_path, path))
+answers = front_integ(files)
+for i in answers:
+    save_to_table(i["OpNum"], i["Country"], i["Admin1"], i["Admin2"], i["ISO"], i["Glide"], 
+                                i["Host"], i["OpBud"], i["Start"], i["End"], i["Affected"], i["Assisted"])
+print("Completed")

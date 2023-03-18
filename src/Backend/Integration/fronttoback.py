@@ -35,8 +35,7 @@ class Frontoback():
         return self.max
     
     def set_files(self, files):
-        for file in files:
-            self.files.append(file)
+        self.files = files
         
     def get_admin0(self, i):
         x = self.answers[i]["Country"]
