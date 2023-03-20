@@ -17,49 +17,104 @@
 
 <body>
     <header>
-        <!-- ***** Logo Start ***** -->
-        <a href="index.html" class="logo">
-            <img src="assets/images/go-logo-2020.png" alt="IFRC-GO">
-        </a>
-        <!-- ***** Logo End ***** -->
-        <!-- ***** Menu Start ***** -->
-        <ul class="menu" id="menu">
-            <li class="submenu">
-                <a class="mainlink" href="index.html">Home</a>
-            </li>
-            <li class="submenu">
-                <a class="mainlink" href="requirements.html">Requirements</a>
-            </li>
-
-            <li class="submenu" class="submenu">
-                <a class="mainlink" href="research.html">Research</a>
-            </li>
-            <li class="submenu" class="submenu">
-                <a class="mainlink" href="algorithms.html">Algorithms</a>
-            </li>
-            <li class="submenu" class="submenu">
-                <a class="mainlink" href="design.html">Design</a>
-            </li>
-            <li class="submenu" class="submenu">
-                <a class="mainlink" href="system_design.html">System Design</a>
-            </li>
-            <li class="submenu" class="submenu">
-                <a class="mainlink" href="implementatio.html">Implementation</a>
-            </li>
-            <li class="submenu" class="submenu">
-                <a class="mainlink" href="testin.html">Testing</a>
-            </li>
-            <li class="submenu" class="submenu">
-                <a class="mainlink" href="evaluation.html">Evaluation</a>
-            </li>
-            <li class="submenu" class="submenu">
-                <a class="mainlink" href="appendix.html">Appendix</a>
-            </li>
-        </ul>
-        <a class='menu-mobile'>
-            <span>Menu</span>
-        </a>
-        <!-- ***** Menu Start ***** -->
+        <div class="navbar">
+            <div class="dropdown">
+                <button class="dropbtn" onclick="window.location.href = 'index.html';">Home 
+                <i class="fa fa-caret-down"></i>
+                </button>
+                <div class="dropdown-content">
+                <a href="index.html#abstracts">Abstracts</a>
+                <a href="index.html#features">Features</a>
+                <a href="index.html#team-members">Team Members</a>
+                <a href="index.html#gantt-chart">Gantt Chart</a>
+                </div>
+            </div> 
+            <div class="dropdown">
+                <button class="dropbtn" onclick="window.location.href = 'requirements.html';">Requirements 
+                <i class="fa fa-caret-down"></i>
+                </button>
+                <div class="dropdown-content">
+                <a href="requirements.html#pb">Project Background</a>
+                <a href="requirements.html#pg">Project Goals</a>
+                <a href="requirements.html#gor">Gathering of Requirements</a>
+                <a href="requirements.html#personas">Personas</a>
+                <a href="requirements.html#moscow">MoSCoW Requirements</a>
+                </div>
+            </div> 
+            <div class="dropdown">
+                <button class="dropbtn" onclick="window.location.href = 'research.html';">Research 
+                <i class="fa fa-caret-down"></i>
+                </button>
+                <div class="dropdown-content">
+                <a href="research.html#Named-Entity-Recognition">Named Entity Recognition</a>
+                <a href="research.html#SpaCy">SpaCy</a>
+                <a href="research.html#Q&A-Model">Q&A Model</a>
+                <a href="research.html#Table-Extraction">Table Extraction</a>
+                <a href="research.html#String-Matching">String Matching</a>
+                <a href="research.html#Resources">Resources</a>
+                </div>
+            </div> 
+            <div class="dropdown">
+                <button class="dropbtn" onclick="window.location.href = 'design.html';">Design 
+                <i class="fa fa-caret-down"></i>
+                </button>
+                <div class="dropdown-content">
+                <a href="design.html#UI-design">UI Design</a>
+                <a href="design.html#System-Architecture">System Architecture</a>
+                <a href="design.html#Site-Map">Site Map</a>
+                <a href="design.html#Data-Storage">Data Storage</a>
+                </div>
+            </div> 
+            <div class="dropdown">
+                <button class="dropbtn" onclick="window.location.href = 'implementation.html';">Implementation 
+                <i class="fa fa-caret-down"></i>
+                </button>
+                <div class="dropdown-content">
+                <a href="implementation.html#Impl.Overview">Implementation Overview</a>
+                <a href="implementation.html#Retrieving-and-reading-file(s)">Retrieving and reading file(s)</a>
+                <a href="implementation.html#Answer-Extraction">Answer Etraction</a>
+                <a href="implementation.html#Location-extraction">Location Extraction</a>
+                <a href="implementation.html#Code-matching">Code Matching</a>
+                <a href="implementation.html#Display-and-save">Display and save</a>
+                </div>
+            </div> 
+            <div class="dropdown">
+                <button class="dropbtn" onclick="window.location.href = 'testing.html';">Testing 
+                <i class="fa fa-caret-down"></i>
+                </button>
+                <div class="dropdown-content">
+                <a href="testing.html#Testing-Strategy">Testing Strategy</a>
+                <a href="testing.html#Unit-Testing">Unit Testing</a>
+                <a href="testing.html#Integration-Testing">Integration Testing</a>
+                <a href="testing.html#User-Testing">User Testing</a>
+                </div>
+            </div>
+            <div class="dropdown">
+                <button class="dropbtn" onclick="window.location.href = 'evaluation.html';">Evaluation 
+                <i class="fa fa-caret-down"></i>
+                </button>
+                <div class="dropdown-content">
+                <a href="evaluation.html#achievements">Achievements</a>
+                <a href="evaluation.html#QA">QA Models</a>
+                <a href="evaluation.html#spacy">spaCy Models</a>
+                <a href="evaluation.html#string">String Matching</a>
+                <a href="evaluation.html#critical">Critical Evaluation</a>
+                <a href="evaluation.html#future">Future Work</a>
+    
+    
+                </div>
+            </div> 
+            <div class="dropdown">
+                <button class="dropbtn" onclick="window.location.href = 'appendix.html';">Appendix 
+                <i class="fa fa-caret-down"></i>
+                </button>
+                <div class="dropdown-content">
+                <a href="appendix.html#Deployment-Manual">Deployment Manual</a>
+                <a href="appendix.html#Monthly-Videos">Monthly Videos</a>
+                <a href="appendix.html#Development-Blog">Development Blog</a>
+                </div>
+            </div> 
+        </div>
     </header>
 
     <!-- the first re-usable section with topic and contents -->
