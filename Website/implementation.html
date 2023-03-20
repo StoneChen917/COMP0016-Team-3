@@ -158,153 +158,90 @@
         </div> 
     </div>
 <!--MAIN CONTENT STARTS HERE-->
-    <section class="section" id="front-end">
-        <div style="text-align: center;"><h3>Front-End Implementation</h3></div>
+    <section class="section" id="Overview">
+        <div style="text-align: center;"><h3>Implementation</h3></div>
         <hr class="solid">
 
-        <h4>Impl. Overview</h4>
+        <h4>Impl. Overview(insert pic of new integ)</h4>
         <div class="image-bundle">
 <!--            <img src="assets/images/implementation/technology/react.png">-->
             <div>
-                <p>1.) Retrieve file from drag and drop in UI</p>
+                <p>1.) Retrieve file(s) from drag and drop in UI</p>
+                <p>2.) Read first page of document</p>
+                <p>3.) Run QA model on first page to extract answers</p>
+                <p>4.) Get ISO code of country extracted by QA model using fuzzy matching</p>
+                <p>5.) Run spaCy to extract locations</p>
+                <p>6.) Remove duplicate locations found/p>
+                <p>7.) Get P-codes of locations found using fuzzy matching</p>
+                <p>8.) Combine all extracted data and display on UI</p>
+                <p>9.) Save answers to database?</p>
+
+
                 <p></p>
             </div>
         </div>
+    </section>
 
-        <h4>Backend</h4>
+    <section class="section" id="read">
+        <h4>Retrieving and reading file(s)</h4>
         <div class="image-bundle">
             <img src="assets/images/implementation/technology/flask.png">
             <div>
-                <h5>Framework: Flask</h5>
-                <p>Library: elasticsearch, flask, flask_migrate, Flask-SQLAlchemy(using sql), Flask-Cors, gunicorn (building docker container), pandas, psycopg2 (postgresql), pytest, pyjwt (make jwt token), python-dotenv, requests, requests-futures
+                <p>
+
                 </p>
             </div>
         </div>
+    </section>
 
-        <h4>Deployment</h4>
+    <section class="section" id="answer">
+        <h4>Answer exctraction</h4>
         <div class="image-bundle">
-            <img src="assets/images/implementation/technology/docker.png">
+            <img src="assets/images/implementation/technology/flask.png">
             <div>
-                <h5>Docker</h5>
-                <p>Docker is used for building docker container to deploy on the kubenetes cluster</p>
-            </div>
-        </div>
-        <div class="image-bundle">
-            <img src="assets/images/implementation/technology/kubenetes.png">
-            <div>
-                <h5>kubenetes</h5>
-                <p>The Frontend and API was deployed on the kubenetes cluster</p>
-            </div>
-        </div>
-        <div class="image-bundle">
-            <img src="assets/images/implementation/technology/azure.png">
-            <div>
-                <h5>Azure</h5>
-                <p>For deploying database and kubenetes cluster</p>
+                <p>
+
+                </p>
             </div>
         </div>
     </section>
 
-    <!-- the first re-usable section with topic and contents -->
-    <section class="section" id="front-end">
-        <!-- topic -->
-        <h3>Frontend Implementation</h3>
-        <!-- contents -->
-        <p>According to the use case diagram in the requirements
-            <a href="requirements.html#use-cases" target="_blank" rel="noopener noreferrer">page</a>, we are building the search, register, login, and privacy policy page by using react-router-dom and nginx (production) for managing route in react.
-        </p>
-        <h4>search</h4>
-        <p>we build the google-like search-page in the home route. When the user click on the search form, the application will fetch the related API and show the result in the Resultlist components. The image below show the search page(before and after
-            searching) respectively</p>
-        <img src="assets/images/implementation/header_login.PNG" alt="" class="mid-size-image">
-        <img src="assets/images/implementation/search-result.PNG" alt="" class="mid-size-image">
-        <h4>login and signup</h4>
-        <p>the implementation details are shown
-            <a href="implementation.html#impl-frontend">below</a>
-        </p>
-        <img src="assets/images/implementation/header_login.PNG" alt="" class="mid-size-image">
-        <img src="assets/images/implementation/search-result.PNG" alt="" class="mid-size-image">
-        <h4>Privacy Notice</h4>
-        <p>use privacy-notice route to manage show our privacy policy</p>
-        <img src="assets/images/implementation/privacy.PNG" alt="" class="mid-size-image">
+    <section class="section" id="loc">
+        <h4>Location extraction</h4>
+        <div class="image-bundle">
+            <img src="assets/images/implementation/technology/flask.png">
+            <div>
+                <p>
+
+                </p>
+            </div>
+        </div>
     </section>
 
-    <!-- the first re-usable section with topic and contents -->
-    <section class="section" id="search">
-        <!-- topic -->
-        <h3>Search Implementation</h3>
-        <!-- contents -->
-        <p align="justify">When the back-end API receives a search request, it parses the JSON object to retrieve the query and the filters. It then passes the request with parameters (query, filters) to the Controller which in turn sends it to the Model. The model stores
-            a SearchEngine object, which has a search() method. This object sends a GET search request to the ElasticSearch API with the query and the formatted filters. When it retrieves the response, it formats it as a Pandas DataFrame and sends it
-            to the model. Using parallel get requests to the X5GON api, the Model adds metadata to the search results. These results are then sent back to the Controller which translates it to JSON and sends it back to the API endpoint.</p>
-        <img src="assets/images/search.png" class="large-size-image">
+    <section class="section" id="code">
+        <h4>Code Matching</h4>
+        <div class="image-bundle">
+            <img src="assets/images/implementation/technology/flask.png">
+            <div>
+                <p>
+
+                </p>
+            </div>
+        </div>
     </section>
 
-    <!-- the first re-usable section with topic and contents -->
-    <section class="section" id="user-data">
-        <!-- topic -->
-        <h3>User Data/Login Implementation</h3>
-        <!-- contents -->
-        <h4>User Login Implementation</h4>
-        <p>We create a PostgreSQL to collect the user details. We made the following API endpoint: register, login, and user-detail for handling the user action related to login functionality</p>
-        <h5>Related API implementation</h5>
-        <p>Register - /register</p>
-        <ul>
-            <li>we collect the username, password, displayname, and email from the user. After that we are quering the database if the username and email has been taken. If those are not taken the new user will be generated with the following parameter userID,
-                username, password(hashed with salt), salt, displayname, public-id(the id expose to the frontend), timestamp </li>
-        </ul>
-        <p id="impl-frontend">Login - /login</p>
-        <ul>
-            <li>we collect the username, password from the user. If that user does exist the API will make the json web token (JWT) using genJWT() with expired date</li>
-        </ul>
-        <p>User Details - /user-detail</p>
-        <ul>
-            <li>we collect the JWT from the user. Then we check if the token is valid by using jwt_token() function. If the JWT is valid we are going to send user-details</li>
-        </ul>
-        <h5>Implementation on the frontend</h5>
-        <p>Register</p>
-        <ul>
-            <li>we make a form to collect user input then fetch API </li>
-            <img src="assets/images/implementation/signup.PNG" alt="" class="mid-size-image">
-            <li>Then redirect to login page after user is registered </li>
-            <li>and warn the user if the username/email is taken by pop up our alert components</li>
-            <img src="assets/images/implementation/alert_username_taken.PNG" alt="" class="mid-size-image">
-        </ul>
-        <p>Login</p>
-        <ul>
-            <li>Normally, the user will not be login. User islogin and user detail are stored in the redux and backed-up in the localstorage </li>
-            <img src="assets/images/implementation/header.PNG" alt="" class="mid-size-image">
-            <li>User can login via login form</li>
-            <img src="assets/images/implementation/login.PNG" alt="" class="mid-size-image">
-            <li>If user is sucessfully login, the frontend will recieve JWT token from the api, which store in the cookies. After that, the frontend will fetch the api for retrieving user-detail which will update the user-detail and login status</li>
-            <img src="assets/images/implementation/redux-tools.PNG" alt="" class="mid-size-image">
-            <li>Later, the application will re-direct back to main page</li>
-            <img src="assets/images/implementation/header_login.PNG" alt="" class="mid-size-image">
-        </ul>
+    <section class="section" id="display">
+        <h4>Display and save</h4>
+        <div class="image-bundle">
+            <img src="assets/images/implementation/technology/flask.png">
+            <div>
+                <p>
 
-        <h4>User Data Implementation</h4>
-        <p>We create a PostgreSQL to collect the search-history and click-history. We made the following API endpoint: search-history and click-history for handling the user action related to user data functionality</p>
-        <h5>Related API implementation</h5>
-        <p>Search History - /search-history</p>
-        <ul>
-            <li>This endpoint objective is to collect user data when user searching. We collect the user Query, Filter, TopDocumentID and PublicID from the user. If that user does exist, PublicID's value is null</li>
-        </ul>
-        <p>Click History - /click-history</p>
-        <ul>
-            <li>This endpoint objective is to collect user data when user click on the url. We collect the username, password from the user. If that user does exist the API will make the json web token (JWT) using genJWT() with expired date</li>
-        </ul>
-
-        <h5>Implementation on the frontend</h5>
-        <p>Search History</p>
-        <ul>
-            <li>After the user finish searching for the query. The application will make a temporary store query in the session storage "search_result". Then the react useEffect hook will check if the session storage "search_result" is not null. Then the
-                frontend will fetch api to collect search-history</li>
-        </ul>
-        <p>Click History</p>
-        <ul>
-            <li>When the user click on the search result, collectClickHistory(), function that collect document_id document_pos and search_id, function will be triggered</li>
-        </ul>
+                </p>
+            </div>
+        </div>
     </section>
+
     <footer class="footer-content">
         <div class="row">
             <div class="right-content">
