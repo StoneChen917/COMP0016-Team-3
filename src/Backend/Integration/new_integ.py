@@ -184,38 +184,38 @@ def front_integ(docs):
 
 
 
-def save_to_table(op_num, ctry, ad1, ad2, iso, glide, hns, ob, osd, oed, npaf, npas):
-    conn = psycopg2.connect(
-                host = hostname,
-                dbname = database,
-                user = username,
-                password = pwd,
-                port = port_id)
+# def save_to_table(op_num, ctry, ad1, ad2, iso, glide, hns, ob, osd, oed, npaf, npas):
+#     conn = psycopg2.connect(
+#                 host = hostname,
+#                 dbname = database,
+#                 user = username,
+#                 password = pwd,
+#                 port = port_id)
     
-    cur = conn.cursor()
+#     cur = conn.cursor()
 
-    disaster_insert_script = ''' INSERT INTO Disaster (operation_number, country, admin_1_code, admin_2_code, iso_info, glide_number, host_national_society, operation_budget, 
-                          operation_start_date, operation_end_date, number_of_people_affected, number_of_people_assisted) 
-                          VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)'''
+#     disaster_insert_script = ''' INSERT INTO Disaster (operation_number, country, admin_1_code, admin_2_code, iso_info, glide_number, host_national_society, operation_budget, 
+#                           operation_start_date, operation_end_date, number_of_people_affected, number_of_people_assisted) 
+#                           VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)'''
 
-    disaster_insert_value = (op_num, ctry, ad1, ad2, iso, glide, hns, ob, osd, oed, npaf, npas)
+#     disaster_insert_value = (op_num, ctry, ad1, ad2, iso, glide, hns, ob, osd, oed, npaf, npas)
     
-    cur.execute(disaster_insert_script, disaster_insert_value)
+#     cur.execute(disaster_insert_script, disaster_insert_value)
 
-    conn.commit()
-    if cur is not None:
-        cur.close()
-    if cur is not None:
-        conn.close()
+#     conn.commit()
+#     if cur is not None:
+#         cur.close()
+#     if cur is not None:
+#         conn.close()
 
-dir_path = "C:/Users/0715s/Documents/Test"
-files = []
-for path in os.listdir(dir_path):
-    # check if current path is a file
-    if os.path.isfile(os.path.join(dir_path, path)):
-        files.append(os.path.join(dir_path, path))
-answers = front_integ(files)
-for i in answers:
-    save_to_table(i["OpNum"], i["Country"], i["Admin1"], i["Admin2"], i["ISO"], i["Glide"], 
-                                i["Host"], i["OpBud"], i["Start"], i["End"], i["Affected"], i["Assisted"])
-print("Completed")
+# dir_path = "C:/Users/0715s/Documents/Test"
+# files = []
+# for path in os.listdir(dir_path):
+#     # check if current path is a file
+#     if os.path.isfile(os.path.join(dir_path, path)):
+#         files.append(os.path.join(dir_path, path))
+# answers = front_integ(files)
+# for i in answers:
+#     save_to_table(i["OpNum"], i["Country"], i["Admin1"], i["Admin2"], i["ISO"], i["Glide"], 
+#                                 i["Host"], i["OpBud"], i["Start"], i["End"], i["Affected"], i["Assisted"])
+# print("Completed")
