@@ -1,7 +1,7 @@
-from unittest import TestCase
+import unittest 
 from Integration.QA_model import qaModel
 
-class TestQAModel(TestCase):
+class TestQAModel(unittest.TestCase):
     def setUp(self):
         self.file = "src/Backend/UnitTesting/MDRRW014dfr.pdf"
         self.qa = qaModel(self.file)
@@ -18,3 +18,6 @@ class TestQAModel(TestCase):
  'What is the Operation Budget?': 'CHF 49,122',
  'What is the Host National Society?': 'Rwanda Red Cross Society'}
         self.assertEquals(actual_answers, self.ans)
+
+if __name__ == '__main__' :         
+    unittest.main()

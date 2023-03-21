@@ -1,7 +1,7 @@
-from unittest import TestCase
+import unittest 
 from Integration import fronttoback
 
-class TestFrontoback(TestCase):
+class TestFrontoback(unittest.TestCase):
 
     def setUp(self):
         self.files = ['MDRRW014dfr']
@@ -81,3 +81,6 @@ class TestFrontoback(TestCase):
     def test_get_assisted(self):
         self.test_extract_answers()
         self.assertEqual(self.test_get_assisted(1), "811 households")
+
+if __name__ == '__main__' :         
+    unittest.main()

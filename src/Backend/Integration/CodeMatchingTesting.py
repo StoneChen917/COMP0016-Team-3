@@ -57,4 +57,5 @@ class TestCodeMatching(unittest.TestCase):
         self.assertEqual(expected_pcode_values,self.code_match_admin1.p_code_2)
 
 
-unittest.main()
+if __name__ == '__main__' :         
+    unittest.main()

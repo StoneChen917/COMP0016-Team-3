@@ -253,9 +253,9 @@
     <section class="section" id="answer">
         <h4>Answer exctraction</h4>
         <div class="image-bundle">
-            <img src="assets/images/implementation/technology/flask.png">
             <div>
                 <p>
+                    Then we run the QA model on it to extract the answers shown below. The questions are stored as a list in the class attributes, and all the answers are stored as a dictionary in the class attribute <span style="color: #0000a0">self.answers </span> 
                     <pre class="mycode"> 
                         <code>
                             def __init__(self, file):
@@ -274,6 +274,8 @@
                         </code>
                     </pre> 
 
+                    The method that does the main extraction is the <span style="color: #ee2a24">extract_ans()</span> method shown below. It loops through the questions and stores it in <span style="color: #0000a0">self.answers </span> dictionary, with the question as the key and the answer as the value.
+                    
 
                     <pre class="mycode"> 
                         <code>
@@ -300,9 +302,9 @@
     <section class="section" id="loc">
         <h4>Location extraction</h4>
         <div class="image-bundle">
-            <img src="assets/images/implementation/technology/flask.png">
             <div>
                 <p>
+                    For extracting locations, we used the spaCy library. As seen in the <span style="color: #ee2a24">exctract_loc()</span> function below, first we load the spaCy model, stored in the 'nlp' variable
                     <pre class="mycode"> 
                         <code>
                             def __init__(self, file):

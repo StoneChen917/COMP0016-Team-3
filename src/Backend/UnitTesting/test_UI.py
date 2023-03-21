@@ -1,11 +1,12 @@
 from unittest import TestCase
 import Backend
+import unittest
 from Backend.Integration.mainpage import MainPage
 from Backend.Integration.viewpage import ViewPage
 from Backend.Integration.loadpage import LoadPage
 from Backend.Integration.infopage import InfoPage
 
-class TestUI(TestCase):
+class TestUI(unittest.TestCase):
 
     def setUp(self):
         self.mainpage = MainPage(None, None, None)
@@ -21,5 +22,7 @@ class TestUI(TestCase):
         self.assertEqual(self.mainpage.get_files_in_folder(self.path), self.files[0])
         self.assertTrue(self.finished)
 
+if __name__ == '__main__' :         
+    unittest.main()
 t = TestUI
 t.test_extract_answers

@@ -16,4 +16,6 @@ class TestQAModel(unittest.TestCase):
         actual_glide_number = ""
         extracted_glide_number = self.ans[5]
         self.assertFalse(actual_glide_number, extracted_glide_number)
-unittest.main()
+
+if __name__ == '__main__' :         
+    unittest.main()
