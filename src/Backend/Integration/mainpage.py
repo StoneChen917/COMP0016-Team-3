@@ -5,6 +5,7 @@ from tkinter import messagebox, filedialog
 from PIL import Image, ImageTk
 from tkinterdnd2 import *
 import os
+import webbrowser
 
 
 
@@ -93,12 +94,7 @@ class MainPage(Frame):
         self.preview_button.place(x = (self.screen_width-800)/2+517, y = self.box_y+403)
 
     def click_info(self):
-        my_message = """1.Upload your files/folders by drag and drop, or use the buttons to select files/folders. (pdf only)\n
-                        2.Check if the files are correct and click extract button.\n
-                        3.Wait for the extraction process.\n
-                        4.When process is completed, check the extracted data, and save to the database."""
-        messagebox.showinfo(title = "Info", 
-                                message = my_message)
+        webbrowser.open_new_tab("https://youtu.be/-pZxW9W6x-k")
 
     def get_files_in_folder(self, mypath):
         files = [mypath+"/"+f for f in os.listdir(mypath) if os.path.isfile(os.path.join(mypath, f))]
