@@ -48,17 +48,17 @@ def create_script():
 
     create_script = '''   CREATE TABLE IF NOT EXISTS Disaster (
                             operation_number          varchar PRIMARY KEY,
-                            country                   varchar NOT NULL,
-                            admin_1_code              varchar NOT NULL,
-                            admin_2_code              varchar NOT NULL,
-                            iso_info                  varchar NOT NULL,
-                            glide_number              varchar NOT NULL,
-                            host_national_society     varchar NOT NULL,
-                            operation_budget          varchar NOT NULL,
-                            operation_start_date      varchar NOT NULL,
-                            operation_end_date        varchar NOT NULL,
-                            number_of_people_affected varchar NOT NULL,
-                            number_of_people_assisted varchar NOT NULL)'''                    
+                            country                   varchar,
+                            admin_1_code              varchar,
+                            admin_2_code              varchar,
+                            iso_info                  varchar,
+                            glide_number              varchar,
+                            host_national_society     varchar,
+                            operation_budget          varchar,
+                            operation_start_date      varchar,
+                            operation_end_date        varchar,
+                            number_of_people_affected varchar,
+                            number_of_people_assisted varchar)'''                    
     cur.execute(create_script)
     conn.commit()
     if cur is not None:
