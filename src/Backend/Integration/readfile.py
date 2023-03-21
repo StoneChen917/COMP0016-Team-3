@@ -26,4 +26,3 @@ class ReadFile:
         return pageone, text 
 
 reader = ReadFile()
-# print(reader.exec("MDRKH001final.pdf")[0])

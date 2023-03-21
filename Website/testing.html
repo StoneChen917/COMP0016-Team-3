@@ -13,6 +13,52 @@
 
     <link rel="stylesheet" href="assets/css/pages/index.css">
 
+
+    <style>
+        /* .image-bundle {
+            display: grid;
+            align-items: center; 
+            grid-template-columns: 1fr 1fr 1fr;
+            column-gap: 5px;
+        }
+        
+        .img {
+            max-width: 50%;
+            max-height: 50%;
+        } */
+
+        .image-bundle {
+            display: flex;
+            flex-direction: row;
+            gap: 20px;
+        }
+
+        .image-bundle img {
+            width: 20%;
+        }
+
+        @media (max-width: 768px) {
+            .image-bundle img {
+                width: 50%;
+            }
+        }
+        
+        /* .text {
+            font-size: 70px;
+        } */
+    
+        /* .mycode{
+        display: block; 
+        padding: 3px 3px 2px; 
+        font-size: 14px; 
+        line-height: 20px;
+        width: 100%;
+        background-color: #333;
+        font-family: arial;
+        color: #f7f7f7;
+        font-weight: bold;
+    } */
+    </style>
 </head>
 
 <body>
@@ -160,28 +206,39 @@
             </div>
         </div> 
     </div>
-
+    <section class="section" id="Overview">
+        <div style="text-align: center;"><h3>Testing</h3></div>
+        <hr class="solid">
     <!-- the first re-usable section with topic and contents -->
-    <section class="section" id="front-end">
-        <!-- topic -->
-        <h3>Testing</h3>
+
         <!-- contents -->
-        <b>Testing strategy</b>
+        <h3>Testing strategy</h3>
         <p align="justify"> Unit Tests - We did this to ensure that the individual components of the program were functional. This increases confidence of each component working.
             <br>Integration Test - As the frontend and backend were formed in two seperate sections, we ran tests to ensure the connection between the two were running correctly.
             <br>User Tests - We conducted user tests to ensure that our interface was easy and efficient to use and understand.
 
         </p>
-        <b>Unit testing</b>
+        <h3>Unit testing</h3>
         <p align="justify">We conducted user tests in the following areas:<br>- Front to back tests <br>- Code matching tests<br>- UI tests<br>- Location testing<br>- Integration file testing<br>- Postgres database testing<br>- Read File tests<br>- Q&A model tests
             <br>Splitting the sections up into sections allows tests to be correctly made. This also allows for in-depth testing with the correct levels of coverage.
-
+            <br>Unit tests were introduced for the Backend Integration file through the Unit Testing file.
+            <br>By instantiating the files seperately allows us to feed them each custom data for unit testing. 
+            <br>Unit tests are used in testing the testable parts of the module, including the functions for extracting data from the files, filtering unecessary data, creating answers from the text obtained, returning these answers correctly, and ensuring that these answers are in suitable formats. 
+            <br>We ensured the tests compiled answers from the same documents as seen in the UnitTesting file, so that comparisons can be made between the known answers of these file, and the compiled tests by the program. 
+            <br>These tests ensured the functionalities are correct:
+            <div class="image-bundle">
+                <img src="assets/images/Screenshot 2023-03-21 at 10.12.06.png">
+            </div>
         </p>
-        <b>Integration testing</b><br>
+        <h3>Integration testing</h3>
         <p align="justify"> Integration tests between the front and back end are necessary in covering all types of input and data sent between the UI interface from the user, and the correct answers/ outputs needed to be sent back to the UI from the backend files.
 
         </p>
-        <b>User testing</b><br>
+        <h3>User testing</h3>
+        <p align="justify">
+
+        </p>
+        <h3>Conclusions</h3>
         <p align="justify">
 
         </p>

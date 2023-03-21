@@ -37,8 +37,3 @@ class qaModel():
             answer = nlp({'question': n, 'context': context})['answer']
             self.answers[n] = str(answer)
 
-
-
-# test = qaModel("src/Backend/Integration/MDRRW014dfr.pdf")
-# test.extract_ans()
-# print(test.answers)

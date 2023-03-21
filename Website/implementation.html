@@ -13,7 +13,54 @@
 
     <link rel="stylesheet" href="assets/css/pages/implement.css">
 
+    <style>
+        /* .image-bundle {
+            display: grid;
+            align-items: center; 
+            grid-template-columns: 1fr 1fr 1fr;
+            column-gap: 5px;
+        }
+        
+        .img {
+            max-width: 50%;
+            max-height: 50%;
+        } */
+
+        .image-bundle {
+            display: flex;
+            flex-direction: row;
+            gap: 20px;
+        }
+
+        .image-bundle img {
+            width: 20%;
+        }
+
+        @media (max-width: 768px) {
+            .image-bundle img {
+                width: 50%;
+            }
+        }
+        
+        /* .text {
+            font-size: 70px;
+        } */
+    
+        /* .mycode{
+        display: block; 
+        padding: 3px 3px 2px; 
+        font-size: 14px; 
+        line-height: 20px;
+        width: 100%;
+        background-color: #333;
+        font-family: arial;
+        color: #f7f7f7;
+        font-weight: bold;
+    } */
+    </style>
 </head>
+
+
 
 <body>
     <header>
@@ -44,14 +91,7 @@
                 <a class="mainlink" href="implementation.html">Implementation</a>
             </li>
             <li class="submenu" class="submenu">
-<<<<<<< Updated upstream
                 <a class="mainlink" href="testing.html">Testing</a>
-=======
-                <a class="mainlink" href="system_design.html">System Design</a>
-            </li>
-            <li class="submenu" class="submenu">
-                <a class="mainlink" href="testin.html">Testing</a>
->>>>>>> Stashed changes
             </li>
             <li class="submenu" class="submenu">
                 <a class="mainlink" href="evaluation.html">Evaluation</a>
@@ -95,12 +135,10 @@
             <i class="fa fa-caret-down"></i>
             </button>
             <div class="dropdown-content">
-            <a href="research.html#Named-Entity-Recognition">Named Entity Recognition</a>
-            <a href="research.html#SpaCy">SpaCy</a>
-            <a href="research.html#Q&A-Model">Q&A Model</a>
-            <a href="research.html#Table-Extraction">Table Extraction</a>
-            <a href="research.html#String-Matching">String Matching</a>
-            <a href="research.html#Resources">Resources</a>
+            <a href="#abstracts">Abstracts</a>
+            <a href="#features">Features</a>
+            <a href="#team-members">Team Members</a>
+            <a href="#gantt-chart">Gantt Chart</a>
             </div>
         </div> 
         <div class="dropdown">
@@ -108,10 +146,10 @@
             <i class="fa fa-caret-down"></i>
             </button>
             <div class="dropdown-content">
-            <a href="design.html#UI-design">UI Design</a>
-            <a href="design.html#System-Architecture">System Architecture</a>
-            <a href="design.html#Site-Map">Site Map</a>
-            <a href="design.html#Data-Storage">Data Storage</a>
+            <a href="#abstracts">Abstracts</a>
+            <a href="#features">Features</a>
+            <a href="#team-members">Team Members</a>
+            <a href="#gantt-chart">Gantt Chart</a>
             </div>
         </div> 
         <div class="dropdown">
@@ -119,12 +157,10 @@
             <i class="fa fa-caret-down"></i>
             </button>
             <div class="dropdown-content">
-            <a href="implementation.html#Impl.Overview">Implementation Overview</a>
-            <a href="implementation.html#Retrieving-and-reading-file(s)">Retrieving and reading file(s)</a>
-            <a href="implementation.html#Answer-Extraction">Answer Etraction</a>
-            <a href="implementation.html#Location-extraction">Location Extraction</a>
-            <a href="implementation.html#Code-matching">Code Matching</a>
-            <a href="implementation.html#Display-and-save">Display and save</a>
+            <a href="#abstracts">Abstracts</a>
+            <a href="#features">Features</a>
+            <a href="#team-members">Team Members</a>
+            <a href="#gantt-chart">Gantt Chart</a>
             </div>
         </div> 
         <div class="dropdown">
@@ -132,25 +168,21 @@
             <i class="fa fa-caret-down"></i>
             </button>
             <div class="dropdown-content">
-            <a href="testing.html#Testing-Strategy">Testing Strategy</a>
-            <a href="testing.html#Unit-Testing">Unit Testing</a>
-            <a href="testing.html#Integration-Testing">Integration Testing</a>
-            <a href="testing.html#User-Testing">User Testing</a>
+            <a href="#abstracts">Abstracts</a>
+            <a href="#features">Features</a>
+            <a href="#team-members">Team Members</a>
+            <a href="#gantt-chart">Gantt Chart</a>
             </div>
-        </div>
+        </div> 
         <div class="dropdown">
             <button class="dropbtn" onclick="window.location.href = 'evaluation.html';">Evaluation 
             <i class="fa fa-caret-down"></i>
             </button>
             <div class="dropdown-content">
-            <a href="evaluation.html#achievements">Achievements</a>
-            <a href="evaluation.html#QA">QA Models</a>
-            <a href="evaluation.html#spacy">spaCy Models</a>
-            <a href="evaluation.html#string">String Matching</a>
-            <a href="evaluation.html#critical">Critical Evaluation</a>
-            <a href="evaluation.html#future">Future Work</a>
-
-
+            <a href="#abstracts">Abstracts</a>
+            <a href="#features">Features</a>
+            <a href="#team-members">Team Members</a>
+            <a href="#gantt-chart">Gantt Chart</a>
             </div>
         </div> 
         <div class="dropdown">
@@ -158,13 +190,15 @@
             <i class="fa fa-caret-down"></i>
             </button>
             <div class="dropdown-content">
-            <a href="appendix.html#Deployment-Manual">Deployment Manual</a>
-            <a href="appendix.html#Monthly-Videos">Monthly Videos</a>
-            <a href="appendix.html#Development-Blog">Development Blog</a>
+            <a href="#abstracts">Abstracts</a>
+            <a href="#features">Features</a>
+            <a href="#team-members">Team Members</a>
+            <a href="#gantt-chart">Gantt Chart</a>
             </div>
         </div> 
     </div>
 <!--MAIN CONTENT STARTS HERE-->
+
     <section class="section" id="Overview">
         <div style="text-align: center;"><h3>Implementation</h3></div>
         <hr class="solid">
@@ -184,7 +218,8 @@
                 <p>9.) Save answers to database?</p>
 
 
-                <p></p>
+
+                <p><span style="color: #ee2a24">* note that all files mentioned can be found in src/Backend/Integration </span></p>
             </div>
         </div>
     </section>
@@ -192,10 +227,24 @@
     <section class="section" id="read">
         <h4>Retrieving and reading file(s)</h4>
         <div class="image-bundle">
-            <img src="assets/images/implementation/technology/flask.png">
+            <!-- <img src="assets/images/implementation/technology/flask.png"> -->
             <div>
                 <p>
-
+                    As shown in the UI design page, users are able to upload a file, or multiple files. We use python's built in library 'PyPDF2' to extract the text content of the PDFs. 
+                    This is done using the <span style="color: #0000a0">read_file()</span> method <span style="color: #ee2a24">'readfile.py'</span> file.
+                    <pre class="mycode"> 
+                        <code>
+                            def read_file(self, file):
+                                f = open(file, 'rb')
+                                pdfReader = PdfReader(f)
+                                pageone = PyPDF2.PdfReader(f).pages[0].extract_text()
+                                text = ""
+                                for i in range(1, len(pdfReader.pages)):
+                                    text += PyPDF2.PdfReader(f).pages[i].extract_text()
+                                f.close()
+                                return pageone, text 
+                        </code>
+                    </pre> 
                 </p>
             </div>
         </div>
@@ -207,7 +256,42 @@
             <img src="assets/images/implementation/technology/flask.png">
             <div>
                 <p>
+                    <pre class="mycode"> 
+                        <code>
+                            def __init__(self, file):
+                                self.file = file
+                                self.questions=["What is the Country of Disaster?",
+                                "What is the Operation Start Date?", 
+                                "What is the Operation End Date?",
+                                "What is the number of people affected?", 
+                                "What is the number of people assisted?", 
+                                "What is the Glide Number?", 
+                                "What is the Operation n°?", 
+                                "What is the Operation Budget?", 
+                                "What is the Host National Society?"]
+                                self.answers = {}
+                                self.extract_ans()
+                        </code>
+                    </pre> 
 
+
+                    <pre class="mycode"> 
+                        <code>
+                            def extract_ans(self):
+                                # get first page of document
+                                reader = ReadFile()
+                                first_page = reader.exec(self.file)[0]
+                                context = first_page
+                        
+                                # loop through questions
+                                for n in self.questions:
+                                    tokenizer.encode(n, truncation = True, padding = True)
+                                    tokenizer.encode('[CLS]')
+                                    nlp = pipeline('question-answering', model = model, tokenizer = tokenizer)
+                                    answer = nlp({'question': n, 'context': context})['answer']
+                                    self.answers[n] = str(answer)
+                        </code>
+                    </pre> 
                 </p>
             </div>
         </div>
@@ -219,7 +303,37 @@
             <img src="assets/images/implementation/technology/flask.png">
             <div>
                 <p>
+                    <pre class="mycode"> 
+                        <code>
+                            def __init__(self, file):
+                                self.file = file
+                                self.locations = self.exctract_loc()
+                        </code>
+                    </pre> 
 
+                    <pre class="mycode"> 
+                        <code>
+                            def exctract_loc(self):   
+                                nlp = spacy.load("en_core_web_lg")
+                                .
+                                . 
+                                . 
+                                doc = nlp(first_page)
+
+                                locations = []
+                                for ent in doc.ents:
+                                    if ent.label_ == "GPE":
+                                        locations.append(ent.text)
+
+                                # Remove duplicate locations
+                                clean = []
+                                for i in locations:
+                                    if i not in clean:
+                                        clean.append(i)
+                                return clean
+                        </code>
+                    </pre> 
+                    
                 </p>
             </div>
         </div>
@@ -231,7 +345,11 @@
             <img src="assets/images/implementation/technology/flask.png">
             <div>
                 <p>
-
+                    <pre class="mycode"> 
+                        <code>
+                            
+                        </code>
+                    </pre> 
                 </p>
             </div>
         </div>
@@ -243,11 +361,80 @@
             <img src="assets/images/implementation/technology/flask.png">
             <div>
                 <p>
+                    <pre class="mycode"> 
+                        <code>
+                            def __init__(self, admin_0, loc_list):
+                                self.admin_0 = admin_0
+                                # list of dict of pcodes for admin 1 & locations
+                                self.loc_list = loc_list
+                                self.ISO_code = self.getISOCode()
+                                self.p_code_1 = []
+                                self.p_code_2 = []
+                        </code>
+                    </pre> 
+                    
 
+                    <pre class="mycode"> 
+                        <code>
+                            def loop_p_codes(self):
+                                for loc in self.loc_list:
+                                    tag = self.find_p_code(loc)[0]
+                                    p_code = self.find_p_code(loc)[1]
+                                    dict = {"Location":loc, "P-Code":p_code}
+                                    if tag == 1:
+                                        self.p_code_1.append(dict)
+                                    if tag == 2:
+                                        self.p_code_2.append(dict)
+                        </code>
+                    </pre> 
                 </p>
             </div>
         </div>
     </section>
+
+    <!-- TECHNOLOGIES -->
+    <section class="section" id="front-end">
+        <!-- topic -->
+        <h3>Technology</h3>
+        <!-- contents -->
+        <h4>Frontend</h4>
+        <div class="image-bundle">
+            <img src="assets/images/Implementation/logos/tkinter-tutorial.png">
+            <div>
+                <h5>Framework: Tkinter</h5>
+                <p>Library: react-cookie (for using cookie),react-redux (for using redux), react-icons, react-router-dom (managing route),runtime-env-cra(inject runtime environment on production environment), framer-motion(make animation)</p>
+            </div>
+        </div>
+
+        <h4>Backend</h4>
+        <div class="image-bundle">
+            <img src="assets/images/Implementation/logos/qa.png" >
+            <div>
+                <h5>Framework: Hugging Face</h5>
+                <p>Model name: Roberta, name: "deepset/roberta-base-squad2"</p>
+            </div> 
+        </div>
+
+        <div class="image-bundle">
+            <img src="assets/images/Implementation/logos/spacy.png">
+            <div>
+                <h5>Framework: spaCy</h5>
+                <p>Model: "en_core_web_lg"
+                </p>
+            </div>
+        </div>
+
+        <h4>Deployment</h4>
+        <div class="image-bundle">
+            <img src="assets/images/Implementation/logos/pg.png">
+            <div>
+                <h5>Postgres</h5>
+                <p>For deploying database</p>
+            </div>
+        </div>
+
+    </section>
+
 
     <footer class="footer-content">
         <div class="row">
@@ -268,15 +455,8 @@
                         <div class="col-3"><a href="requirements.html">Requirement</a></div>
                         <div class="col-3"><a href="research.html">Research</a></div>
                         <div class="col-3"><a href="design.html">Design</a></div>
-<<<<<<< Updated upstream
                         <div class="col-3"><a href="implementation.html">Implementation</a></div>
                         <div class="col-3"><a href="testing.html">Testing</a></div>
-=======
-                        <div class="col-3"><a href="system_design.html">System Design</a></div>
-
-                        <div class="col-3"><a href="implementatio.html">Implementation</a></div>
-                        <div class="col-3"><a href="testin.html">Testing</a></div>
->>>>>>> Stashed changes
                         <div class="col-3"><a href="evaluation.html">Evaluation</a></div>
                         <div class="col-3"><a href="appendix.html">Appendix</a></div>
                     </div>
