@@ -35,12 +35,14 @@ class codeMatch():
         # filter by first letter of country
         df0_filtered = df0[(df0['attributes_iso3'] != 'AAA') & (df0['attributes.gis_name'].str[0] == loc[0])]
 
+        # if exact match found
         if loc in df0_filtered['attributes.gis_name'].values:
             row_num = df0[df0['attributes.gis_name'] == loc].index.to_numpy()
             int_row_num = int(row_num[0])
             code = df0.iat[int_row_num, 3]
             return (code)
 
+        # otherwise find best match
         else:
             best_fuzz_ratio = 0
             for i in df0_filtered['attributes.gis_name'].values:
@@ -106,7 +108,6 @@ class codeMatch():
             return (1,code1)
         elif best_fuzz_ratio2 > best_fuzz_ratio1:
             return (2,code2)
-        # elif best_fuzz_ratio1 > best_fuzz_ratio2:
         else:
             return (1,code1)
 

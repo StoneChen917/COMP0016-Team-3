@@ -304,7 +304,7 @@
         <div class="image-bundle">
             <div>
                 <p>
-                    For extracting locations, we used the spaCy library. As seen in the <span style="color: #ee2a24">exctract_loc()</span> function below, first we load the spaCy model, stored in the 'nlp' variable
+                    For extracting locations, we used the spaCy library. As seen in the <span style="color: #ee2a24">exctract_loc()</span> function below, first we load the spaCy model, stored in the 'nlp' variable. Then we make a container for the nlp library called 'doc', which takes in the text of the DREF document. This container contains all the annotations, labels and entities of the text. 
                     <pre class="mycode"> 
                         <code>
                             def __init__(self, file):
@@ -335,7 +335,7 @@
                                 return clean
                         </code>
                     </pre> 
-                    
+                    The function gets all the entities labelled "GPE", standing for Geopolitical Entity, and places it in a temporary list 'locations'. We then make another list 'clean' which is thethe list of locations with exact match duplicates removed. This adjusted list is then saved to the<span style="color: #0000a0">self.locations</span> class attribute. 
                 </p>
             </div>
         </div>
@@ -347,6 +347,12 @@
             <img src="assets/images/implementation/technology/flask.png">
             <div>
                 <p>
+                    We decided to use Fuzzy matching to compare extracted locations to the excel spreadsheet of Admins 0, 1 & 2 locations, thus finding the corresponding codes. We used the python library 'Pandas' to read from the excel sheets. This is done in the file called <span style="color: #ee2a24">exctract_loc()</span> 
+
+                    Process for finding ISO codes:
+                    1.) Filter excel sheet by first letter of Country extrcated by QA model
+                    2.) Try to find exact match 
+                    3.) If no exact match found, find the best match by comparing 'fuzz ratio', Which is the similarity score of our country, to the country names in the filtered excel sheet. The higher the score the more similar the words are. 
                     <pre class="mycode"> 
                         <code>
                             
