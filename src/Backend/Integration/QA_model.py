@@ -23,7 +23,6 @@ class qaModel():
         self.extract_ans()
     
     def extract_ans(self):
-
         # get first page of document
         reader = ReadFile()
         first_page = reader.exec(self.file)[0]

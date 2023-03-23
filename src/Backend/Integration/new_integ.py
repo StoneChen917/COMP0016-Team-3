@@ -1,7 +1,4 @@
-# IMPROVEMENTS WHEN FINALISED
-    # unify file, first page, and rest of pages
-    # make models take in text from here, from class attributes
-import psycopg2
+# import psycopg2
 
 
 
@@ -26,17 +23,16 @@ from readfile import ReadFile
 import os
 
 class main():
+    """Main class that integrates all the extraction. All extracted information are stored in self.final_extract"""
     def __init__(self, file):
         self.file=file
         self.reader = ReadFile()
-        # self.locations=Locations(file)
         self.admin_0 = self.get_admin_0()
         self.first_page = self.get_first_page()
         self.other_pages = self.get_other_pages()
         self.loc_list = self.remove_admin_0()
         self.admin_1_codes = self.get_pcodes()[0]
         self.admin_2_codes = self.get_pcodes()[1]
-        # self.get_pcodes()
         self.ISO = self.get_ISO_code()
         self.final_extract=self.extract()
 
@@ -44,15 +40,13 @@ class main():
 
 
     def get_first_page(self):
-        # reader = ReadFile()
-        
         self.first_page = self.reader.exec(self.file)[0]
     
     def get_other_pages(self):
-        # reader = ReadFile()
         self.other_pages = self.reader.exec(self.file)[1]
     
     def get_answers(self):
+        # QA model answers
         answers=qaModel(self.file).answers
         return answers
        
@@ -69,8 +63,7 @@ class main():
     def remove_admin_0(self):
         locations = Locations(self.file)
         lst = locations.exctract_loc()
-
-        # remove admin 0
+        
         if self.admin_0 in lst:
             lst.remove(self.admin_0)
         
@@ -115,7 +108,6 @@ class main():
 
 def dict_parser(final,path,list_answers):
     
-        #print(final)
         Country = final['Country']
         ISO = final['ISO']
         
