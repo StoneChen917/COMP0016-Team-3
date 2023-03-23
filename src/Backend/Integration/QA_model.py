@@ -7,7 +7,9 @@ model = AutoModelForQuestionAnswering.from_pretrained('deepset/roberta-base-squa
 tokenizer = AutoTokenizer.from_pretrained('deepset/roberta-base-squad2')
 
 class qaModel():
-    
+    """
+    Uses Question-Answering model to extract answers. Answers are stored in dictionary called self.answers
+    """
     def __init__(self, file):
         self.file = file
         self.questions=["What is the Country of Disaster?",

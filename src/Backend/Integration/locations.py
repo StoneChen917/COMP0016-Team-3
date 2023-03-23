@@ -2,7 +2,7 @@ import spacy
 from readfile import ReadFile
 
 class Locations():
-    """Gets a list of Goepolitical entities in text, with duplicates removed"""
+    """Gets a list of goepolitical entities in text, with duplicates removed"""
     def __init__(self, file):
         self.file = file
         self.locations = self.exctract_loc()

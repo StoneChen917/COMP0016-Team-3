@@ -13,8 +13,7 @@ from transformers.models.decision_transformer.modeling_decision_transformer impo
 
 
 class codeMatch():
-    """Finds ISO code for Admin 0 locations and P-codes of Admin 1 & 2 locations
-    methods getISOCode() and loop_p_codes(self) """
+    """Finds ISO code for Admin 0 locations and P-codes of Admin 1 & 2 locations with methods getISOCode() and loop_p_codes(self) """
     def __init__(self, admin_0, loc_list):
         self.admin_0 = admin_0
         # list of dict of pcodes for admin 1 & locations
